@@ -1,0 +1,124 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/*
+ * Design tokens for Asteron Global Consultancy.
+ *
+ * Brand hexes (navy/teal/gold/soft-white/charcoal) are fixed by the design
+ * brief and exposed verbatim as --color-brand-* utilities. The structural
+ * shadcn roles below (primary/secondary/accent/muted/border/ring) use
+ * accessibility-checked derivatives rather than the raw brand hexes
+ * wherever the raw value would fail WCAG 2.2 AA contrast as text or as a
+ * UI-component boundary (see docs/DESIGN_SYSTEM.md §2 and §9):
+ *   - Raw teal (#0E9384) on white is ~3.8:1 — below the 4.5:1 text
+ *     minimum, so `--secondary` uses a light teal tint with a darker
+ *     teal foreground (~5.1:1) instead of a solid teal fill.
+ *   - Raw gold (#E5A93D) on white is ~2.1:1, so gold is only ever paired
+ *     with a dark (navy) foreground, never used as text-on-light.
+ *   - Default borders/inputs are darkened from a straight brand tint to
+ *     clear the 3:1 non-text contrast ratio against the soft-white page
+ *     background.
+ * Dark mode is intentionally not implemented (out of scope for V1).
+ */
+
+@theme inline {
+  --font-sans: var(--font-sans);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand utilities (bg-brand-navy, text-brand-gold, etc.) */
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-teal: var(--brand-teal);
+  --color-brand-teal-text: var(--brand-teal-text);
+  --color-brand-gold: var(--brand-gold);
+  --color-brand-gold-foreground: var(--brand-gold-foreground);
+  --color-brand-soft-white: var(--brand-soft-white);
+  --color-brand-charcoal: var(--brand-charcoal);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+}
+
+:root {
+  /* Raw brand palette (docs/DESIGN_SYSTEM.md §2) */
+  --brand-navy: #0b1f3a;
+  --brand-teal: #0e9384;
+  --brand-teal-text: #0b7367;
+  --brand-gold: #e5a93d;
+  --brand-gold-foreground: #0b1f3a;
+  --brand-soft-white: #f7f9fc;
+  --brand-charcoal: #182230;
+
+  /* Structural surface roles */
+  --background: var(--brand-soft-white);
+  --foreground: var(--brand-charcoal);
+  --card: #ffffff;
+  --card-foreground: var(--brand-charcoal);
+  --popover: #ffffff;
+  --popover-foreground: var(--brand-charcoal);
+
+  --primary: var(--brand-navy);
+  --primary-foreground: #ffffff;
+
+  --secondary: #e6f5f3;
+  --secondary-foreground: var(--brand-teal-text);
+
+  --muted: #eef1f6;
+  --muted-foreground: #4b5563;
+
+  --accent: #eef1f6;
+  --accent-foreground: var(--brand-charcoal);
+
+  --destructive: #b91c1c;
+  --destructive-foreground: #ffffff;
+
+  --border: #7c8aa0;
+  --input: #7c8aa0;
+  --ring: var(--brand-navy);
+
+  --radius: 0.625rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
