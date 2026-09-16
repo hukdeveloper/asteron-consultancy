@@ -1,52 +1,122 @@
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Container } from "@/components/layout/Container";
-import { Section } from "@/components/layout/Section";
-import { PageHeader } from "@/components/shared/PageHeader";
-import { SiteLogo } from "@/components/shared/SiteLogo";
+import type { Metadata } from "next";
+
+import { JsonLd } from "@/components/shared/JsonLd";
+import { DestinationsSection } from "@/components/home/DestinationsSection";
+import { FaqSection } from "@/components/home/FaqSection";
+import { FinalCtaSection } from "@/components/home/FinalCtaSection";
+import { Hero } from "@/components/home/Hero";
+import { HowItWorksSection } from "@/components/home/HowItWorksSection";
+import { InsuranceSection } from "@/components/home/InsuranceSection";
+import { ResourcesSection } from "@/components/home/ResourcesSection";
+import { ScholarshipSection } from "@/components/home/ScholarshipSection";
+import { ServicesSection } from "@/components/home/ServicesSection";
+import { StudyAbroadIntroSection } from "@/components/home/StudyAbroadIntroSection";
+import { SuccessStoriesSection } from "@/components/home/SuccessStoriesSection";
+import { TrustStrip } from "@/components/home/TrustStrip";
+import { getDestinations } from "@/lib/content/destinations";
+import {
+  getFaqItems,
+  getFinalCta,
+  getHomeHero,
+  getInsuranceDisclaimer,
+  getInsuranceHighlights,
+  getProcessSteps,
+  getResourceSummaries,
+  getScholarshipHighlights,
+  getSuccessStoryDemos,
+  getTrustPoints,
+} from "@/lib/content/home";
+import { getFeaturedServices } from "@/lib/content/services";
 import { getSiteContent } from "@/lib/content/site";
+import { env } from "@/lib/env";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const site = await getSiteContent();
+  const title = `${site.name} — ${site.tagline}`;
+  const description = site.description;
+
+  return {
+    title,
+    description,
+    alternates: { canonical: "/" },
+    openGraph: {
+      title,
+      description,
+      url: env.siteUrl,
+      siteName: site.name,
+      type: "website",
+      locale: "en_US",
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description,
+    },
+  };
+}
 
 export default async function HomePage() {
-  const site = await getSiteContent();
+  const [
+    site,
+    hero,
+    trustPoints,
+    services,
+    destinations,
+    processSteps,
+    scholarshipHighlights,
+    successStories,
+    insuranceHighlights,
+    insuranceDisclaimer,
+    resources,
+    faqItems,
+    finalCta,
+  ] = await Promise.all([
+    getSiteContent(),
+    getHomeHero(),
+    getTrustPoints(),
+    getFeaturedServices(),
+    getDestinations(),
+    getProcessSteps(),
+    getScholarshipHighlights(),
+    getSuccessStoryDemos(),
+    getInsuranceHighlights(),
+    getInsuranceDisclaimer(),
+    getResourceSummaries(),
+    getFaqItems(),
+    getFinalCta(),
+  ]);
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: site.name,
+    description: site.description,
+    url: env.siteUrl,
+    email: site.contact.email,
+    telephone: site.contact.phone,
+  };
 
   return (
-    <Section className="py-16 sm:py-24">
-      <Container>
-        <Badge variant="outline" className="mb-6">
-          Development preview — Phase 1 foundation
-        </Badge>
+    <>
+      {/* Real, non-fictional fields only — see docs/DECISIONS.md for what is
+          deliberately omitted (address/coordinates/ratings/hours) until verified. */}
+      <JsonLd data={structuredData} />
 
-        <SiteLogo variant="full" className="mb-10" />
-
-        <PageHeader
-          heading={`Welcome to ${site.name}`}
-          description={site.description}
-        />
-
-        <Button asChild className="mt-8">
-          <a href="#foundation-note">What is this page?</a>
-        </Button>
-
-        <Card id="foundation-note" className="mt-16 max-w-2xl scroll-mt-8">
-          <CardContent className="text-muted-foreground space-y-3 pt-6 text-sm">
-            <p className="text-foreground font-medium">
-              This is a development-only foundation page.
-            </p>
-            <p>
-              It exists to verify the application shell, design tokens, and
-              component library — not to represent the final Asteron Global
-              Consultancy homepage. The full marketing homepage (hero, services,
-              destinations, success stories, and more) will be built in a later
-              phase, following the content order documented in{" "}
-              <code className="bg-muted rounded px-1 py-0.5 text-xs">
-                docs/PRODUCT_REQUIREMENTS.md
-              </code>
-              .
-            </p>
-          </CardContent>
-        </Card>
-      </Container>
-    </Section>
+      <Hero hero={hero} />
+      <TrustStrip points={trustPoints} />
+      <StudyAbroadIntroSection />
+      <DestinationsSection destinations={destinations} />
+      <HowItWorksSection steps={processSteps} />
+      <ServicesSection services={services} />
+      <ScholarshipSection highlights={scholarshipHighlights} />
+      <InsuranceSection
+        highlights={insuranceHighlights}
+        disclaimer={insuranceDisclaimer}
+      />
+      <SuccessStoriesSection stories={successStories} />
+      <ResourcesSection resources={resources} />
+      <FaqSection items={faqItems} />
+      <FinalCtaSection cta={finalCta} contact={site.contact} />
+    </>
   );
 }

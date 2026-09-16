@@ -28,7 +28,7 @@ export function PageHeader({
   return (
     <div className={cn("max-w-2xl", className)}>
       {eyebrow ? (
-        <p className="text-brand-teal-text text-sm font-semibold tracking-wide uppercase">
+        <p className="text-brand-teal-text text-sm font-semibold tracking-wide">
           {eyebrow}
         </p>
       ) : null}

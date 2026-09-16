@@ -3,22 +3,25 @@
 @import "shadcn/tailwind.css";
 
 /*
- * Design tokens for Asteron Global Consultancy.
+ * Design tokens for Asteron Global Consultancy — reset Phase 10B (see
+ * docs/DECISIONS.md "Visual Language Reset"). The previous navy-and-gold
+ * corporate-template palette is replaced with a lighter, editorial
+ * "modern international education platform" direction: white/soft
+ * surfaces dominate, ink is used for emphasis (the footer, not the whole
+ * site), blue is the primary action colour, and coral is a small,
+ * controlled accent.
  *
- * Brand hexes (navy/teal/gold/soft-white/charcoal) are fixed by the design
- * brief and exposed verbatim as --color-brand-* utilities. The structural
- * shadcn roles below (primary/secondary/accent/muted/border/ring) use
- * accessibility-checked derivatives rather than the raw brand hexes
- * wherever the raw value would fail WCAG 2.2 AA contrast as text or as a
- * UI-component boundary (see docs/DESIGN_SYSTEM.md §2 and §9):
- *   - Raw teal (#0E9384) on white is ~3.8:1 — below the 4.5:1 text
- *     minimum, so `--secondary` uses a light teal tint with a darker
- *     teal foreground (~5.1:1) instead of a solid teal fill.
- *   - Raw gold (#E5A93D) on white is ~2.1:1, so gold is only ever paired
- *     with a dark (navy) foreground, never used as text-on-light.
- *   - Default borders/inputs are darkened from a straight brand tint to
- *     clear the 3:1 non-text contrast ratio against the soft-white page
- *     background.
+ * Accessibility-checked derivatives (see docs/DESIGN_SYSTEM.md §2 and §9):
+ *   - Primary blue (#3157F6) on white is ~5.6:1 — passes AA for text,
+ *     UI components, and white-on-blue button labels alike.
+ *   - Coral (#FF7A59) is only ~2.6:1 against white in either direction
+ *     (text-on-white or white-on-coral both fail 4.5:1), so coral is used
+ *     only as a background tint paired with dark ink text (~6.6:1), never
+ *     as small text/icon colour directly on a light surface.
+ *   - `--border`/`--input` keep the previous, already-verified ~3.5:1
+ *     neutral (unchanged value — it clears 3:1 non-text contrast against
+ *     the new pure-white background at least as well as the old
+ *     off-white one).
  * Dark mode is intentionally not implemented (out of scope for V1).
  */
 
@@ -44,14 +47,18 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* Brand utilities (bg-brand-navy, text-brand-gold, etc.) */
-  --color-brand-navy: var(--brand-navy);
+  /* Brand utilities (bg-brand-ink, text-brand-blue, etc.) */
+  --color-brand-ink: var(--brand-ink);
   --color-brand-teal: var(--brand-teal);
   --color-brand-teal-text: var(--brand-teal-text);
-  --color-brand-gold: var(--brand-gold);
-  --color-brand-gold-foreground: var(--brand-gold-foreground);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-blue-dark: var(--brand-blue-dark);
+  --color-brand-coral: var(--brand-coral);
   --color-brand-soft-white: var(--brand-soft-white);
   --color-brand-charcoal: var(--brand-charcoal);
+  --color-surface-pale-blue: var(--surface-pale-blue);
+  --color-surface-pale-mint: var(--surface-pale-mint);
+  --color-surface-warm: var(--surface-warm);
 
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
@@ -62,32 +69,38 @@
 
 :root {
   /* Raw brand palette (docs/DESIGN_SYSTEM.md §2) */
-  --brand-navy: #0b1f3a;
-  --brand-teal: #0e9384;
-  --brand-teal-text: #0b7367;
-  --brand-gold: #e5a93d;
-  --brand-gold-foreground: #0b1f3a;
+  --brand-ink: #14213d;
+  --brand-teal: #12a594;
+  --brand-teal-text: #0e7c6e;
+  --brand-blue: #3157f6;
+  --brand-blue-dark: #173b8f;
+  --brand-coral: #ff7a59;
   --brand-soft-white: #f7f9fc;
-  --brand-charcoal: #182230;
+  --brand-charcoal: #172033;
+
+  /* Tinted section surfaces — used sparingly, never as the whole page */
+  --surface-pale-blue: #eef4ff;
+  --surface-pale-mint: #eaf9f5;
+  --surface-warm: #fff7f1;
 
   /* Structural surface roles */
-  --background: var(--brand-soft-white);
+  --background: #ffffff;
   --foreground: var(--brand-charcoal);
   --card: #ffffff;
   --card-foreground: var(--brand-charcoal);
   --popover: #ffffff;
   --popover-foreground: var(--brand-charcoal);
 
-  --primary: var(--brand-navy);
+  --primary: var(--brand-ink);
   --primary-foreground: #ffffff;
 
-  --secondary: #e6f5f3;
-  --secondary-foreground: var(--brand-teal-text);
+  --secondary: var(--surface-pale-blue);
+  --secondary-foreground: var(--brand-blue-dark);
 
-  --muted: #eef1f6;
-  --muted-foreground: #4b5563;
+  --muted: var(--brand-soft-white);
+  --muted-foreground: #5e687a;
 
-  --accent: #eef1f6;
+  --accent: var(--surface-pale-blue);
   --accent-foreground: var(--brand-charcoal);
 
   --destructive: #b91c1c;
@@ -95,7 +108,7 @@
 
   --border: #7c8aa0;
   --input: #7c8aa0;
-  --ring: var(--brand-navy);
+  --ring: var(--brand-blue);
 
   --radius: 0.625rem;
 }

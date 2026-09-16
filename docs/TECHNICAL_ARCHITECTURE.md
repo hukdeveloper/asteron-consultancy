@@ -47,42 +47,52 @@ app/
   global-error.tsx                   # implemented
   (public)/
     layout.tsx                       # the shared shell — see above
-    page.tsx                         # temporary development homepage (Phase 1)
-    about/                           # ComingSoon
+    page.tsx                         # real homepage (Phase 3)
+    about/                           # real (Phase 6)
+    team/                            # real (Phase 6) — role-based placeholders only
     study-abroad/
-      page.tsx                       # ComingSoon
-      [destination]/page.tsx         # ComingSoon per destination; generateStaticParams from src/content/destinations.ts
+      page.tsx                       # real hub (Phase 4)
+      undergraduate/page.tsx         # real, shared StudyLevelTemplate (Phase 4)
+      postgraduate/page.tsx          # real, shared StudyLevelTemplate (Phase 4)
+      [destination]/page.tsx         # real, one shared template; generateStaticParams from src/content/destinations.ts (Phase 4, 6 destinations)
     universities/                    # ComingSoon
     services/
-      page.tsx                       # ComingSoon
-      [slug]/page.tsx                # ComingSoon per service; generateStaticParams from src/content/services.ts
-    scholarships/                    # ComingSoon
-    insurance/                       # ComingSoon
-    success-stories/                 # ComingSoon
+      page.tsx                       # real hub (Phase 5)
+      [slug]/page.tsx                # real, one shared ServiceTemplate; generateStaticParams from src/content/services.ts (Phase 5, 7 services)
+    scholarships/
+      page.tsx                       # real hub (Phase 6) — polished empty state, content-template records only
+      [slug]/page.tsx                # real, one shared template; generateStaticParams from src/content/scholarships.ts (Phase 6, 2 template records)
+    insurance/
+      page.tsx                       # real hub (Phase 5)
+      [slug]/page.tsx                # real, one shared InsuranceTemplate; generateStaticParams from src/content/insurance.ts (Phase 5, 3 insurance types)
+    success-stories/                 # real (Phase 6) — empty state + demo example journeys
     resources/
-      page.tsx                       # ComingSoon
-      faqs/page.tsx                  # ComingSoon (added beyond the original sitemap — see docs/SITEMAP.md)
-    events/                          # ComingSoon
-    contact/                         # ComingSoon
-    book-consultation/               # ComingSoon
-    check-eligibility/               # ComingSoon
-    insurance-quote/                 # ComingSoon
+      page.tsx                       # real hub (Phase 6)
+      [slug]/page.tsx                # real, one shared ResourceArticleTemplate; generateStaticParams from src/content/resources.ts (Phase 6, 6 articles)
+    events/
+      page.tsx                       # real (Phase 6) — one sample entry, schedule to be announced
+      [slug]/page.tsx                # real, one shared template; generateStaticParams from src/content/events.ts (Phase 6)
+    faq/                             # real (Phase 6) — 8 categories; replaces the never-built resources/faqs stub
+    contact/                         # real (Phase 6, refactored Phase 7) — ContactForm on the shared form architecture
+    book-consultation/               # real, client-side-only demo form (Phase 7) — ConsultationForm
+    check-eligibility/               # real, informative-only content (Phase 4) + EligibilityForm (Phase 7)
+    insurance-quote/                 # real, client-side-only demo form (Phase 5, refactored Phase 7)
     legal/
-      privacy-policy/                # ComingSoon
-      terms-of-service/              # ComingSoon
-      cookie-policy/                 # ComingSoon
-      disclaimer/                    # ComingSoon
+      privacy-policy/                # real draft (Phase 6) — see docs/DECISIONS.md "Legal Draft Status"
+      terms-of-service/              # real draft (Phase 6)
+      cookie-policy/                 # real draft (Phase 6)
+      disclaimer/                    # real draft (Phase 6)
 ```
 
-Every route above other than `/` currently renders `src/components/shared/ComingSoon.tsx` — one shared placeholder component, not duplicated markup per route — with a route-specific title and breadcrumb. Phase 3 replaces each with real content, one route at a time, without needing to touch the shell or the other routes.
+Every remaining `ComingSoon` route renders `src/components/shared/ComingSoon.tsx` — one shared placeholder component, not duplicated markup per route — with a route-specific title and breadcrumb. Each later phase replaces a batch of these with real content, one at a time, without needing to touch the shell or the other routes.
 
 No `api/` directory and no `(admin)` group exist or are planned for this track — there is nothing server-side to expose an API for yet.
 
 ## 3. Content Access Approach (current track)
 
-- Every content type gets a local typed object under `src/content/` and a corresponding `async` accessor under `src/lib/content/`. Implemented so far: `getSiteContent()` (identity + contact), `getHeaderNavigation()` / `getHeaderPrimaryCta()` / `getFooterLinkGroups()` / `getLegalLinks()` (navigation), `getAnnouncement()`, `getSocialLinks()`, `getDestinations()` / `getDestinationBySlug(slug)`, `getServices()` / `getServiceBySlug(slug)`.
-- Dynamic routes (e.g., `study-abroad/[destination]`) use `generateStaticParams()` reading from the content-access layer to enumerate all pages at build time — everything is prerendered, nothing is fetched at request time. An unknown slug (one not returned by `generateStaticParams`) calls `notFound()` rather than rendering a generic placeholder, so a truly unmapped URL still reaches the real 404 page.
-- Destination/service navigation entries (dropdown children) are generated from `src/content/{destinations,services}.ts` in `src/content/navigation.ts` rather than duplicated by hand — adding a destination/service automatically updates the header, and its `[slug]`/`[destination]` stub route picks it up via `generateStaticParams` without further wiring.
+- Every content type gets a local typed object under `src/content/` and a corresponding `async` accessor under `src/lib/content/`. Implemented so far: `getSiteContent()` (identity + contact), `getHeaderNavigation()` / `getHeaderPrimaryCta()` / `getFooterLinkGroups()` / `getLegalLinks()` (navigation), `getAnnouncement()`, `getSocialLinks()`, `getDestinations()` / `getDestinationBySlug(slug)`, `getServices()` / `getFeaturedServices()` / `getServiceBySlug(slug)` / `getServicesByCategory()` / `getRelatedServices()` / `getServicesHubContent()`, `getInsuranceServices()` / `getInsuranceServiceBySlug(slug)` / `getInsuranceHubContent()` / `getInsuranceGlobalDisclosure()`, `getStudyAbroadHubContent()` / `getStudyLevelPageContent(slug)`, `getEligibilityContent()`, `getTeamMembers()`, `getAboutContent()`, `getSuccessStories()` / `getSuccessStoriesIntro()`, `getResourceArticles()` / `getResourceArticleBySlug(slug)` / `getFeaturedResourceArticle()` / `getResourceCategories()` / `getRelatedResourceArticles()` / `getResourcesHubContent()`, `getEvents()` / `getEventBySlug(slug)` / `getEventsIntro()`, `getScholarships()` / `getScholarshipBySlug(slug)` / `getScholarshipsIntro()`, `getFaqCategories()`, `getContactMethods()` / `getOfficeLocation()` / `getContactPageContent()`, `getLegalPages()` / `getLegalPageBySlug(slug)` / `getLegalDraftNotice()`.
+- Dynamic routes (e.g., `study-abroad/[destination]`, `services/[slug]`, `insurance/[slug]`) use `generateStaticParams()` reading from the content-access layer to enumerate all pages at build time — everything is prerendered, nothing is fetched at request time. An unknown slug (one not returned by `generateStaticParams`) calls `notFound()` rather than rendering a generic placeholder, so a truly unmapped URL still reaches the real 404 page.
+- Destination/service/insurance navigation entries (dropdown children) are generated from `src/content/{destinations,services,insurance}.ts` in `src/content/navigation.ts` rather than duplicated by hand — adding a destination/service/insurance type automatically updates the header, and its `[slug]`/`[destination]` route picks it up via `generateStaticParams` without further wiring.
 - `src/config/site.ts` holds structural feature toggles (`announcementBarEnabled`, `mobileQuickActionsEnabled`) — distinct from both `src/content/*` (marketing content) and `src/lib/env.ts` (environment variables). This is where "disable the announcement bar" or "disable mobile quick actions" is implemented.
 - No pagination/filtering infrastructure is needed while content volume is small and hand-authored; add it only if a listing page's content volume genuinely requires it, and implement it client-side over the already-static dataset (no server-side query layer exists to filter in).
 
@@ -92,10 +102,20 @@ No `api/` directory and no `(admin)` group exist or are planned for this track �
 
 ## 5. Forms and Validation (current track: UI only)
 
-- **Client-side:** React Hook Form + Zod resolvers for all forms (Consultation, Check Eligibility, Insurance Quote, Contact), with accessible real-time validation and error messaging.
+- **Client-side:** React Hook Form + Zod resolvers for all four forms — Consultation (`src/components/consultation/ConsultationForm.tsx`, schema at `src/lib/validation/consultation.ts`), Check Eligibility (`src/components/eligibility/EligibilityForm.tsx`, schema at `src/lib/validation/eligibility.ts`), Insurance Quote (`src/components/insurance/InsuranceQuoteForm.tsx`, schema at `src/lib/validation/insuranceQuote.ts`), and Contact (`src/components/contact/ContactForm.tsx`, schema at `src/lib/validation/contactForm.ts`) — all implemented (Phase 5 for Insurance Quote, Phase 6 for Contact, Phase 7 for the remaining two and for consolidating all four onto one shared architecture).
 - **No server-side persistence exists in this track.** There is no database and no API route to submit to.
-- **Submission adapter pattern:** each form calls a single, swappable submission function (e.g., `submitConsultationRequest(data)`) defined behind a small adapter interface. The current implementation is an explicitly-labelled **demo/development mode** — it may log to the console or simulate a delay, but it must never claim to the visitor that the enquiry was saved or will be followed up on. The UI's success state must say so in plain language (e.g., "Form submission is not yet connected — this is a development preview").
-- **Track 2 will:** implement a real adapter (e.g., posting to a third-party form/email service or a small serverless function), add spam/bot mitigation (honeypot field, timing heuristic, optional CAPTCHA) and rate limiting at that boundary, and remove the demo-mode messaging.
+- **Shared form architecture (Phase 7), under `src/types/forms.ts`, `src/lib/forms/`, and `src/components/forms/`:**
+  - `SubmissionAdapter`/`SubmissionResult`/`SubmissionStatus` (`src/types/forms.ts`) is the interface every form's submission goes through: `submit(payload: unknown): Promise<SubmissionResult>`, where `SubmissionResult` is a discriminated union of `success` / `validation-error` / `not-configured` / `service-error`.
+  - `notConfiguredAdapter` (`src/lib/forms/adapters/notConfiguredAdapter.ts`) is the only Track 1 implementation. It makes **no network request, writes nothing to any storage, and logs nothing** — verified by unit tests spying on `fetch`/`console.log`/`Storage.prototype.setItem` — and always resolves `{status: "not-configured"}`. It replaces the earlier Phase 5 `submitDemoForm()` (see docs/DECISIONS.md C-043).
+  - `src/lib/forms/messages.ts` centralizes every verbatim string shown to the user (demo notice, not-connected message, consent label, sensitive-data warning, consultation preference-only note, error-summary heading), so the required wording is defined once and cannot drift between forms.
+  - Shared components (`src/components/forms/`): `FormField` (label/required-indicator/description/error wrapper), `FormErrorSummary` (`role="alert"` summary linking to each invalid field), `FormDemoNotice` (the demo-mode badge + notice + sensitive-data warning shown at the top of every form), `FormSubmittedNotice` (the not-connected message plus real `tel:`/`mailto:`/`wa.me` links, replacing the form after a valid submission), and `ConsentField` (the unchecked-by-default consent checkbox linking to `/legal/privacy-policy`).
+  - `useDemoFormSubmit(submitCount, hasErrors)` (`src/lib/forms/useDemoFormSubmit.ts`) is the shared hook every form calls: it owns the submitted-state flag, calls `notConfiguredAdapter.submit()` on a valid submission, and moves focus to the error summary on every failed submit attempt via `formState.submitCount` (so assistive technology re-announces it even when the same fields are still invalid).
+  - `describedBy()` (`src/lib/forms/describedBy.ts`) and `dateUtils.ts`'s `todayIsoDate()`/`isBeforeToday()`/`isAfterToday()` are the remaining shared utilities — the date helpers compare `YYYY-MM-DD` strings built from a `Date`'s local year/month/day parts rather than `toISOString()`, deliberately avoiding the UTC-conversion date-shift bug that a naive "reject past dates" check would have near local midnight.
+  - This is deliberately a small set of composable pieces, not a schema-driven form-builder — a form still writes its own field layout and its own Zod schema; only the cross-cutting concerns (submission, messaging, error display, consent, focus management) are shared.
+- **Conditional fields (Eligibility form, Phase 7):** English-test fields (`englishTestType`/`englishTestScore`) and study-gap details (`studyGapDetails`) are hidden in the UI until their toggle checkbox is checked, and validated conditionally via one `.superRefine()` on `eligibilitySchema` — never unconditionally required, never silently ignored. `cleanEligibilityPayload()` clears a hidden field's stale value before a valid payload would reach an adapter, so a value typed and then hidden again cannot leak into any future processing.
+- **Accessible error handling:** inline field-level errors tied via `aria-describedby`, an `aria-invalid` flag per field, a `role="alert"` error summary linking to each invalid field, and `formState.submitCount`-driven focus management so a screen reader re-announces the summary on every failed submit attempt (not just the first). Required-field indicators are never color-only (an explicit `*` plus label text, not a red asterisk alone).
+- **Form Security Preparation (documented now, not implemented — no form makes any request yet):** once Track 2 wires a real submission adapter, that boundary will need — mirroring each Zod schema server-side (client-side validation is never trusted alone), rate limiting per IP/session, bot protection (honeypot field and/or a timing heuristic; CAPTCHA only if abuse is actually observed), CSRF protection appropriate to the chosen transport, spam filtering, request-size limits, TLS-only transport, data minimization (store only the fields each form actually needs), a documented retention period (see docs/DECISIONS.md U-006), role-based access controls over stored submissions, an audit trail of who accessed/actioned a submission, and redaction of personal fields from any application logs. None of this exists today because there is nothing to protect — no form transmits data — but the requirement is recorded here so Track 2 does not ship without it. See docs/DECISIONS.md U-015.
+- **Track 2 will:** implement a real adapter body behind the same `SubmissionAdapter`/`SubmissionResult` interface (e.g., posting to a third-party form/email service or a small serverless function), implement the Form Security Preparation items above at that boundary, and remove the demo-mode messaging — no form component should need to change beyond swapping which adapter it calls.
 - **Track 3 will:** optionally route submissions into Strapi as content entries if that becomes the chosen lead-storage mechanism, superseding whatever Track 2 adapter was used.
 
 ## 6. Media (current track)
@@ -113,16 +133,18 @@ No `api/` directory and no `(admin)` group exist or are planned for this track �
 - Input validation on every form via Zod, client-side (no server boundary exists yet to also validate at).
 - Output encoding handled by React/Next defaults.
 - Standard security headers set in `next.config.ts`: `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`, `Strict-Transport-Security`.
-- **Content-Security-Policy is intentionally deferred**, not implemented. A meaningful CSP needs per-request nonces (via a `proxy.ts`, Next 16's renamed middleware) and dynamic rendering on nonce-consuming pages — that architecture isn't needed yet for a static site and would add complexity without a corresponding attack surface to protect. Revisit once Track 2/3 introduce dynamic behavior worth protecting with a nonce-based CSP.
-- No secrets exist in the current track beyond `NEXT_PUBLIC_SITE_URL` (not sensitive); environment-variable validation (`src/lib/env.ts`, Zod-backed) still applies as a general discipline.
+- **Content-Security-Policy is intentionally deferred**, not implemented. A meaningful CSP needs per-request nonces (via a `proxy.ts`, Next 16's renamed middleware) and dynamic rendering on nonce-consuming pages — that architecture isn't needed yet for a static site and would add complexity without a corresponding attack surface to protect. Revisit once Track 2/3 introduce dynamic behavior worth protecting with a nonce-based CSP. Re-confirmed still the right call in the Phase 8 audit — see docs/DEPLOYMENT.md §6.
+- No secrets exist in the current track beyond `NEXT_PUBLIC_SITE_URL` (not sensitive); environment-variable validation (`src/lib/env.ts`, Zod-backed) still applies as a general discipline. Verified in Phase 8 that no other `process.env` access exists anywhere in `src/`.
 - No database, no admin, no server-side personal-data handling — the attack surface is deliberately minimal in this track.
+- **Dependency audit (Phase 8):** `npm audit` reports 0 vulnerabilities. `npm outdated` lists 8 packages behind latest, none of them a security advisory — see docs/DECISIONS.md's Phase 8 changelog entry for the full classification (patch/minor bumps considered low-risk; major-version bumps for `eslint`, `@vitejs/plugin-react`, `@types/node`, and `typescript` deferred pending dedicated compatibility testing, not performed as a side effect of this audit).
 
 ## 9. SEO
 
-- Centralized metadata via the Next.js Metadata API (`generateMetadata`), sourced from content's SEO fields (`metaTitle`, `metaDescription`) via the content-access layer.
-- Structured data (JSON-LD for Organization, BreadcrumbList, Article, Event, FAQPage) can be added once the corresponding pages exist — populate only with real/approved data, per [CLAUDE.md](../CLAUDE.md).
-- Sitemap/robots: Next.js's built-in `sitemap.ts`/`robots.ts` conventions, generated from local content (no admin route to exclude, since none exists).
-- Canonical URLs via `metadataBase` (already configured) plus per-page `alternates.canonical` once dynamic routes exist.
+- Centralized metadata via the Next.js Metadata API (`generateMetadata`), sourced from content's SEO fields (`metaTitle`, `metaDescription`) via the content-access layer, with a unique title/description and `alternates.canonical` on every route.
+- **Structured data (implemented, Phase 8):** `Organization` + `WebSite` JSON-LD rendered once, site-wide, in the root layout (`src/app/layout.tsx`, built by `buildOrganizationJsonLd`/`buildWebSiteJsonLd` in `src/lib/structuredData.ts`); `BreadcrumbList` on every page (`buildBreadcrumbListJsonLd`) and `FAQPage` wherever a page's visible FAQ content matches exactly (`buildFaqPageJsonLd`). No `Review`/`AggregateRating`, no `Event` JSON-LD for the sample/schedule-tbd event, no fabricated `PriceRange`/opening hours/registration numbers — only fields that are actually true are ever included. Every JSON-LD `<script>` is serialized via `serializeJsonLd()` (`src/lib/structuredData.ts`), which escapes every `<` character so a content field can never prematurely close the script tag or inject markup — required before any content is interpolated into a `<script>` body, and the only sanctioned way to do so in this codebase (enforced by convention via the shared `JsonLd` component).
+- **Sitemap/robots (implemented, Phase 8):** `src/app/sitemap.ts` and `src/app/robots.ts`, Next.js's built-in conventions, generated entirely from local content (no hand-maintained URL list). Drafts (`LegalPage.isDraft`), templates (`Scholarship.isTemplate`), and sample detail pages (`Event.isSampleContent`) are excluded from the sitemap — see the file's own doc comment and docs/ROUTE_INVENTORY.md for the exact policy. `lastModified` is set only from a genuine `lastReviewed`/`lastUpdated` content field, never today's date used as a stand-in for "this was checked."
+- **Default Open Graph image (implemented, Phase 8):** `src/app/opengraph-image.tsx`, a code-generated (`next/og` `ImageResponse`) 1200×630 image using brand colours and the real site name/tagline — no stock photography, no fabricated claims. `src/app/icon.tsx` generates the favicon the same way, reusing the same compass-star/open-book mark as `SiteLogo`. Per-page `openGraph`/`twitter` metadata (already set on every route) still overrides the title/description a link preview shows; this image is only the shared visual fallback.
+- Canonical URLs via `metadataBase` (configured in the root layout) plus per-page `alternates.canonical` on every route.
 
 ## 10. Accessibility
 
@@ -130,27 +152,32 @@ No `api/` directory and no `(admin)` group exist or are planned for this track �
 - Semantic HTML landmarks, correct heading hierarchy, accessible form labels/error associations (`aria-describedby`, `aria-invalid`), visible focus states, full keyboard operability.
 - Color contrast for all brand tokens checked against WCAG AA at the component level (see [docs/DESIGN_SYSTEM.md](DESIGN_SYSTEM.md)).
 - No motion-only or color-only signaling of state.
-- Skip-to-content link (implemented), accessible mobile menu once navigation exists (proper `aria-expanded`/focus trapping).
+- Skip-to-content link, accessible mobile menu (`aria-expanded`/focus trapping via Radix `Sheet`/`DropdownMenu`).
+- **Automated axe-based sweep (implemented, Phase 8):** `e2e/accessibility.spec.ts` runs `@axe-core/playwright` (tags `wcag2a`, `wcag2aa`, `wcag22aa`) against one representative page per route family, plus all four forms with their validation-error state visible (error-state markup is checked separately since it's new DOM the clean-state sweep never renders) — zero violations as of Phase 8. This automated sweep catches only what axe's ruleset can detect; it does **not** replace manual verification of focus order, screen-reader announcement quality, or zoom/reflow behaviour — see docs/DEPLOYMENT.md "Post-deploy verification" for what to check by hand.
+- **Responsive QA matrix (implemented, Phase 8):** `e2e/responsive.spec.ts` checks 6 representative viewport widths (320/375/768/1024/1280/1920) across 13 representative pages for zero horizontal overflow and exactly one `<h1>`. This matrix caught and led to fixing a real overflow bug at exactly 1280px in the site header (see docs/DECISIONS.md C-047).
 
 ## 11. Performance
 
-- Targets: LCP ≤ 2.5s, CLS < 0.1, INP < 200ms on representative pages.
-- Fully static generation gives every page a strong performance baseline by default — no database round-trip, no server rendering cost per request.
-- Image optimization, self-hosted fonts (`next/font`), route-level code-splitting via App Router defaults.
-- Avoid heavy client-side libraries for non-essential motion/carousels (no carousels unless strongly justified).
+- Targets (audit targets, not something to game): Lighthouse Performance 90+, Accessibility 95+, Best Practices 95+, SEO 95+; Core Web Vitals LCP ≤ 2.5s, CLS < 0.1, INP < 200ms on representative pages.
+- Fully static generation gives every page a strong performance baseline by default — confirmed in the Phase 8 audit: `next build` marks every route `○` (static) or `●` (SSG via `generateStaticParams`), none `ƒ` (dynamic/server-rendered).
+- Image optimization, self-hosted fonts (`next/font`, `Inter`, `display: "swap"`), route-level code-splitting via App Router defaults.
+- Avoid heavy client-side libraries for non-essential motion/carousels (no carousels unless strongly justified) — none exist today.
+- **Server/client component balance (reviewed, Phase 8):** every page component is a server component (`async function Page()`); `"use client"` is scoped to genuinely interactive leaves — forms, the mobile menu/`Sheet`, dropdown navigation, and the FAQ `Accordion` — not whole pages. No unnecessary client-side data fetching exists since all content access already happens server-side via `src/lib/content/`.
+- **JSON-LD duplication (checked, Phase 8):** `Organization`/`WebSite` JSON-LD is rendered exactly once, in the root layout, not repeated per page; `BreadcrumbList`/`FAQPage` are page-specific and appear once per page that needs them. No page emits the same JSON-LD type twice.
+- **Bundle size:** no heavy third-party runtime libraries beyond React Hook Form + Zod (form pages only) and Radix primitives (already tree-shaken per-component via `radix-ui`'s package structure) — no chart/carousel/animation library is installed.
+- **Layout shift:** no images are rendered yet (see docs/MEDIA_ATTRIBUTIONS.md), so there is no image-related CLS risk today; revisit sizing/`priority` once real photography is added.
 
 ## 12. Testing
 
-- **Unit/component:** Vitest + Testing Library for components, the content-access layer, and utility functions (`src/lib/`).
-- **End-to-end:** Playwright for critical journeys — homepage, navigation between static pages once built, and each form's client-side happy-path and validation-error path.
-- **Accessibility testing:** automated checks (e.g., axe integration) on key pages as part of the E2E suite.
-- Tests are required for new behavior per [CLAUDE.md](../CLAUDE.md); CI should run format:check, lint, typecheck, unit tests, and E2E.
+- **Unit/component:** Vitest + Testing Library for components, the content-access layer, and utility functions (`src/lib/`) — 385+ tests as of Phase 8, including `src/content/integrity.test.ts` (cross-cutting content-integrity checks, run standalone via `npm run validate:content`).
+- **End-to-end:** Playwright for critical journeys — homepage, navigation, every page template, and each form's client-side happy-path and validation-error path (`e2e/*.spec.ts`).
+- **Accessibility testing (implemented, Phase 8):** `e2e/accessibility.spec.ts`, `@axe-core/playwright` against representative pages and all four forms' error states — see §10.
+- **Responsive testing (implemented, Phase 8):** `e2e/responsive.spec.ts`, a 6-viewport × 13-page overflow/heading matrix — see §10.
+- Tests are required for new behavior per [CLAUDE.md](../CLAUDE.md); run `format:check`, `lint`, `typecheck`, `test`, `test:e2e`, and `validate:content` before considering any change complete (see docs/DEPLOYMENT.md §16 for the full pre-build command list).
 
 ## 13. Deployment (current track)
 
-- Target: any static-hosting-capable platform (e.g., Vercel, Netlify, or a static export served from any CDN/object storage) — no database or persistent runtime is required.
-- Environment separation (development/staging/production) is about build-time environment variables (`NEXT_PUBLIC_SITE_URL`) only — there is no database or secret credential to separate per environment yet.
-- No migrations, no backup strategy needed for the current track (nothing persists server-side). Revisit once Track 3 introduces Strapi's own database.
+See [docs/DEPLOYMENT.md](DEPLOYMENT.md) (Phase 8) for the complete, platform-neutral deployment guide — build/start commands, environment variables, security headers, the CSP decision, forms-security prerequisites for Track 2, cookies/analytics status, and a post-deploy verification checklist. In summary: any platform with Next.js server support (not a plain static file host — `output: "export"` is not set) works; no database or persistent runtime is required; environment separation is about `NEXT_PUBLIC_SITE_URL` only; no migrations or backup strategy are needed until Track 3 introduces Strapi's own database.
 
 ## 14. Operational Considerations (current track)
 
@@ -196,4 +223,4 @@ Recorded when the shared shell and content architecture were built (see [docs/DE
 - **A stray leftover `next dev` process on port 3000 caused a real-looking Playwright failure** (the mobile-menu click appeared to do nothing) because Playwright's `webServer.reuseExistingServer` silently reused it instead of running the configured `build && start`. Symptom: HMR WebSocket connection attempts in browser console logs on a supposedly-production server. If a Playwright test behaves inexplicably, check for and kill anything already listening on port 3000 before assuming a code bug.
 - **`Button` (shadcn-generated) is not wrapped in `React.forwardRef`.** This did not block any interaction actually needed in this phase (Radix `Trigger`/`asChild` composition worked correctly for both `DropdownMenu` and `Sheet` once tested against a real, freshly-built server), but keep it in mind if a future Radix primitive's `asChild` composition needs ref forwarding for measurement/positioning and behaves unexpectedly.
 - Added the `accent` Button variant (`bg-brand-gold text-brand-gold-foreground`) to `src/components/ui/button.tsx` for the "Book a Consultation" CTA family, matching the Accent colour role already documented in docs/DESIGN_SYSTEM.md §2 — this is a normal edit to a shadcn-generated file, not a fork to avoid maintaining.
-- `docs/SITEMAP.md` gained one route not in the original list: `/resources/faqs`, needed because the header's Resources dropdown includes "FAQs" but the sitemap had no dedicated FAQ page.
+- `docs/SITEMAP.md` gained one route not in the original list: a dedicated `/faq` page (Phase 2 originally added `/resources/faqs` for this purpose; Phase 6 consolidated it into the standalone `/faq` the later brief specifically asked for — see docs/DECISIONS.md C-037).

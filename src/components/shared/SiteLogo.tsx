@@ -15,7 +15,7 @@ interface SiteLogoProps {
  * geometry — no downloaded asset — so it can be swapped for a
  * commissioned logo later by editing only this file. Works on light or
  * dark surfaces because the book strokes use currentColor; only the star
- * keeps the fixed brand-gold accent (checked against both navy and
+ * keeps the fixed brand-blue accent (checked against both navy and
  * soft-white backgrounds — see docs/DESIGN_SYSTEM.md §2 — and exempt from
  * text-contrast rules anyway since it's a decorative logo mark).
  *
@@ -28,8 +28,8 @@ export function SiteLogo({ className, variant = "compact" }: SiteLogoProps) {
     <span className={cn("inline-flex items-center gap-2", className)}>
       <svg
         viewBox="0 0 24 24"
-        width={variant === "full" ? 36 : 28}
-        height={variant === "full" ? 36 : 28}
+        width={variant === "full" ? 42 : 32}
+        height={variant === "full" ? 42 : 32}
         fill="none"
         aria-hidden="true"
         className="shrink-0 text-current"
@@ -37,7 +37,7 @@ export function SiteLogo({ className, variant = "compact" }: SiteLogoProps) {
         {/* Compass star (guidance) */}
         <path
           d="M12 1.5 13.4 8.6 20.5 10 13.4 11.4 12 18.5 10.6 11.4 3.5 10 10.6 8.6Z"
-          className="fill-brand-gold"
+          className="fill-brand-blue"
         />
         {/* Open book (education) */}
         <path
@@ -61,14 +61,14 @@ export function SiteLogo({ className, variant = "compact" }: SiteLogoProps) {
         <span
           className={cn(
             "font-semibold tracking-tight",
-            variant === "full" ? "text-lg" : "text-base",
+            variant === "full" ? "text-xl" : "text-lg",
           )}
         >
           Asteron
           <span className="sr-only"> Global Consultancy</span>
         </span>
         {variant === "full" ? (
-          <span className="text-xs opacity-80">Guidance Beyond Borders</span>
+          <span className="text-sm opacity-80">Guidance Beyond Borders</span>
         ) : null}
       </span>
     </span>

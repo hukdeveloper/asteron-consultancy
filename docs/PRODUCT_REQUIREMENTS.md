@@ -35,12 +35,12 @@ Requirements below are labelled by track. Do not implement a later-track require
 
 ### 3.1 Public Website (Track 1 — current)
 
-- Informational pages: Homepage, About, Study Abroad overview, Services overview and individual service pages, Success Stories, Resources/articles, FAQ, Contact, legal pages, custom 404/error states.
-- Destination and university content: destination pages (`/study-abroad/[destination]`), university listing and individual university pages, course/programme information where applicable.
-- Scholarship listing and detail pages.
-- Insurance overview page.
-- Events listing.
-- Lead-generation pages: Book a Consultation, Check Eligibility, Insurance Quote, and general enquiry via Contact.
+- Informational pages: Homepage, **About (✅ built, Phase 6)**, **Team (✅ built, Phase 6 — role-based placeholders only, see docs/DECISIONS.md "Team Placeholders")**, Study Abroad overview, **Services overview and individual service pages (✅ built, Phase 5 — 7 services, one shared template)**, **Success Stories (✅ built, Phase 6 — empty-state + demo examples)**, **Resources/articles (✅ built, Phase 6 — 6 articles, one shared template)**, **FAQ (✅ built, Phase 6 — 8 categories at `/faq`)**, **Contact (✅ built/standardized, Phase 6)**, **legal pages (✅ built as drafts, Phase 6, at the existing `/legal/*` paths — see docs/DECISIONS.md "Legal Draft Status")**, custom 404/error states.
+- Destination and university content: destination pages (`/study-abroad/[destination]`, ✅ built, Phase 4), university listing and individual university pages, course/programme information where applicable.
+- **Scholarship listing and detail pages (✅ built, Phase 6 — polished empty state + explicitly-labelled content-template records only; no active scholarship published, see docs/DECISIONS.md "Scholarship Directory Policy").**
+- **Insurance overview page (✅ built, Phase 5) plus individual insurance-type pages (`/insurance/[slug]`, ✅ built, Phase 5 — 3 types, one shared template) — exceeds this section's original "overview page" scope, added per the Phase 5 brief.**
+- **Events listing (✅ built, Phase 6 — one sample entry, "schedule to be announced", plus `/events/[slug]`).**
+- Lead-generation pages: **Book a Consultation (✅ built, Phase 7)**, **Check Eligibility (✅ built, Phase 7 — form added alongside the existing Phase 4 informative content)**, **Insurance Quote (✅ built, Phase 5, refactored Phase 7 — the first real form in this codebase; see §3.2)**, and general enquiry via **Contact (✅ built, Phase 6, refactored Phase 7 — `ContactForm`)**.
 - All content statically generated from local typed content (see [docs/CONTENT_MODEL.md](CONTENT_MODEL.md)) — no runtime database queries.
 - Search/filtering on listing pages is a nice-to-have only if volume and static-generation constraints make it useful; not a hard requirement while content volume is small and hand-authored.
 
@@ -48,7 +48,8 @@ Requirements below are labelled by track. Do not implement a later-track require
 
 - **Consultation request**, **Eligibility check**, **Insurance quote**, and **General enquiry** forms as specified in [docs/CONTENT_MODEL.md](CONTENT_MODEL.md), each with:
   - Track 1: client-side validation (Zod + React Hook Form), an accessible success state and an accessible error state, and a **replaceable submission adapter** whose current implementation is an explicitly-labelled demo/development mode — it must never claim to staff or visitors that an enquiry was saved or delivered when no real submission provider is connected.
-  - Track 2: the adapter is pointed at a real external submission/email service; spam/bot mitigation and rate limiting are added at that point (see Technical Architecture).
+  - Track 2: the adapter is pointed at a real external submission/email service; spam/bot mitigation, rate limiting, CSRF protection and the other items in the "Form Security Preparation" section of docs/TECHNICAL_ARCHITECTURE.md §5 are added at that point.
+  - **Status: ✅ All four forms are built (Phase 5: Insurance Quote; Phase 6: General Enquiry via Contact; Phase 7: Consultation request, Eligibility check, plus consolidation of all four onto one shared architecture — `SubmissionAdapter`/`notConfiguredAdapter`, centralized messages, shared field/error/consent components; see docs/TECHNICAL_ARCHITECTURE.md §5 and docs/DECISIONS.md C-043).**
 - Internal lead-management concerns from the original brief — submission status lifecycle, internal staff notes, assignment, CSV export — require persistent storage and a staff-facing surface. They are **Track 3 (Strapi) concerns**, documented for forward reference in [docs/CONTENT_MODEL.md](CONTENT_MODEL.md), and are explicitly **not** built in Track 1 or Track 2.
 
 ### 3.3 Content Management (Track 3 — future)
@@ -98,7 +99,7 @@ Nothing above may be silently introduced while working on an earlier track.
 ## 7. Acceptance Criteria (Track 1 — Static Website)
 
 - A visitor can browse the pages listed in Section 3.1 without authentication, all statically generated from local content.
-- A visitor can fill in and submit each of the four forms; each shows working client-side validation, an accessible success state (clearly indicating demo/development mode until Track 2 lands), and an accessible error state.
+- A visitor can fill in and submit each of the four forms; each shows working client-side validation, an accessible success state (clearly indicating demo/development mode until Track 2 lands), and an accessible error state. **Met for Insurance Quote as of Phase 5; the other three forms are pending (Phase 5B).**
 - No UI, copy, or code implies a form submission was saved or will reach staff unless a real submission provider is actually connected.
 - All sample/demo statistics, testimonials, partnerships, certifications, awards, and accreditations are visibly labelled as such in the rendered UI.
 - No page implies Asteron is a licensed immigration adviser, insurer, university representative, or immigration authority.

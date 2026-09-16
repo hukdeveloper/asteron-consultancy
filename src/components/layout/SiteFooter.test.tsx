@@ -1,5 +1,5 @@
 import type { ReactElement } from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { SiteFooter } from "./SiteFooter";
@@ -21,16 +21,42 @@ describe("SiteFooter", () => {
     render((await SiteFooter()) as ReactElement);
 
     expect(
-      screen.getByRole("navigation", { name: "Study Abroad" }),
+      screen.getByRole("navigation", { name: "Study" }),
     ).toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: "Privacy Policy" }),
     ).toHaveAttribute("href", "/legal/privacy-policy");
   });
 
-  it("includes a general-guidance disclaimer", async () => {
+  it("includes a short disclaimer line, linking to the full Disclaimer page instead of repeating it", async () => {
     render((await SiteFooter()) as ReactElement);
 
-    expect(screen.getByText(/general guidance only/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Information only\. No outcome is guaranteed\./i),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Disclaimer" })).toHaveAttribute(
+      "href",
+      "/legal/disclaimer",
+    );
+  });
+
+  it("has exactly six links in the Study and Services groups", async () => {
+    render((await SiteFooter()) as ReactElement);
+
+    const studyNav = screen.getByRole("navigation", { name: "Study" });
+    expect(within(studyNav).getAllByRole("link")).toHaveLength(6);
+
+    const servicesNav = screen.getByRole("navigation", { name: "Services" });
+    expect(within(servicesNav).getAllByRole("link")).toHaveLength(6);
+  });
+
+  it("does not render placeholder social links", async () => {
+    render((await SiteFooter()) as ReactElement);
+
+    expect(
+      screen.queryByRole("link", {
+        name: /Facebook|Instagram|LinkedIn|YouTube/i,
+      }),
+    ).not.toBeInTheDocument();
   });
 });

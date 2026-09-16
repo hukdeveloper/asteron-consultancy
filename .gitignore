@@ -22,13 +22,30 @@
 
 # misc
 .DS_Store
+.DS_Store?
+Thumbs.db
+desktop.ini
 *.pem
+
+# editors
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
 
 # debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+*.log
+
+# lighthouse
+.lighthouseci/
+lighthouse-report*.html
+lighthouse-report*.json
 
 # env files (can opt-in for committing if needed)
 .env*
@@ -46,3 +63,6 @@ next-env.d.ts
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# manual visual-QA screenshot captures (not build output, not committed)
+/screenshots-*/

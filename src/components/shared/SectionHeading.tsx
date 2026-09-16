@@ -10,6 +10,8 @@ interface SectionHeadingProps {
   /** Defaults to h2 — use inside a page that already has its own h1. */
   headingLevel?: "h2" | "h3";
   align?: "left" | "center";
+  /** Set this and reference it from the wrapping <section aria-labelledby>. */
+  headingId?: string;
 }
 
 /**
@@ -24,6 +26,7 @@ export function SectionHeading({
   className,
   headingLevel = "h2",
   align = "left",
+  headingId,
 }: SectionHeadingProps) {
   const Heading = headingLevel;
 
@@ -36,11 +39,12 @@ export function SectionHeading({
       )}
     >
       {eyebrow ? (
-        <p className="text-brand-teal-text text-sm font-semibold tracking-wide uppercase">
+        <p className="text-brand-teal-text text-sm font-semibold tracking-wide">
           {eyebrow}
         </p>
       ) : null}
       <Heading
+        id={headingId}
         className={cn(
           "text-foreground mt-2 font-semibold tracking-tight",
           headingLevel === "h2"

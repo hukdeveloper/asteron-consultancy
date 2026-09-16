@@ -4,45 +4,59 @@
 
 ## 1. Static Site Routes (Track 1)
 
-Only `/` is implemented so far (Phase 1 foundation). Everything else below is planned, to be built out with local typed content in the next phase, then statically generated.
+✅ = real content exists (Phases 1–6). Everything else below still renders the shared `ComingSoon` placeholder, reachable from real navigation, until a later phase.
 
 ```
-/
-├── about
-├── study-abroad
-│   └── study-abroad/[destination]
+/                                    ✅
+├── about                            ✅
+├── team                             ✅ (role-based placeholders only, see docs/DECISIONS.md "Team Placeholders")
+├── study-abroad                     ✅
+│   ├── study-abroad/undergraduate   ✅
+│   ├── study-abroad/postgraduate    ✅
+│   └── study-abroad/[destination]   ✅ (6 destinations — one shared template, see docs/CONTENT_MODEL.md §3)
 ├── universities
 │   └── universities/[slug]
-├── services
-│   └── services/[slug]
-├── scholarships
-│   └── scholarships/[slug]
-├── insurance
-├── success-stories
-├── resources
-│   └── resources/[slug]
-├── events
-├── contact
-├── book-consultation
-├── check-eligibility
-├── insurance-quote
-├── legal
-│   ├── legal/privacy-policy
-│   ├── legal/terms-of-service
-│   └── legal/cookie-policy
+├── services                         ✅
+│   └── services/[slug]              ✅ (7 services — one shared template, see docs/CONTENT_MODEL.md §8)
+├── scholarships                     ✅ (empty-state + content-template records only, see docs/DECISIONS.md "Scholarship Directory Policy")
+│   └── scholarships/[slug]          ✅
+├── insurance                        ✅
+│   └── insurance/[slug]             ✅ (3 insurance types — one shared template, see docs/CONTENT_MODEL.md §9)
+├── success-stories                  ✅ (empty-state + demo example journeys, see docs/DECISIONS.md "Success Stories Policy")
+├── resources                        ✅
+│   └── resources/[slug]             ✅ (6 articles — one shared template, see docs/CONTENT_MODEL.md §12)
+├── events                           ✅
+│   └── events/[slug]                ✅ (1 sample entry — schedule to be announced, see docs/DECISIONS.md "Events Policy")
+├── faq                              ✅ (8 categories — replaces the never-built resources/faqs stub, see docs/DECISIONS.md C-037)
+├── contact                          ✅ (real ContactForm, consolidated onto the shared form architecture in Phase 7)
+├── book-consultation                ✅ (real ConsultationForm, Phase 7 — previously a ComingSoon stub)
+├── check-eligibility                ✅ (informative content, Phase 4 + real EligibilityForm, Phase 7)
+├── insurance-quote                 ✅ (real, validated, not-yet-connected demo form — see docs/DECISIONS.md C-043)
+├── legal                           ✅ (all four are temporary drafts — see docs/DECISIONS.md "Legal Draft Status")
+│   ├── legal/privacy-policy        ✅
+│   ├── legal/terms-of-service      ✅
+│   ├── legal/cookie-policy         ✅
+│   └── legal/disclaimer            ✅
+├── sitemap.xml                      ✅ (Phase 8 — generated from local content, see src/app/sitemap.ts)
+├── robots.txt                       ✅ (Phase 8)
 ├── 404 (not-found) — implemented
 └── error (runtime error boundary) — implemented
 ```
 
+`universities` and `universities/[slug]` remain the only real-navigation route still rendering the shared `ComingSoon` placeholder. See [docs/ROUTE_INVENTORY.md](ROUTE_INVENTORY.md) (Phase 8) for the complete, currently-accurate route inventory including every dynamic slug and the sitemap's own inclusion/exclusion policy.
+
 ## 2. Proposed URL Patterns
 
-| Content type       | Pattern                       | Example                                  |
-| ------------------ | ----------------------------- | ---------------------------------------- |
-| Destination        | `/study-abroad/[destination]` | `/study-abroad/united-kingdom`           |
-| University         | `/universities/[slug]`        | `/universities/university-of-manchester` |
-| Service            | `/services/[slug]`            | `/services/visa-guidance-support`        |
-| Scholarship        | `/scholarships/[slug]`        | `/scholarships/asteron-merit-award`      |
-| Article / resource | `/resources/[slug]`           | `/resources/how-to-choose-a-destination` |
+| Content type       | Pattern                                       | Example                                                |
+| ------------------ | --------------------------------------------- | ------------------------------------------------------ |
+| Destination        | `/study-abroad/[destination]`                 | `/study-abroad/united-kingdom`                         |
+| Study level        | `/study-abroad/[undergraduate\|postgraduate]` | `/study-abroad/undergraduate`                          |
+| University         | `/universities/[slug]`                        | `/universities/university-of-manchester`               |
+| Service            | `/services/[slug]`                            | `/services/visa-guidance`                              |
+| Insurance type     | `/insurance/[slug]`                           | `/insurance/travel-insurance`                          |
+| Scholarship        | `/scholarships/[slug]`                        | `/scholarships/asteron-merit-award`                    |
+| Article / resource | `/resources/[slug]`                           | `/resources/how-to-choose-the-right-study-destination` |
+| Event              | `/events/[slug]`                              | `/events/study-abroad-planning-session`                |
 
 Slugs are lowercase, hyphen-separated, and defined directly in the local content objects (`src/content/`) for Track 1. Once Strapi is integrated (Track 3), slug uniqueness/validation moves into Strapi.
 
@@ -68,7 +82,7 @@ Every dynamic route above must be statically generated (`generateStaticParams`) 
 - **Column 1 — Brand:** Logo, tagline ("Guidance Beyond Borders"), short mission statement.
 - **Column 2 — Study Abroad:** Study Abroad, Universities, Scholarships.
 - **Column 3 — Services:** Services overview, Insurance.
-- **Column 4 — Company:** About, Success Stories, Resources, Events, Contact.
+- **Column 4 — Company:** About, Team, Success Stories, Resources, Events, FAQ, Contact.
 - **Column 5 — Get Started:** Book a Consultation, Check Eligibility, Insurance Quote.
 - **Bottom bar:** Copyright, Privacy Policy, Terms of Service, Cookie Policy, sample-content disclosure link where applicable.
 

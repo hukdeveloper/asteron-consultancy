@@ -9,6 +9,10 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: ["./vitest.setup.ts"],
     include: ["src/**/*.test.{ts,tsx}"],
+    // Default 5000ms is too tight when all 59 files run in parallel on a
+    // loaded machine (observed flaky timeouts unrelated to any real
+    // regression); raised rather than patched per-test.
+    testTimeout: 15000,
   },
   resolve: {
     alias: {

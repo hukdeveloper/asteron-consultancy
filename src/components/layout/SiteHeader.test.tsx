@@ -22,11 +22,20 @@ describe("SiteHeader", () => {
     render((await SiteHeader()) as ReactElement);
 
     const ctas = screen.getAllByRole("link", {
-      name: "Book Free Consultation",
+      name: "Book a Consultation",
     });
     expect(ctas.length).toBeGreaterThan(0);
     for (const cta of ctas) {
       expect(cta).toHaveAttribute("href", "/book-consultation");
     }
+  });
+
+  it("does not show the phone number in the header row (moved to the mobile menu, footer, and Contact page)", async () => {
+    const { container } = render((await SiteHeader()) as ReactElement);
+
+    // The mobile menu's contact block is rendered off-screen inside the
+    // same DOM tree (a Radix Dialog portal target), so this checks the
+    // header's own visible row specifically, not the whole subtree.
+    expect(container.textContent).not.toContain("+92 300 0000000");
   });
 });

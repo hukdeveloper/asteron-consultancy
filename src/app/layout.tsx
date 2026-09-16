@@ -1,9 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 
+import { JsonLd } from "@/components/shared/JsonLd";
 import { SkipLink } from "@/components/shared/SkipLink";
 import { getSiteContent } from "@/lib/content/site";
 import { env } from "@/lib/env";
+import {
+  buildOrganizationJsonLd,
+  buildWebSiteJsonLd,
+} from "@/lib/structuredData";
 
 import "./globals.css";
 
@@ -31,10 +36,20 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const site = await getSiteContent();
+
   return (
     <html lang="en" className={inter.variable}>
       <body className="min-h-screen font-sans antialiased">
+        <JsonLd
+          data={buildOrganizationJsonLd({
+            name: site.name,
+            description: site.description,
+            contact: site.contact,
+          })}
+        />
+        <JsonLd data={buildWebSiteJsonLd({ name: site.name })} />
         <SkipLink />
         {children}
       </body>

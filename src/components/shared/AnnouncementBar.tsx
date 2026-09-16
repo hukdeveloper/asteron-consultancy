@@ -20,8 +20,11 @@ export async function AnnouncementBar() {
   if (!announcement.enabled) return null;
 
   return (
-    <div className="bg-primary text-primary-foreground">
-      <Container className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 py-2 text-center text-sm">
+    <div className="bg-primary text-primary-foreground hidden sm:block">
+      <Container
+        variant="wide"
+        className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 py-2 text-center text-sm"
+      >
         <p>{announcement.message}</p>
         {announcement.linkHref && announcement.linkLabel ? (
           <Link

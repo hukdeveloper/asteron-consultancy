@@ -1,15 +1,23 @@
 import { destinations } from "@/content/destinations";
-import { services } from "@/content/services";
 import type { FooterLinkGroup, NavItem, NavLink } from "@/types/content";
 
 /**
- * Header navigation. Destinations/Services dropdown children are derived
- * from src/content/{destinations,services}.ts rather than duplicated here,
- * so adding a destination/service automatically updates the header.
+ * Header navigation (reduced to 6 top-level items — redesigned Phase 10B,
+ * see docs/DECISIONS.md "Visual Language Reset"). Universities, Scholarships,
+ * and Insurance are no longer standalone top-level items — they live inside
+ * the Study Abroad / Services dropdowns instead, so the primary row never
+ * exceeds 6 items. The Services dropdown is a deliberately curated subset
+ * (6 items), not every `Service` record — see `footerLinkGroups` below or
+ * `/services` itself for the complete list. Destinations' dropdown is still
+ * derived from `src/content/destinations.ts` so a new destination is picked
+ * up automatically.
  *
- * Every href below points at its eventual planned route (per
- * docs/SITEMAP.md) even though most of those routes currently render a
- * temporary "coming soon" page — see src/components/shared/ComingSoon.tsx.
+ * Active-state matching does NOT use simple href-prefix matching (a
+ * `/study-abroad/united-kingdom` URL is prefixed by `/study-abroad` but
+ * must activate "Destinations", not "Study Abroad") — see
+ * `getActiveNavGroupId()` in `src/lib/navigation-active.ts` for the
+ * authoritative route-ownership mapping every nav item's active state is
+ * derived from.
  */
 export const headerNavigation: NavItem[] = [
   {
@@ -19,18 +27,23 @@ export const headerNavigation: NavItem[] = [
     children: [
       {
         id: "study-abroad-overview",
-        label: "Study Abroad Overview",
+        label: "Overview",
         href: "/study-abroad",
       },
       {
         id: "study-abroad-undergraduate",
         label: "Undergraduate",
-        href: "/study-abroad",
+        href: "/study-abroad/undergraduate",
       },
       {
         id: "study-abroad-postgraduate",
         label: "Postgraduate",
-        href: "/study-abroad",
+        href: "/study-abroad/postgraduate",
+      },
+      {
+        id: "study-abroad-universities",
+        label: "Universities",
+        href: "/universities",
       },
       {
         id: "study-abroad-scholarships",
@@ -62,32 +75,33 @@ export const headerNavigation: NavItem[] = [
     ],
   },
   {
-    id: "universities",
-    label: "Universities",
-    href: "/universities",
-  },
-  {
     id: "services",
     label: "Services",
     href: "/services",
     children: [
       { id: "services-all", label: "All Services", href: "/services" },
-      ...services.map((service) => ({
-        id: `service-${service.id}`,
-        label: service.title,
-        href: `/services/${service.slug}`,
-      })),
+      {
+        id: "services-application-assistance",
+        label: "Application Assistance",
+        href: "/services/application-assistance",
+      },
+      {
+        id: "services-visa-guidance",
+        label: "Visa Guidance",
+        href: "/services/visa-guidance",
+      },
+      { id: "services-insurance", label: "Insurance", href: "/insurance" },
+      {
+        id: "services-accommodation",
+        label: "Accommodation",
+        href: "/services/accommodation-support",
+      },
+      {
+        id: "services-pre-departure",
+        label: "Pre-departure Guidance",
+        href: "/services/pre-departure-guidance",
+      },
     ],
-  },
-  {
-    id: "scholarships",
-    label: "Scholarships",
-    href: "/scholarships",
-  },
-  {
-    id: "insurance",
-    label: "Insurance",
-    href: "/insurance",
   },
   {
     id: "resources",
@@ -99,8 +113,8 @@ export const headerNavigation: NavItem[] = [
         label: "Articles and Guides",
         href: "/resources",
       },
-      { id: "resources-events", label: "Events and Webinars", href: "/events" },
-      { id: "resources-faqs", label: "FAQs", href: "/resources/faqs" },
+      { id: "resources-events", label: "Events", href: "/events" },
+      { id: "resources-faq", label: "FAQs", href: "/faq" },
       {
         id: "resources-success-stories",
         label: "Success Stories",
@@ -112,6 +126,10 @@ export const headerNavigation: NavItem[] = [
     id: "about",
     label: "About",
     href: "/about",
+    children: [
+      { id: "about-overview", label: "About Overview", href: "/about" },
+      { id: "about-team", label: "Our Team", href: "/team" },
+    ],
   },
   {
     id: "contact",
@@ -121,15 +139,26 @@ export const headerNavigation: NavItem[] = [
 ];
 
 export const headerPrimaryCta: { label: string; href: string } = {
-  label: "Book Free Consultation",
+  label: "Book a Consultation",
   href: "/book-consultation",
 };
 
-/** Footer link groups — deliberately smaller than the full header, per docs/SITEMAP.md §4. */
+/**
+ * Footer link groups — redesigned Phase 10B (see docs/DECISIONS.md "Visual
+ * Language Reset"). Deliberately a **curated, fixed 6-link list per
+ * group**, not a full derivation from every destination/service/insurance
+ * record: the earlier Phase 10 footer listed every destination and every
+ * service (12-14 links per group, two internal sub-columns) and was
+ * rejected as "too tall," "too much text," and "a footer should guide
+ * users, not reproduce the complete sitemap." The full destination/service
+ * list remains reachable from `/study-abroad` and `/services` themselves,
+ * and from the header's own dropdowns — the footer no longer needs to
+ * duplicate it.
+ */
 export const footerLinkGroups: FooterLinkGroup[] = [
   {
-    id: "footer-group-study-abroad",
-    heading: "Study Abroad",
+    id: "footer-group-study",
+    heading: "Study",
     links: [
       {
         id: "footer-study-abroad",
@@ -137,14 +166,29 @@ export const footerLinkGroups: FooterLinkGroup[] = [
         href: "/study-abroad",
       },
       {
-        id: "footer-universities",
-        label: "Universities",
-        href: "/universities",
+        id: "footer-study-undergraduate",
+        label: "Undergraduate",
+        href: "/study-abroad/undergraduate",
       },
       {
-        id: "footer-scholarships",
+        id: "footer-study-postgraduate",
+        label: "Postgraduate",
+        href: "/study-abroad/postgraduate",
+      },
+      {
+        id: "footer-study-destinations",
+        label: "Destinations",
+        href: "/study-abroad#destinations",
+      },
+      {
+        id: "footer-study-scholarships",
         label: "Scholarships",
         href: "/scholarships",
+      },
+      {
+        id: "footer-study-eligibility",
+        label: "Check Eligibility",
+        href: "/check-eligibility",
       },
     ],
   },
@@ -152,8 +196,32 @@ export const footerLinkGroups: FooterLinkGroup[] = [
     id: "footer-group-services",
     heading: "Services",
     links: [
-      { id: "footer-services", label: "Services Overview", href: "/services" },
-      { id: "footer-insurance", label: "Insurance", href: "/insurance" },
+      { id: "footer-services-all", label: "All Services", href: "/services" },
+      {
+        id: "footer-services-application",
+        label: "Application Assistance",
+        href: "/services/application-assistance",
+      },
+      {
+        id: "footer-services-visa",
+        label: "Visa Guidance",
+        href: "/services/visa-guidance",
+      },
+      {
+        id: "footer-services-insurance",
+        label: "Insurance",
+        href: "/insurance",
+      },
+      {
+        id: "footer-services-accommodation",
+        label: "Accommodation",
+        href: "/services/accommodation-support",
+      },
+      {
+        id: "footer-services-pre-departure",
+        label: "Pre-departure",
+        href: "/services/pre-departure-guidance",
+      },
     ],
   },
   {
@@ -161,6 +229,7 @@ export const footerLinkGroups: FooterLinkGroup[] = [
     heading: "Company",
     links: [
       { id: "footer-about", label: "About", href: "/about" },
+      { id: "footer-team", label: "Team", href: "/team" },
       {
         id: "footer-success-stories",
         label: "Success Stories",
@@ -169,27 +238,6 @@ export const footerLinkGroups: FooterLinkGroup[] = [
       { id: "footer-resources", label: "Resources", href: "/resources" },
       { id: "footer-events", label: "Events", href: "/events" },
       { id: "footer-contact", label: "Contact", href: "/contact" },
-    ],
-  },
-  {
-    id: "footer-group-get-started",
-    heading: "Get Started",
-    links: [
-      {
-        id: "footer-book-consultation",
-        label: "Book a Consultation",
-        href: "/book-consultation",
-      },
-      {
-        id: "footer-check-eligibility",
-        label: "Check Eligibility",
-        href: "/check-eligibility",
-      },
-      {
-        id: "footer-insurance-quote",
-        label: "Insurance Quote",
-        href: "/insurance-quote",
-      },
     ],
   },
 ];
