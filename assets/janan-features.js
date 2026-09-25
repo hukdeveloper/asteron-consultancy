@@ -2,10 +2,9 @@
  * Janan Consultancy - Global Interactive Features
  * 
  * Includes:
- * 1. Visitor tracking & Eye button admin authentication
- * 2. University application link password protection
- * 3. Paid Consultation modal form with strict all-field completion validation
- * 4. Destination contact options (Free & Paid consultation)
+ * 1. University application link password protection
+ * 2. Paid Consultation modal form with strict all-field completion validation
+ * 3. Destination contact options (Free & Paid consultation) with real SVG flags
  */
 
 (function () {
@@ -20,14 +19,6 @@
     return clean.toLowerCase() === AUTH_EMAIL.toLowerCase() || clean === AUTH_PASSWORD;
   }
 
-  // --- 1. Visitor Tracking ---
-  let visitorCount = parseInt(localStorage.getItem("janan_visitor_count") || "24", 10);
-  if (!sessionStorage.getItem("janan_session_counted")) {
-    visitorCount += 1;
-    localStorage.setItem("janan_visitor_count", visitorCount.toString());
-    sessionStorage.setItem("janan_session_counted", "true");
-  }
-
   // Inject modal markup once DOM is ready
   function initModals() {
     if (document.getElementById("janan-modals-container")) return;
@@ -35,38 +26,6 @@
     const container = document.createElement("div");
     container.id = "janan-modals-container";
     container.innerHTML = `
-      <!-- Admin / Visitor Analytics Modal -->
-      <div id="janan-admin-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs">
-        <div class="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl transition-all">
-          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-            <h3 class="flex items-center gap-2 text-lg font-bold text-[#123a70]">
-              <span class="text-xl">👁️</span> Janan Consultancy Portal
-            </h3>
-            <button type="button" class="janan-modal-close text-2xl font-bold text-slate-400 hover:text-slate-600">&times;</button>
-          </div>
-          
-          <div id="admin-auth-view" class="mt-4">
-            <p class="text-sm text-slate-600">Please enter password or authorized email to view website visitor analytics:</p>
-            <form id="admin-auth-form" class="mt-4 space-y-3">
-              <input type="password" id="admin-pass-input" placeholder="Enter password or email" class="w-full rounded-full border border-[#123a70]/20 px-4 py-2 text-sm focus:border-[#123a70] focus:outline-none" required />
-              <p id="admin-auth-err" class="hidden text-xs font-semibold text-rose-600">Invalid password or email. Access restricted to Janan Consultancy.</p>
-              <button type="submit" class="w-full rounded-full bg-[#123a70] py-2.5 text-sm font-semibold text-white hover:bg-[#0e2c56]">View Analytics</button>
-            </form>
-          </div>
-
-          <div id="admin-data-view" class="hidden mt-4">
-            <div class="rounded-xl border border-emerald-200 bg-emerald-50/60 p-4 text-center">
-              <p class="text-xs font-bold uppercase tracking-wider text-emerald-800">Total Website Visitors</p>
-              <div id="analytics-visitor-display" class="mt-1 text-4xl font-extrabold text-[#123a70]">${visitorCount}</div>
-              <p class="mt-2 text-xs text-slate-600">Every new visitor access is counted as a new member.</p>
-            </div>
-            <div class="mt-4 flex justify-end">
-              <button type="button" class="janan-modal-close rounded-full bg-slate-200 px-4 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-300">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- University Link Password Protection Modal -->
       <div id="janan-uni-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs">
         <div class="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
@@ -184,13 +143,13 @@
             <button type="button" class="janan-modal-close text-2xl font-bold text-slate-400 hover:text-slate-600">&times;</button>
           </div>
           <div class="py-5">
-            <div id="dest-modal-flag" class="text-4xl">🌍</div>
+            <div id="dest-modal-flag" class="flex justify-center mb-2"></div>
             <p id="dest-modal-desc" class="mt-2 text-sm text-slate-600">Choose consultation type for your study abroad plans:</p>
             <div class="mt-6 flex flex-col gap-3">
-              <button type="button" id="dest-free-btn" class="w-full rounded-full bg-[#123a70] py-3 text-sm font-bold text-white transition hover:bg-[#0e2c56] shadow-sm">
+              <button type="button" id="dest-free-btn" class="w-full rounded-full bg-[#123a70] py-3 text-sm font-bold text-white transition hover:bg-[#0e2c56] shadow-sm cursor-pointer">
                 Free consultation →
               </button>
-              <button type="button" id="dest-paid-btn" class="w-full rounded-full border-2 border-[#123a70] py-2.5 text-sm font-bold text-[#123a70] transition hover:bg-[#123a70]/5">
+              <button type="button" id="dest-paid-btn" class="w-full rounded-full border-2 border-[#123a70] py-2.5 text-sm font-bold text-[#123a70] transition hover:bg-[#123a70]/5 cursor-pointer">
                 Paid consultation →
               </button>
             </div>
@@ -218,24 +177,6 @@
         if (e.target === m) m.classList.add("hidden");
       });
     });
-
-    // --- Admin Form Submit ---
-    const adminForm = document.getElementById("admin-auth-form");
-    if (adminForm) {
-      adminForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const input = document.getElementById("admin-pass-input");
-        const err = document.getElementById("admin-auth-err");
-        if (isAuthorized(input.value)) {
-          err.classList.add("hidden");
-          document.getElementById("admin-auth-view").classList.add("hidden");
-          document.getElementById("admin-data-view").classList.remove("hidden");
-          document.getElementById("analytics-visitor-display").textContent = localStorage.getItem("janan_visitor_count") || "24";
-        } else {
-          err.classList.remove("hidden");
-        }
-      });
-    }
 
     // --- University Apply Password Unlock ---
     let pendingUniUrl = null;
@@ -278,7 +219,6 @@
 
       if (isApplyLink) {
         if (sessionStorage.getItem("janan_uni_unlocked") === "true") {
-          // Already authorized in this session
           return;
         }
         e.preventDefault();
@@ -383,29 +323,9 @@
         window.openPaidConsultation(country);
       });
     });
-
-    document.querySelectorAll("[data-open-eye-analytics]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        window.openAdminAnalytics();
-      });
-    });
   }
 
   // --- Public APIs on window ---
-  window.openAdminAnalytics = function () {
-    initModals();
-    const adminModal = document.getElementById("janan-admin-modal");
-    const authView = document.getElementById("admin-auth-view");
-    const dataView = document.getElementById("admin-data-view");
-    const err = document.getElementById("admin-auth-err");
-    const input = document.getElementById("admin-pass-input");
-    if (err) err.classList.add("hidden");
-    if (input) input.value = "";
-    if (authView) authView.classList.remove("hidden");
-    if (dataView) dataView.classList.add("hidden");
-    if (adminModal) adminModal.classList.remove("hidden");
-  };
-
   window.openPaidConsultation = function (country = "") {
     initModals();
     const countryEl = document.getElementById("paid-country");
@@ -416,7 +336,16 @@
     if (modal) modal.classList.remove("hidden");
   };
 
-  window.openDestinationOptions = function (countryName, flag = "🌍") {
+  const flagCodes = {
+    portugal: "pt",
+    germany: "de",
+    france: "fr",
+    china: "cn",
+    russia: "ru",
+    italy: "it",
+  };
+
+  window.openDestinationOptions = function (countryName, flagCode = "") {
     initModals();
     const modal = document.getElementById("janan-dest-modal");
     const titleEl = document.getElementById("dest-modal-title");
@@ -425,7 +354,15 @@
     const paidBtn = document.getElementById("dest-paid-btn");
 
     if (titleEl) titleEl.textContent = `Contact us for Information — Study in ${countryName}`;
-    if (flagEl) flagEl.textContent = flag;
+    
+    const code = flagCode || flagCodes[countryName.toLowerCase()] || "";
+    if (flagEl) {
+      if (code) {
+        flagEl.innerHTML = `<img src="/img/flags/${code}.svg" alt="${countryName} flag" class="h-12 w-16 rounded shadow-xs object-cover" />`;
+      } else {
+        flagEl.innerHTML = `<span class="text-4xl">🌍</span>`;
+      }
+    }
 
     if (freeBtn) {
       freeBtn.onclick = function () {
