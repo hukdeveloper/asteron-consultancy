@@ -1,0 +1,1 @@
+import{j as o}from"./index-CrB-hXUe.js";import{D as r,g as e}from"./DegreeProgramPage-DjAe-WzV.js";import"./PageParts-CMaAiNyH.js";const m=e("phd-programs"),a=()=>o.jsx(r,{program:m});export{a as component};

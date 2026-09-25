@@ -210,10 +210,21 @@
       const text = (link.textContent || "").trim();
 
       const inUniCard = Boolean(link.closest("[data-uni-card]"));
+      const isDegreeUniCard = Boolean(link.closest(".border-2") && link.closest(".grid") && href.startsWith("http") && !href.includes("whatsapp.com") && !href.includes("hussainsilat.com"));
       const isApplyText = text.toLowerCase().includes("apply");
+      const isUniversityPortalText =
+        text.includes("Apply") ||
+        text.includes("Portal") ||
+        text.includes("University Website") ||
+        text.includes("Admissions Info") ||
+        text.includes("Application Form") ||
+        text.includes("Watch Tutorial") ||
+        text.includes("Ask on WhatsApp");
+
       const isApplyLink =
         link.hasAttribute("data-uni-apply") ||
         (inUniCard && isApplyText) ||
+        (isDegreeUniCard && isUniversityPortalText) ||
         ((text.includes("Apply / Watch Tutorial") || text.includes("Apply / Ask on WhatsApp") || text.includes("Apply directly")) &&
         (href.startsWith("http") || href.includes("wa.me")));
 
