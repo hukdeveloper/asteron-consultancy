@@ -1,0 +1,98 @@
+[
+  {
+    "name": "University of Eastern Piedmont",
+    "search": "university of eastern piedmont",
+    "fee": "No Fee",
+    "cgpa": "NO CGPA REQUIREMENT",
+    "english": "English Proficiency",
+    "applyUrl": ""
+  },
+  {
+    "name": "University of Ferrara",
+    "search": "university of ferrara",
+    "fee": "€20",
+    "cgpa": "NO CGPA REQUIREMENT",
+    "english": "English Proficiency",
+    "applyUrl": "https://apply.unife.it/"
+  },
+  {
+    "name": "University of Foggia",
+    "search": "university of foggia",
+    "fee": "No Fee",
+    "cgpa": "NO CGPA REQUIREMENT",
+    "english": "English Proficiency",
+    "applyUrl": ""
+  },
+  {
+    "name": "University of Naples Federico II",
+    "search": "university of naples federico ii",
+    "fee": "No Fee",
+    "cgpa": "NO CGPA REQUIREMENT",
+    "english": "English Proficiency",
+    "applyUrl": ""
+  },
+  {
+    "name": "University of Naples Parthenope",
+    "search": "university of naples parthenope",
+    "fee": "No Fee",
+    "cgpa": "NO CGPA REQUIREMENT",
+    "english": "English Proficiency",
+    "applyUrl": ""
+  },
+  {
+    "name": "University of Palermo",
+    "search": "university of palermo",
+    "fee": "No Fee",
+    "cgpa": "NO CGPA REQUIREMENT",
+    "english": "IELTS Required",
+    "applyUrl": "https://immaweb.unipa.it/immareg/facelets/anag/ins_anag_generale.seam?partnerId=IMMAWEB"
+  },
+  {
+    "name": "University of Perugia",
+    "search": "university of perugia",
+    "fee": "No Fee",
+    "cgpa": "NO CGPA REQUIREMENT",
+    "english": "IELTS Required",
+    "applyUrl": ""
+  },
+  {
+    "name": "University of Salento",
+    "search": "university of salento",
+    "fee": "No Fee",
+    "cgpa": "NO CGPA REQUIREMENT",
+    "english": "English Proficiency",
+    "applyUrl": ""
+  },
+  {
+    "name": "University of Salerno",
+    "search": "university of salerno",
+    "fee": "No Fee",
+    "cgpa": "NO CGPA REQUIREMENT",
+    "english": "English Proficiency",
+    "applyUrl": ""
+  },
+  {
+    "name": "University of Teramo",
+    "search": "university of teramo",
+    "fee": "No Fee",
+    "cgpa": "NO CGPA REQUIREMENT",
+    "english": "English Proficiency",
+    "applyUrl": ""
+  },
+  {
+    "name": "University of Cagliari",
+    "search": "university of cagliari",
+    "fee": "No Fee",
+    "cgpa": "NO CGPA REQUIREMENT",
+    "english": "English Proficiency",
+    "applyUrl": ""
+  },
+  {
+    "name": "University of Udine",
+    "search": "university of udine",
+    "fee": "€20",
+    "cgpa": "NO CGPA REQUIREMENT",
+    "english": "English Proficiency",
+    "applyUrl": "https://www.uniud.it/en/uniud-international/International_Students/enrolment-recognition-of-foreign-titles-and-diplomas"
+  }
+]
