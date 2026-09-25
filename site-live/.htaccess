@@ -1,0 +1,44 @@
+# Apache config for Janan Consultancy
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), browsing-topics=()"
+  Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains"
+
+  # Prevent browser and Hostinger CDN from serving stale HTML, JS, or CSS
+  <FilesMatch "\.(html|htm|js|css|json)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_dir.c>
+  DirectorySlash Off
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Trailing slash -> strip and serve html if exists
+  RewriteCond %{REQUEST_URI} ^(.+)/$
+  RewriteCond %{DOCUMENT_ROOT}%1.html -f
+  RewriteRule ^ %1.html [L]
+
+  # Extensionless URL -> serve .html if exists
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+</IfModule>
+
+ErrorDocument 404 /404.html
+
+<IfModule mod_mime.c>
+  <Files "icon">
+    ForceType image/png
+  </Files>
+  <Files "opengraph-image">
+    ForceType image/png
+  </Files>
+</IfModule>

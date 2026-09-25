@@ -1,10 +1,13 @@
 /**
- * Janan Consultancy - Global Interactive Features
+ * Janan Consultancy - Global Interactive Features & UI Guards
  * 
  * Includes:
  * 1. University application link password protection
  * 2. Paid Consultation modal form with strict all-field completion validation
  * 3. Destination contact options (Free & Paid consultation) with real SVG flags
+ * 4. Automatic enforcement of vector SVG flags on home & study pages
+ * 5. Automatic enforcement of column-centered university card layout (Apply Portal Row 1, Name Row 2, City Row 3)
+ * 6. Footer official social profiles guarantee
  */
 
 (function () {
@@ -162,7 +165,7 @@
     attachModalEvents();
   }
 
-  // Attach all event listeners
+  // Attach all modal event listeners
   function attachModalEvents() {
     // Close buttons
     document.querySelectorAll(".janan-modal-close").forEach((btn) => {
@@ -393,22 +396,80 @@
     if (modal) modal.classList.remove("hidden");
   };
 
-  function enhanceUI() {
-    initModals();
+  // Guard: enforce vector SVG flags on country cards
+  function enforceFlags() {
+    const countryMap = [
+      { slug: "italy", name: "Italy", code: "it" },
+      { slug: "portugal", name: "Portugal", code: "pt" },
+      { slug: "germany", name: "Germany", code: "de" },
+      { slug: "france", name: "France", code: "fr" },
+      { slug: "china", name: "China", code: "cn" },
+      { slug: "russia", name: "Russia", code: "ru" },
+    ];
 
-    // 1. Add Paid consultation button to header nav
-    const nav = document.querySelector("header nav");
-    if (nav && !nav.querySelector("[data-open-paid-consultation]")) {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.setAttribute("data-open-paid-consultation", "");
-      btn.className = "rounded-full bg-[#123a70] px-3.5 py-1.5 text-xs font-bold text-white hover:bg-[#0e2c56] transition shadow-xs cursor-pointer";
-      btn.textContent = "Paid consultation";
-      btn.onclick = () => window.openPaidConsultationModal();
-      nav.appendChild(btn);
-    }
+    document.querySelectorAll("a, button").forEach((el) => {
+      const href = el.getAttribute("href") || "";
+      const text = el.textContent || "";
 
-    // 2. Add Official Social Profiles to footer
+      countryMap.forEach((c) => {
+        if (
+          href.includes(`/study/${c.slug}`) ||
+          (text.includes(`Study in ${c.name}`) && !text.includes("See our free"))
+        ) {
+          // If element has no flag img or has emoji span, insert SVG
+          let img = el.querySelector("img");
+          if (!img || !img.src.includes(`/img/flags/${c.code}.svg`)) {
+            // Remove text emoji or Windows IT/PT letters
+            el.querySelectorAll("span.text-3xl").forEach((s) => s.remove());
+            if (!img) {
+              img = document.createElement("img");
+              img.className = "h-8 w-12 rounded-sm shadow-xs object-cover mb-1";
+              img.alt = `Study in ${c.name}`;
+              img.src = `/img/flags/${c.code}.svg`;
+              el.insertBefore(img, el.firstChild);
+            } else {
+              img.src = `/img/flags/${c.code}.svg`;
+            }
+          }
+        }
+      });
+    });
+  }
+
+  // Guard: enforce column-centered layout on degree program university cards
+  // Row 1: Apply Portal ↗ button
+  // Row 2: University Name
+  // Row 3: City, Italy
+  function enforceUniversityCards() {
+    const uniCards = document.querySelectorAll(".grid .border-2.bg-white");
+    uniCards.forEach((card) => {
+      const link = card.querySelector("a[href^='http']");
+      const nameEl = card.querySelector("p.font-bold");
+      const cityEl = card.querySelector("p.text-xs");
+
+      if (link && nameEl && cityEl) {
+        // Ensure card container is column-centered
+        card.classList.add("flex", "flex-col", "items-center", "justify-center", "text-center", "gap-2", "p-5");
+
+        // Ensure link is Row 1
+        link.className = "inline-flex items-center justify-center rounded-full bg-[#123a70] px-4 py-2 text-xs font-bold text-white hover:bg-[#0e2c56] transition shadow-xs";
+        nameEl.className = "font-bold text-[#123a70] text-base leading-snug mt-1";
+        cityEl.className = "text-xs text-slate-500";
+
+        // Rearrange DOM order if needed
+        if (card.firstElementChild !== link) {
+          card.insertBefore(link, card.firstChild);
+        }
+        if (nameEl.nextElementSibling !== cityEl) {
+          card.appendChild(nameEl);
+          card.appendChild(cityEl);
+        }
+      }
+    });
+  }
+
+  // Guard: enforce official social media links in footer
+  function enforceFooterSocial() {
     const footer = document.querySelector("footer");
     if (footer && !footer.querySelector(".janan-social-links")) {
       const socialDiv = document.createElement("div");
@@ -426,6 +487,25 @@
     }
   }
 
+  function enhanceUI() {
+    initModals();
+    enforceFlags();
+    enforceUniversityCards();
+    enforceFooterSocial();
+
+    // Add Paid consultation button to header nav if missing
+    const nav = document.querySelector("header nav");
+    if (nav && !nav.querySelector("[data-open-paid-consultation]")) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.setAttribute("data-open-paid-consultation", "");
+      btn.className = "rounded-full bg-[#123a70] px-3.5 py-1.5 text-xs font-bold text-white hover:bg-[#0e2c56] transition shadow-xs cursor-pointer";
+      btn.textContent = "Paid consultation";
+      btn.onclick = () => window.openPaidConsultation();
+      nav.appendChild(btn);
+    }
+  }
+
   // Run init on DOMContentLoaded or immediate
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", enhanceUI);
@@ -433,14 +513,13 @@
     enhanceUI();
   }
 
-  // Observe DOM for React route changes
+  // Observe DOM for React route changes & client hydration
   if (typeof MutationObserver !== "undefined") {
     let timeoutId = null;
     const observer = new MutationObserver(() => {
       if (timeoutId) clearTimeout(timeoutId);
-      timeoutId = setTimeout(enhanceUI, 100);
+      timeoutId = setTimeout(enhanceUI, 50);
     });
     observer.observe(document.body, { childList: true, subtree: true });
   }
 })();
-
