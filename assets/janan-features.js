@@ -393,10 +393,54 @@
     if (modal) modal.classList.remove("hidden");
   };
 
+  function enhanceUI() {
+    initModals();
+
+    // 1. Add Paid consultation button to header nav
+    const nav = document.querySelector("header nav");
+    if (nav && !nav.querySelector("[data-open-paid-consultation]")) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.setAttribute("data-open-paid-consultation", "");
+      btn.className = "rounded-full bg-[#123a70] px-3.5 py-1.5 text-xs font-bold text-white hover:bg-[#0e2c56] transition shadow-xs cursor-pointer";
+      btn.textContent = "Paid consultation";
+      btn.onclick = () => window.openPaidConsultationModal();
+      nav.appendChild(btn);
+    }
+
+    // 2. Add Official Social Profiles to footer
+    const footer = document.querySelector("footer");
+    if (footer && !footer.querySelector(".janan-social-links")) {
+      const socialDiv = document.createElement("div");
+      socialDiv.className = "janan-social-links mt-4 flex flex-wrap items-center justify-center gap-2 text-xs font-semibold";
+      socialDiv.innerHTML = `
+        <a href="https://whatsapp.com/channel/0029Vb7XHR3IHphDS7o4ns2R" target="_blank" rel="noreferrer" class="rounded-full bg-white/10 px-3.5 py-1.5 hover:bg-white/20 transition">WhatsApp Channel</a>
+        <a href="https://chat.whatsapp.com/JcYk4lt36HCDDxKRh45TqE" target="_blank" rel="noreferrer" class="rounded-full bg-white/10 px-3.5 py-1.5 hover:bg-white/20 transition">WhatsApp Group</a>
+        <a href="https://www.facebook.com/share/18Z3uypvtM/" target="_blank" rel="noreferrer" class="rounded-full bg-white/10 px-3.5 py-1.5 hover:bg-white/20 transition">Facebook</a>
+        <a href="https://www.facebook.com/share/1BapuxdF7Y/" target="_blank" rel="noreferrer" class="rounded-full bg-white/10 px-3.5 py-1.5 hover:bg-white/20 transition">Facebook (50k)</a>
+        <a href="https://www.instagram.com/janan_khanx?stkn=MTY5bzkwOGV5czN1cg==" target="_blank" rel="noreferrer" class="rounded-full bg-white/10 px-3.5 py-1.5 hover:bg-white/20 transition">Instagram</a>
+        <a href="https://www.tiktok.com/@jananconsultancy" target="_blank" rel="noreferrer" class="rounded-full bg-white/10 px-3.5 py-1.5 hover:bg-white/20 transition">TikTok</a>
+        <a href="https://www.linkedin.com/in/engr-janan-813241273" target="_blank" rel="noreferrer" class="rounded-full bg-white/10 px-3.5 py-1.5 hover:bg-white/20 transition">LinkedIn</a>
+      `;
+      footer.appendChild(socialDiv);
+    }
+  }
+
   // Run init on DOMContentLoaded or immediate
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initModals);
+    document.addEventListener("DOMContentLoaded", enhanceUI);
   } else {
-    initModals();
+    enhanceUI();
+  }
+
+  // Observe DOM for React route changes
+  if (typeof MutationObserver !== "undefined") {
+    let timeoutId = null;
+    const observer = new MutationObserver(() => {
+      if (timeoutId) clearTimeout(timeoutId);
+      timeoutId = setTimeout(enhanceUI, 100);
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
   }
 })();
+
