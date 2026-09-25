@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  exampleUniversities,
   faqItems,
-  featuredUniversityPlaceholders,
   homeHero,
   insuranceDisclaimer,
   insuranceHighlights,
@@ -51,7 +51,7 @@ const allHomeContent = [
   trustPoints,
   processSteps,
   whyChooseReasons,
-  featuredUniversityPlaceholders,
+  exampleUniversities,
   scholarshipHighlights,
   successStoryDemos,
   insuranceHighlights,
@@ -88,7 +88,7 @@ describe("homepage content", () => {
 
   it("includes the required insurance disclaimer text verbatim", () => {
     expect(insuranceDisclaimer).toBe(
-      "Asteron provides general guidance and quotation assistance. Coverage, eligibility, exclusions and policy issuance are determined by the relevant insurance provider.",
+      "Janan provides general guidance and quotation assistance. Coverage, eligibility, exclusions and policy issuance are determined by the relevant insurance provider.",
     );
   });
 

@@ -37,3 +37,23 @@ if (typeof Element.prototype.releasePointerCapture === "undefined") {
 if (typeof Element.prototype.scrollIntoView === "undefined") {
   Element.prototype.scrollIntoView = () => {};
 }
+
+// jsdom implements no media-query engine at all, so `window.matchMedia` is
+// simply absent — needed since UniversitySlider (home) reads
+// `prefers-reduced-motion` via `useSyncExternalStore`. Always reports "no
+// match" (safe default for tests: autoplay behaves as if reduced motion
+// is off) and no-ops the (add|remove)EventListener/deprecated
+// (add|remove)Listener methods real code may call on the returned object.
+if (typeof window.matchMedia === "undefined") {
+  window.matchMedia = (query: string) =>
+    ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: () => {},
+      removeListener: () => {},
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      dispatchEvent: () => false,
+    }) as unknown as MediaQueryList;
+}

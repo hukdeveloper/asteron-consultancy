@@ -33,7 +33,7 @@ describe("InsurancePage (hub)", () => {
     render((await InsurancePage()) as ReactElement);
     expect(
       screen.getByText(
-        "Asteron Global Consultancy provides general information and quotation assistance. Insurance coverage, premiums, eligibility, exclusions, claims and policy issuance are determined by the relevant insurance provider. Always review the provider's official policy wording before purchase.",
+        "Janan Consultancy provides general information and quotation assistance. Insurance coverage, premiums, eligibility, exclusions, claims and policy issuance are determined by the relevant insurance provider. Always review the provider's official policy wording before purchase.",
       ),
     ).toBeInTheDocument();
   });
@@ -49,13 +49,13 @@ describe("InsurancePage (hub)", () => {
     }
   });
 
-  it("never implies Asteron is the insurer or guarantees claims/coverage", async () => {
+  it("never implies Janan is the insurer or guarantees claims/coverage", async () => {
     const { container } = render((await InsurancePage()) as ReactElement);
     const text = (container.textContent ?? "").toLowerCase();
 
     for (const phrase of [
-      "asteron is an insurer",
-      "asteron underwrites",
+      "janan is an insurer",
+      "janan underwrites",
       "we guarantee coverage",
       "guaranteed claim",
     ]) {

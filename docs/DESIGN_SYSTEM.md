@@ -1,8 +1,8 @@
-# Design System — Asteron Global Consultancy
+# Design System — Janan Consultancy
 
 ## 1. Brand Foundations
 
-- **Brand name:** Asteron Global Consultancy
+- **Brand name:** Janan Consultancy
 - **Tagline:** Guidance Beyond Borders
 - **Positioning:** A trusted international digital consultancy office — premium but approachable, informative rather than salesy, calm rather than "urgent."
 - **Logo concept (temporary, implemented as code):** combines an open book (education) and a compass/north star (guidance/direction) as an original inline SVG — `src/components/shared/SiteLogo.tsx`. No downloaded or generated asset. Comes in a `compact` variant (header) and a `full` variant with the tagline (footer, homepage); see README.md "Logo replacement procedure" for how to swap it for a commissioned mark later.

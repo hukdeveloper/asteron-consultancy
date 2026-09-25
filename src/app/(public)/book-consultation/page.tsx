@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const site = await getSiteContent();
   const title = "Book a Consultation";
   const description =
-    "Request a free consultation with Asteron. This is a development demo form — it is not yet connected to a submission service.";
+    "Request a free consultation with Janan. This is a development demo form — it is not yet connected to a submission service.";
 
   return {
     title,

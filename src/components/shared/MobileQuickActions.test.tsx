@@ -8,12 +8,12 @@ describe("MobileQuickActions", () => {
   it("renders Call, WhatsApp, and Book links using centralized contact data", async () => {
     render((await MobileQuickActions()) as ReactElement);
 
-    expect(screen.getByRole("link", { name: /Call Asteron/ })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: /Call Janan/ })).toHaveAttribute(
       "href",
       "tel:+923000000000",
     );
     expect(
-      screen.getByRole("link", { name: /Message Asteron on WhatsApp/ }),
+      screen.getByRole("link", { name: /Message Janan on WhatsApp/ }),
     ).toHaveAttribute("href", "https://wa.me/923000000000");
     expect(
       screen.getByRole("link", { name: "Book a free consultation" }),

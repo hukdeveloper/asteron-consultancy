@@ -33,7 +33,7 @@ describe("serializeJsonLd", () => {
 describe("buildOrganizationJsonLd", () => {
   it("includes only real, provided fields — no fabricated rating/address/founding date", () => {
     const result = buildOrganizationJsonLd({
-      name: "Asteron Global Consultancy",
+      name: "Janan Consultancy",
       description: "Test description",
       contact: {
         phone: "+923000000000",
@@ -46,18 +46,39 @@ describe("buildOrganizationJsonLd", () => {
     });
 
     expect(result["@type"]).toBe("Organization");
-    expect(result.name).toBe("Asteron Global Consultancy");
+    expect(result.name).toBe("Janan Consultancy");
     expect(result.email).toBe("hello@example.com");
     expect(result).not.toHaveProperty("aggregateRating");
     expect(result).not.toHaveProperty("foundingDate");
+    expect(result).not.toHaveProperty("sameAs");
+  });
+
+  it("includes sameAs only when confirmed social URLs are provided", () => {
+    const result = buildOrganizationJsonLd({
+      name: "Janan Consultancy",
+      description: "Test description",
+      contact: {
+        phone: "+923000000000",
+        phoneDisplay: "+92 300 0000000",
+        whatsapp: "+923000000000",
+        whatsappDisplay: "+92 300 0000000",
+        email: "hello@example.com",
+        address: "Islamabad, Pakistan",
+      },
+      sameAs: ["https://www.facebook.com/share/18Z3uypvtM/"],
+    });
+
+    expect(result.sameAs).toEqual([
+      "https://www.facebook.com/share/18Z3uypvtM/",
+    ]);
   });
 });
 
 describe("buildWebSiteJsonLd", () => {
   it("builds a minimal WebSite entry", () => {
-    const result = buildWebSiteJsonLd({ name: "Asteron Global Consultancy" });
+    const result = buildWebSiteJsonLd({ name: "Janan Consultancy" });
     expect(result["@type"]).toBe("WebSite");
-    expect(result.name).toBe("Asteron Global Consultancy");
+    expect(result.name).toBe("Janan Consultancy");
     expect(result.url).toBeTruthy();
   });
 });

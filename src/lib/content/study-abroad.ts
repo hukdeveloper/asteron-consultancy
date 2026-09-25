@@ -1,7 +1,7 @@
 import {
   costPlanningCategories,
   genericApplicationProcess,
-  howAsteronSupports,
+  howJananSupports,
   parentReassurance,
   popularSubjectAreas,
   postgraduatePageContent,
@@ -21,7 +21,7 @@ export async function getStudyAbroadHubContent() {
     intro: studyAbroadIntro,
     genericApplicationProcess,
     popularSubjectAreas,
-    howAsteronSupports,
+    howJananSupports,
     visaGuidanceIntro,
     parentReassurance,
     costPlanningCategories,

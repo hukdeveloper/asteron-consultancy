@@ -7,7 +7,7 @@ describe("SiteLogo", () => {
   it("exposes the full brand name as accessible text", () => {
     const { container } = render(<SiteLogo />);
 
-    expect(container).toHaveTextContent("Asteron Global Consultancy");
+    expect(container).toHaveTextContent("Janan Consultancy");
   });
 
   it("shows the tagline only in the full variant", () => {

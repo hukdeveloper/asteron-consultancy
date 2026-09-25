@@ -8,7 +8,7 @@ interface ScopeLimitationsSectionProps {
   items: KeyPoint[];
 }
 
-/** Honest, upfront statement of what Asteron does not control or guarantee — required by the phase brief, not an afterthought footnote. */
+/** Honest, upfront statement of what Janan does not control or guarantee — required by the phase brief, not an afterthought footnote. */
 export function ScopeLimitationsSection({
   items,
 }: ScopeLimitationsSectionProps) {
@@ -22,7 +22,7 @@ export function ScopeLimitationsSection({
           eyebrow="Honest about scope"
           heading="What we don't control or guarantee"
           headingId="scope-limitations-heading"
-          description="Asteron helps you prepare and stay organised — final decisions always rest with institutions, funding bodies and government authorities."
+          description="Janan helps you prepare and stay organised — final decisions always rest with institutions, funding bodies and government authorities."
           className="max-w-3xl"
         />
         <KeyPointGrid items={items} columns={2} className="mt-8" />

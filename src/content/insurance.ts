@@ -22,7 +22,7 @@ export const insuranceHero = {
 };
 
 export const insuranceIntro =
-  "Insurance guidance is related to, but separate from, Asteron's education consulting services. We provide general information and help you request a quotation — coverage, premiums and policy decisions are always made by the relevant insurance provider, not by Asteron.";
+  "Insurance guidance is related to, but separate from, Janan's education consulting services. We provide general information and help you request a quotation — coverage, premiums and policy decisions are always made by the relevant insurance provider, not by Janan.";
 
 /**
  * The single global insurance disclosure, shown on the hub, every insurance
@@ -32,7 +32,7 @@ export const insuranceIntro =
  * specifically requires for the dedicated Insurance section.
  */
 export const insuranceGlobalDisclosure =
-  "Asteron Global Consultancy provides general information and quotation assistance. Insurance coverage, premiums, eligibility, exclusions, claims and policy issuance are determined by the relevant insurance provider. Always review the provider's official policy wording before purchase.";
+  "Janan Consultancy provides general information and quotation assistance. Insurance coverage, premiums, eligibility, exclusions, claims and policy issuance are determined by the relevant insurance provider. Always review the provider's official policy wording before purchase.";
 
 export const insuranceWhyRequired: KeyPoint[] = [
   {
@@ -131,7 +131,7 @@ export const insuranceQuoteProcessSteps: ProcessStep[] = [
 ];
 
 export const insuranceProviderDisclosureGeneral =
-  "Asteron does not underwrite insurance, does not set premiums, and does not approve or guarantee claims. Our role is to provide general information and help you request a quotation from a relevant insurance provider.";
+  "Janan does not underwrite insurance, does not set premiums, and does not approve or guarantee claims. Our role is to provide general information and help you request a quotation from a relevant insurance provider.";
 
 export const insuranceClaimsSupportGeneral =
   "If you ever need to make a claim, we can offer general guidance on the process — but claims are assessed and approved solely by the insurance provider, following their own policy terms.";
@@ -139,9 +139,9 @@ export const insuranceClaimsSupportGeneral =
 export const insuranceHubFaqItems: FaqItem[] = [
   {
     id: "insurance-hub-faq-issuer",
-    question: "Is Asteron an insurance company?",
+    question: "Is Janan an insurance company?",
     answer:
-      "No — Asteron is not an insurer. We provide general information and quotation assistance; coverage and policy issuance are handled by the relevant insurance provider.",
+      "No — Janan is not an insurer. We provide general information and quotation assistance; coverage and policy issuance are handled by the relevant insurance provider.",
   },
   {
     id: "insurance-hub-faq-which",

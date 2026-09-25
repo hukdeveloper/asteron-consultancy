@@ -49,10 +49,10 @@ export function DestinationScholarshipVisaSection({
           />
           <p className="text-muted-foreground text-sm">
             Visa and scholarship requirements are set and updated by governments
-            and institutions, not by Asteron, and can change without notice.
-            Asteron does not guarantee admission, visa approval or any
-            scholarship outcome — always confirm current requirements directly
-            with the relevant official source.
+            and institutions, not by Janan, and can change without notice. Janan
+            does not guarantee admission, visa approval or any scholarship
+            outcome — always confirm current requirements directly with the
+            relevant official source.
           </p>
         </div>
       </Container>

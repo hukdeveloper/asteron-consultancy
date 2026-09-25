@@ -1,4 +1,4 @@
-# Media Attributions — Asteron Global Consultancy
+# Media Attributions — Janan Consultancy
 
 Tracks every non-original media asset used on the site: source, creator,
 licence, and where it's used. See [docs/DESIGN_SYSTEM.md](DESIGN_SYSTEM.md)

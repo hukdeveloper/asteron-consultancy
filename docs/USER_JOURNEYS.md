@@ -1,4 +1,4 @@
-# User Journeys — Asteron Global Consultancy
+# User Journeys — Janan Consultancy
 
 Each journey lists: entry points, key steps, decision points, the primary conversion goal, and relevant states (loading/empty/error/success).
 
@@ -8,7 +8,7 @@ Each journey lists: entry points, key steps, decision points, the primary conver
 
 1. Arrives via search, ad, or social link → lands on Homepage or a Destination/Programme page.
 2. Explores Study Abroad section: browses Destinations → filters/selects a Destination → views Universities within it → views Programmes.
-3. Reads a Service page (e.g., Admission Application Assistance) for clarity on what Asteron does.
+3. Reads a Service page (e.g., Admission Application Assistance) for clarity on what Janan does.
 4. Checks Scholarships relevant to their profile.
 5. Reviews Success Stories (aware these may be sample/demo content, clearly labelled) for social proof.
 6. Converts via one of:

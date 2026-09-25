@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test("about page loads with team preview", async ({ page }) => {
   await page.goto("/about");
   await expect(
-    page.getByRole("heading", { level: 1, name: "About Asteron" }),
+    page.getByRole("heading", { level: 1, name: "About Janan" }),
   ).toBeVisible();
   await expect(
     page.getByRole("link", { name: "Meet the full team" }),

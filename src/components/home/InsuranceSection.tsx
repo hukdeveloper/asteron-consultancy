@@ -16,7 +16,7 @@ interface InsuranceSectionProps {
  * dark navy card grid, explicitly rejected: "Do not use a dark navy card
  * grid"). Pale-mint surface, a large soft shield motif standing in for
  * photography, and a concise icon-led checklist — three coverage
- * categories, not six. Must never imply Asteron is the insurer — see the
+ * categories, not six. Must never imply Janan is the insurer — see the
  * required disclaimer, sourced from src/content/home.ts, not hardcoded
  * here.
  */

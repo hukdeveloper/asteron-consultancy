@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to the Asteron Global Consultancy website are recorded here. This project has not yet had a versioned release — see the `Unreleased` section below for everything built so far. No release date or version number is set until the lead architect decides to cut one; entries move out of `Unreleased` at that point.
+All notable changes to the Janan Consultancy website are recorded here. This project has not yet had a versioned release — see the `Unreleased` section below for everything built so far. No release date or version number is set until the lead architect decides to cut one; entries move out of `Unreleased` at that point.
 
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/), adapted for a phase-based engineering log (see [docs/IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md) and [docs/DECISIONS.md](docs/DECISIONS.md) for the detailed, per-phase record this summarizes).
 

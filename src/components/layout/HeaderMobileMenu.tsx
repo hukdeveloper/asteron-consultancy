@@ -175,9 +175,9 @@ export function HeaderMobileMenu({
             <li>
               <a
                 href={mailHref}
-                className="text-muted-foreground hover:text-brand-blue hover:bg-secondary flex items-center gap-2.5 rounded-md px-2 py-2.5"
+                className="text-muted-foreground hover:text-brand-blue hover:bg-secondary flex items-start gap-2.5 rounded-md px-2 py-2.5 break-all"
               >
-                <Mail aria-hidden="true" className="size-4 shrink-0" />
+                <Mail aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
                 {contact.email}
               </a>
             </li>

@@ -4,19 +4,12 @@ import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/Container";
 import { SiteLogo } from "@/components/shared/SiteLogo";
+import { SocialIcon } from "@/components/shared/SocialIcon";
 import { siteConfig } from "@/config/site";
 import { getFooterLinkGroups, getLegalLinks } from "@/lib/content/navigation";
 import { getSiteContent } from "@/lib/content/site";
 import { getSocialLinks } from "@/lib/content/social-links";
 import { cn } from "@/lib/utils";
-
-const platformInitials: Record<string, string> = {
-  facebook: "Fb",
-  instagram: "Ig",
-  linkedin: "In",
-  youtube: "Yt",
-  twitter: "X",
-};
 
 /**
  * Public site footer — redesigned Phase 10B (see docs/DECISIONS.md "Visual
@@ -76,10 +69,12 @@ export async function SiteFooter() {
                 <li key={social.id}>
                   <a
                     href={social.href}
+                    target="_blank"
+                    rel="noreferrer noopener"
                     aria-label={social.label}
-                    className="text-primary-foreground/70 hover:text-primary-foreground flex size-9 items-center justify-center rounded-full border border-white/15 text-xs font-semibold transition-colors hover:border-white/40"
+                    className="text-primary-foreground/70 hover:bg-brand-blue hover:text-white flex size-9 items-center justify-center rounded-full border border-white/15 transition-colors hover:border-transparent"
                   >
-                    {platformInitials[social.platform]}
+                    <SocialIcon platform={social.platform} className="size-4" />
                   </a>
                 </li>
               ))}
@@ -134,9 +129,9 @@ export async function SiteFooter() {
             <li>
               <a
                 href={`mailto:${site.contact.email}`}
-                className="hover:text-primary-foreground inline-flex items-center gap-2 hover:underline"
+                className="hover:text-primary-foreground inline-flex items-start gap-2 break-all hover:underline"
               >
-                <Mail aria-hidden="true" className="size-3.5 shrink-0" />
+                <Mail aria-hidden="true" className="mt-0.5 size-3.5 shrink-0" />
                 {site.contact.email}
               </a>
             </li>

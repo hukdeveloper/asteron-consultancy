@@ -68,7 +68,7 @@ describe("HomePage", () => {
 
     expect(
       screen.getByText(
-        "Asteron provides general guidance and quotation assistance. Coverage, eligibility, exclusions and policy issuance are determined by the relevant insurance provider.",
+        "Janan provides general guidance and quotation assistance. Coverage, eligibility, exclusions and policy issuance are determined by the relevant insurance provider.",
       ),
     ).toBeInTheDocument();
   });
@@ -126,7 +126,7 @@ describe("HomePage", () => {
 
     const data = JSON.parse(script?.innerHTML ?? "{}");
     expect(data["@type"]).toBe("ProfessionalService");
-    expect(data.name).toBe("Asteron Global Consultancy");
+    expect(data.name).toBe("Janan Consultancy");
     expect(typeof data.url).toBe("string");
     // No fabricated ratings, reviews, opening hours, or coordinates.
     expect(data).not.toHaveProperty("aggregateRating");

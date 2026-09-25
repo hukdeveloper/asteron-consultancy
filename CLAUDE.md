@@ -1,10 +1,10 @@
-# CLAUDE.md — Engineering Rules for Asteron Global Consultancy
+# CLAUDE.md — Engineering Rules for Janan Consultancy
 
 This file governs how Claude Code (or any engineering agent) works on this repository. It applies to every phase of the project, from documentation through implementation, testing, and deployment.
 
 ## Project Purpose
 
-Asteron Global Consultancy ("Asteron") is building a modern, trustworthy, English-only marketing website for a study-abroad consultancy. The site presents services (university/course selection, admissions support, scholarships, visa guidance, insurance, accommodation, pre-departure support, events, and general consultation).
+Janan Consultancy ("Janan") is building a modern, trustworthy, English-only marketing website for a study-abroad consultancy. The site presents services (university/course selection, admissions support, scholarships, visa guidance, insurance, accommodation, pre-departure support, events, and general consultation).
 
 The roadmap is deliberately staged into four tracks (see [docs/IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md)):
 
@@ -33,7 +33,7 @@ Do not build ahead of the current track. In particular: do not add a database, a
 
 - **Never invent or present fictional information as verified fact.** No real statistics, partnership names, accreditation claims, visa success rates, or testimonials may be fabricated.
 - Any statistic, testimonial, partnership, certification, award, or accreditation used before verified data is supplied must be visibly and unambiguously labelled as **sample/demo content** in the UI, not just in code comments.
-- Never state or imply that Asteron is a licensed immigration adviser, an insurer, a university representative, or an immigration authority, unless the lead architect supplies verified information authorizing that claim.
+- Never state or imply that Janan is a licensed immigration adviser, an insurer, a university representative, or an immigration authority, unless the lead architect supplies verified information authorizing that claim.
 - Insurance content must always be presented as a distinct, clearly labelled service category with appropriate disclaimers (see [docs/CONTENT_MODEL.md](docs/CONTENT_MODEL.md)).
 - When a genuine business decision (pricing, legal wording, real partnerships, verified stats) is unavailable, record it as an **unresolved question** in [docs/DECISIONS.md](docs/DECISIONS.md) instead of inventing an answer.
 

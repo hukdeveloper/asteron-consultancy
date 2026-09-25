@@ -161,7 +161,7 @@ test("insurance quote form shows the not-connected message on a valid submission
 
   await expect(
     page.getByText(
-      "Online submission is not connected yet. Your information has not been sent or stored. Please contact Asteron by phone, email or WhatsApp.",
+      "Online submission is not connected yet. Your information has not been sent or stored. Please contact Janan by phone, email or WhatsApp.",
     ),
   ).toBeVisible();
   await expect(page.getByText(/successfully submitted/i)).toHaveCount(0);

@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const site = await getSiteContent();
   const title = "About";
   const description =
-    "How Asteron Global Consultancy supports students and families planning international education — our mission, values and guidance principles.";
+    "How Janan Consultancy supports students and families planning international education — our mission, values and guidance principles.";
 
   return {
     title,
@@ -49,7 +49,7 @@ export default async function AboutPage() {
 
       <DetailHero
         breadcrumbItems={[{ label: "About" }]}
-        heading="About Asteron"
+        heading="About Janan"
         description={about.intro}
         primaryCta={{
           label: "Book Free Consultation",
@@ -92,7 +92,7 @@ export default async function AboutPage() {
         <Container>
           <SectionHeading
             eyebrow="How we help"
-            heading="How Asteron supports clients"
+            heading="How Janan supports clients"
             headingId="about-support-heading"
             className="max-w-3xl"
           />

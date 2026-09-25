@@ -1,4 +1,4 @@
-# Product Requirements — Asteron Global Consultancy
+# Product Requirements — Janan Consultancy
 
 > **Scope correction (2026-09-12):** the lead architect confirmed the initial release is a **static marketing website** with no database, authentication, admin dashboard, or persistent form storage. The roadmap is staged into four tracks; this document is organized around them. See [docs/DECISIONS.md](DECISIONS.md) for the decision record.
 
@@ -13,7 +13,7 @@ Requirements below are labelled by track. Do not implement a later-track require
 
 ## 1. Goals
 
-- Establish Asteron as a credible, trustworthy digital presence for study-abroad consultancy services.
+- Establish Janan as a credible, trustworthy digital presence for study-abroad consultancy services.
 - Provide prospective students and parents with clear, well-organized information on destinations, universities, programmes, scholarships, visas, and insurance to support their decision-making.
 - Present lead-generation forms (consultation booking, eligibility check, insurance quote, general enquiry) that work end-to-end from the visitor's point of view (validation, accessible success/error states) even before a real backend exists — without ever claiming a submission was saved when it wasn't (Track 1).
 - Once a submission service is connected (Track 2), actually deliver those enquiries to staff.
@@ -102,13 +102,13 @@ Nothing above may be silently introduced while working on an earlier track.
 - A visitor can fill in and submit each of the four forms; each shows working client-side validation, an accessible success state (clearly indicating demo/development mode until Track 2 lands), and an accessible error state. **Met for Insurance Quote as of Phase 5; the other three forms are pending (Phase 5B).**
 - No UI, copy, or code implies a form submission was saved or will reach staff unless a real submission provider is actually connected.
 - All sample/demo statistics, testimonials, partnerships, certifications, awards, and accreditations are visibly labelled as such in the rendered UI.
-- No page implies Asteron is a licensed immigration adviser, insurer, university representative, or immigration authority.
+- No page implies Janan is a licensed immigration adviser, insurer, university representative, or immigration authority.
 - Public pages meet the accessibility and performance targets defined in [docs/TECHNICAL_ARCHITECTURE.md](TECHNICAL_ARCHITECTURE.md).
 - No database, auth, or admin-dashboard code exists anywhere in the repository.
 
 ## 8. Assumptions
 
-- Asteron does not currently have real, verified statistics, testimonials, partnerships, or accreditations to publish; placeholder/demo content will be used and labelled until supplied.
+- Janan does not currently have real, verified statistics, testimonials, partnerships, or accreditations to publish; placeholder/demo content will be used and labelled until supplied.
 - No existing brand guidelines beyond the temporary identity supplied at project start; the temporary palette/tagline are placeholders subject to change by the lead architect.
 - No existing legacy system or content to migrate (repository was empty at project start).
 - Hosting/deployment target and analytics provider are not yet chosen (Track 1 doesn't strictly need either to function, but both affect launch — see [docs/DECISIONS.md](DECISIONS.md)).
@@ -118,9 +118,9 @@ Nothing above may be silently introduced while working on an earlier track.
 
 See [docs/DECISIONS.md](DECISIONS.md) for the authoritative running list. Key items:
 
-- What is the legal/company registration status of Asteron, and what disclosures are required on legal pages (Terms, Privacy Policy, Cookie Policy)?
+- What is the legal/company registration status of Janan, and what disclosures are required on legal pages (Terms, Privacy Policy, Cookie Policy)?
 - Which jurisdictions'/countries' data protection law applies to form submissions once they're actually collected (Track 2)?
-- Will Asteron provide its own insurance quotes, or broker/refer to third-party insurers? This materially affects the "provider disclosure" and "claims-support" content fields.
+- Will Janan provide its own insurance quotes, or broker/refer to third-party insurers? This materially affects the "provider disclosure" and "claims-support" content fields.
 - What form-submission/email service (Track 2) and hosting platform (Track 1 launch) are approved for use?
 - Is there a real logo/brand guideline in progress, or should the temporary identity be treated as final for launch?
 - What staff roles/permission levels will be needed once Strapi (Track 3) introduces an admin surface?

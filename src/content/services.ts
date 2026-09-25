@@ -200,7 +200,7 @@ export const services: Service[] = [
       "Compare institutions and programmes against your own goals and circumstances — not a generic ranking.",
     icon: "GraduationCap",
     overview:
-      "Choosing a university and course involves weighing up more than reputation alone. This service helps you compare specific options against factors that matter for your own situation — Asteron does not publish rankings or claim that any one university is universally best.",
+      "Choosing a university and course involves weighing up more than reputation alone. This service helps you compare specific options against factors that matter for your own situation — Janan does not publish rankings or claim that any one university is universally best.",
     whoItMayHelp:
       "This may help students who already have a general direction (from counselling or their own research) and now need to compare specific universities and courses.",
     benefits: [
@@ -296,7 +296,7 @@ export const services: Service[] = [
       "Your budget range and preferred destination(s)",
     ],
     limitations: [
-      "Asteron does not publish university rankings and does not claim that any single university or programme is universally best — the right fit depends on your own goals and circumstances.",
+      "Janan does not publish university rankings and does not claim that any single university or programme is universally best — the right fit depends on your own goals and circumstances.",
       "Entry decisions are made solely by each institution.",
     ],
     faqItems: [
@@ -434,15 +434,15 @@ export const services: Service[] = [
       "Each institution's own application deadlines",
     ],
     limitations: [
-      "Asteron does not write application content on a student's behalf and does not complete assessed work for applicants.",
-      "Asteron does not guarantee admission outcomes.",
+      "Janan does not write application content on a student's behalf and does not complete assessed work for applicants.",
+      "Janan does not guarantee admission outcomes.",
     ],
     importantNotice:
-      "Asteron may guide applicants in presenting their own experience clearly, but applicants remain responsible for the truthfulness and originality of submitted material.",
+      "Janan may guide applicants in presenting their own experience clearly, but applicants remain responsible for the truthfulness and originality of submitted material.",
     faqItems: [
       {
         id: "aa-faq-write",
-        question: "Will Asteron write my personal statement for me?",
+        question: "Will Janan write my personal statement for me?",
         answer:
           "No — we guide you in presenting your own experience clearly, but the content, its truthfulness and its originality remain your responsibility.",
       },
@@ -576,10 +576,10 @@ export const services: Service[] = [
       "Any destination-specific forms the official process requires",
     ],
     limitations: [
-      "Asteron does not quote exact, unsourced government visa fees.",
-      "Asteron does not guarantee visa approval or a specific processing time.",
-      "Asteron does not provide legal representation and is not a registered immigration adviser.",
-      "Asteron never advises concealing information or submitting altered or misleading documents.",
+      "Janan does not quote exact, unsourced government visa fees.",
+      "Janan does not guarantee visa approval or a specific processing time.",
+      "Janan does not provide legal representation and is not a registered immigration adviser.",
+      "Janan never advises concealing information or submitting altered or misleading documents.",
     ],
     importantNotice:
       "Visa rules, documentation requirements, fees and processing times can change. Final decisions are made solely by the relevant government authority.",
@@ -600,7 +600,7 @@ export const services: Service[] = [
         id: "vg-faq-lawyer",
         question: "Is this the same as hiring an immigration lawyer?",
         answer:
-          "No — Asteron is not a registered immigration adviser and does not provide legal representation. We provide general documentation and process guidance.",
+          "No — Janan is not a registered immigration adviser and does not provide legal representation. We provide general documentation and process guidance.",
       },
     ],
     relatedServiceSlugs: ["application-assistance", "pre-departure-guidance"],
@@ -722,8 +722,8 @@ export const services: Service[] = [
       "Details of your intended destination, institution and programme",
     ],
     limitations: [
-      "Asteron does not maintain a directory of named scholarships on this page — a structured scholarship directory is planned for a later phase.",
-      "Scholarships are awarded by the relevant institution or funding body, not by Asteron.",
+      "Janan does not maintain a directory of named scholarships on this page — a structured scholarship directory is planned for a later phase.",
+      "Scholarships are awarded by the relevant institution or funding body, not by Janan.",
     ],
     importantNotice:
       "Scholarships are awarded by the relevant institution or funding body. Guidance does not guarantee selection or funding.",
@@ -765,7 +765,7 @@ export const services: Service[] = [
       "General guidance comparing accommodation options and what to check before you commit.",
     icon: "Building2",
     overview:
-      "Finding suitable accommodation is one of the more time-sensitive parts of preparing to study abroad. This service provides general guidance and, where available, referral assistance across common accommodation categories — Asteron does not guarantee property availability, condition or landlord performance.",
+      "Finding suitable accommodation is one of the more time-sensitive parts of preparing to study abroad. This service provides general guidance and, where available, referral assistance across common accommodation categories — Janan does not guarantee property availability, condition or landlord performance.",
     whoItMayHelp:
       "This may help students who have confirmed their destination and institution and now need to plan where they'll live.",
     benefits: [
@@ -869,12 +869,12 @@ export const services: Service[] = [
       "Any specific preferences (shared vs. private, distance from campus, etc.)",
     ],
     limitations: [
-      "Asteron may provide general guidance or referral assistance but does not guarantee property availability, condition or landlord performance.",
+      "Janan may provide general guidance or referral assistance but does not guarantee property availability, condition or landlord performance.",
     ],
     faqItems: [
       {
         id: "as-faq-book",
-        question: "Will Asteron book my accommodation for me?",
+        question: "Will Janan book my accommodation for me?",
         answer:
           "We provide general guidance and, where available, referral assistance — but we do not guarantee availability, condition or landlord performance, and any booking is between you and the provider.",
       },
@@ -1006,7 +1006,7 @@ export const services: Service[] = [
       "Your confirmed accommodation details",
     ],
     limitations: [
-      "Asteron does not provide country-specific legal guarantees and cannot guarantee travel conditions or outcomes.",
+      "Janan does not provide country-specific legal guarantees and cannot guarantee travel conditions or outcomes.",
       "Travel advice from your own government should always be checked directly before you travel.",
     ],
     faqItems: [

@@ -1,6 +1,6 @@
 import type {
+  ExampleUniversity,
   FaqItem,
-  FeaturedUniversityPlaceholder,
   FinalCtaContent,
   HomeEventSummary,
   HomeHeroContent,
@@ -132,12 +132,74 @@ export const whyChooseReasons: WhyChooseReason[] = [
   },
 ];
 
-/** Sample/demo only — see docs/DESIGN_SYSTEM.md §12. No real institution names or logos. */
-export const featuredUniversityPlaceholders: FeaturedUniversityPlaceholder[] = [
-  { id: "placeholder-1", label: "Institution Placeholder A" },
-  { id: "placeholder-2", label: "Institution Placeholder B" },
-  { id: "placeholder-3", label: "Institution Placeholder C" },
-  { id: "placeholder-4", label: "Institution Placeholder D" },
+/**
+ * Real universities, named purely as illustrative examples of where
+ * students in each of our six covered destinations might study — one per
+ * destination. Deliberately NOT framed as partners, affiliates, or an
+ * admissions guarantee: no "our partner", no logo/trademark use, no
+ * ranking numbers or acceptance-rate claims, just the kind of general,
+ * publicly-known fact (age, size, subject strength) any study-abroad
+ * resource would mention. See docs/DECISIONS.md "Hero University
+ * Examples" for the reasoning and the lead architect's explicit sign-off
+ * on naming real institutions here (a deliberate exception to this
+ * project's usual generic-placeholder-only policy for unverified
+ * content).
+ */
+export const exampleUniversities: ExampleUniversity[] = [
+  {
+    id: "oxford",
+    name: "University of Oxford",
+    city: "Oxford",
+    country: "United Kingdom",
+    destinationSlug: "united-kingdom",
+    blurb: "One of the world's oldest English-speaking universities.",
+    icon: "Landmark",
+  },
+  {
+    id: "toronto",
+    name: "University of Toronto",
+    city: "Toronto",
+    country: "Canada",
+    destinationSlug: "canada",
+    blurb: "Canada's largest university by research output.",
+    icon: "Landmark",
+  },
+  {
+    id: "melbourne",
+    name: "University of Melbourne",
+    city: "Melbourne",
+    country: "Australia",
+    destinationSlug: "australia",
+    blurb: "Consistently ranked among Australia's leading universities.",
+    icon: "Landmark",
+  },
+  {
+    id: "ucla",
+    name: "UCLA",
+    city: "Los Angeles",
+    country: "United States",
+    destinationSlug: "united-states",
+    blurb: "A leading public research university in California.",
+    icon: "Landmark",
+  },
+  {
+    id: "tum",
+    name: "Technical University of Munich",
+    city: "Munich",
+    country: "Germany",
+    destinationSlug: "germany",
+    blurb: "A top-ranked institution for engineering and technology.",
+    icon: "Landmark",
+  },
+  {
+    id: "trinity-dublin",
+    name: "Trinity College Dublin",
+    city: "Dublin",
+    country: "Ireland",
+    destinationSlug: "ireland",
+    blurb: "Ireland's oldest university, founded in 1592.",
+    icon: "Landmark",
+  },
 ];
 
 export const scholarshipHighlights: ScholarshipHighlight[] = [
@@ -240,7 +302,7 @@ export const insuranceHighlights: InsuranceHighlight[] = [
 ];
 
 export const insuranceDisclaimer =
-  "Asteron provides general guidance and quotation assistance. Coverage, eligibility, exclusions and policy issuance are determined by the relevant insurance provider.";
+  "Janan provides general guidance and quotation assistance. Coverage, eligibility, exclusions and policy issuance are determined by the relevant insurance provider.";
 
 /** Sample event only — replace with real event content, not a new component, when available. */
 export const sampleEvent: HomeEventSummary = {
@@ -306,7 +368,7 @@ export const faqItems: FaqItem[] = [
     id: "insurance-services",
     question: "What insurance services do you assist with?",
     answer:
-      "We offer guidance and quotation assistance for student health, travel and visitor insurance. Policies themselves are issued by the relevant insurance provider, not by Asteron.",
+      "We offer guidance and quotation assistance for student health, travel and visitor insurance. Policies themselves are issued by the relevant insurance provider, not by Janan.",
   },
   {
     id: "book-consultation",

@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   costPlanningCategories,
   genericApplicationProcess,
-  howAsteronSupports,
+  howJananSupports,
   parentReassurance,
   popularSubjectAreas,
   postgraduatePageContent,
@@ -75,8 +75,8 @@ describe("shared study abroad content", () => {
     expect(visaGuidanceIntro).not.toMatch(/[$£€]\s?\d/);
   });
 
-  it("has non-empty how-Asteron-supports and parent-reassurance content", () => {
-    expect(howAsteronSupports.length).toBeGreaterThan(0);
+  it("has non-empty how-Janan-supports and parent-reassurance content", () => {
+    expect(howJananSupports.length).toBeGreaterThan(0);
     expect(parentReassurance.length).toBeGreaterThan(0);
   });
 
@@ -110,7 +110,7 @@ describe("shared study abroad content", () => {
     const allText = collectStrings([
       genericApplicationProcess,
       popularSubjectAreas,
-      howAsteronSupports,
+      howJananSupports,
       costPlanningCategories,
       visaGuidanceIntro,
       parentReassurance,

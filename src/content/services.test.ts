@@ -100,7 +100,7 @@ describe("service content", () => {
   it("includes the required academic-integrity statement on Application Assistance", () => {
     const service = services.find((s) => s.slug === "application-assistance");
     expect(service?.importantNotice).toBe(
-      "Asteron may guide applicants in presenting their own experience clearly, but applicants remain responsible for the truthfulness and originality of submitted material.",
+      "Janan may guide applicants in presenting their own experience clearly, but applicants remain responsible for the truthfulness and originality of submitted material.",
     );
   });
 
@@ -127,7 +127,7 @@ describe("service content", () => {
   it("includes the required accommodation limitation statement", () => {
     const service = services.find((s) => s.slug === "accommodation-support");
     expect(service?.limitations).toContain(
-      "Asteron may provide general guidance or referral assistance but does not guarantee property availability, condition or landlord performance.",
+      "Janan may provide general guidance or referral assistance but does not guarantee property availability, condition or landlord performance.",
     );
   });
 

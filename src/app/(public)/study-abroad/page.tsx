@@ -10,7 +10,7 @@ import { JsonLd } from "@/components/shared/JsonLd";
 import { ApplicationJourneySection } from "@/components/study-abroad/ApplicationJourneySection";
 import { DestinationComparisonTable } from "@/components/study-abroad/DestinationComparisonTable";
 import { DestinationSelectorSection } from "@/components/study-abroad/DestinationSelectorSection";
-import { HowAsteronSupportsSection } from "@/components/study-abroad/HowAsteronSupportsSection";
+import { HowJananSupportsSection } from "@/components/study-abroad/HowJananSupportsSection";
 import { HubVisaGuidanceSection } from "@/components/study-abroad/HubVisaGuidanceSection";
 import { ParentReassuranceSection } from "@/components/study-abroad/ParentReassuranceSection";
 import { StudyLevelLinksSection } from "@/components/study-abroad/StudyLevelLinksSection";
@@ -77,7 +77,7 @@ export default async function StudyAbroadPage() {
 
       <StudyLevelLinksSection popularSubjectAreas={hub.popularSubjectAreas} />
 
-      <HowAsteronSupportsSection items={hub.howAsteronSupports} />
+      <HowJananSupportsSection items={hub.howJananSupports} />
 
       <ApplicationJourneySection steps={hub.genericApplicationProcess} />
 

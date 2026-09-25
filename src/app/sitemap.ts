@@ -20,6 +20,9 @@ import { env } from "@/lib/env";
  * review date (`lastReviewed`) — never today's date used as a stand-in
  * for "this was checked," per docs/DECISIONS.md "Content Accuracy".
  */
+// Required for `output: "export"` (next.config.ts) — see opengraph-image.tsx.
+export const dynamic = "force-static";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [destinations, services, insuranceServices, resourceArticles] =
     await Promise.all([

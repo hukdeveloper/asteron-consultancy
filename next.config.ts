@@ -1,39 +1,33 @@
 import type { NextConfig } from "next";
 
-// Baseline security headers applied to every route. A Content-Security-Policy
-// is intentionally NOT set here: a meaningful CSP for this app needs
-// per-request nonces generated in `proxy.ts` (Next.js 16's successor to
-// middleware) plus every page that uses inline scripts/styles wired to that
-// nonce and opted into dynamic rendering. That proxy/nonce architecture
-// doesn't exist yet, so shipping a static CSP now would either break the
-// app or be too permissive to add real protection. Tracked as deferred work
-// in docs/DECISIONS.md — implement alongside the proxy layer in a later
-// phase rather than guessing at a policy today.
-const securityHeaders = [
-  { key: "X-Content-Type-Options", value: "nosniff" },
-  { key: "X-Frame-Options", value: "DENY" },
-  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-  {
-    key: "Permissions-Policy",
-    value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
-  },
-  // Browsers ignore this over plain HTTP in local dev, so it's safe to
-  // always send; it only takes effect once the site is served over HTTPS.
-  {
-    key: "Strict-Transport-Security",
-    value: "max-age=63072000; includeSubDomains",
-  },
-];
-
+/**
+ * `output: "export"` — this project is the static-website track (see
+ * CLAUDE.md "Project Purpose" and docs/DECISIONS.md C-011/C-013): every
+ * route is already static or SSG with no API routes, middleware, or
+ * request-time server logic, so a Node server is not actually required to
+ * run it. Export mode turns `next build` into a plain `out/` directory of
+ * HTML/CSS/JS that can be uploaded to any static host (Hostinger shared
+ * hosting, S3, GitHub Pages, etc.) as well as still working on Vercel.
+ *
+ * Two things this trades away, both handled outside `next.config.ts`
+ * instead:
+ * - `headers()` is not supported in export mode (there is no server to run
+ *   it per-request). The same security headers now live in
+ *   `public/.htaccess` for Apache-based static hosts — see that file and
+ *   docs/DEPLOYMENT.md "Security Headers". A host without `.htaccess`
+ *   support (e.g. a raw S3 bucket) needs the equivalent configured at
+ *   that host/CDN layer instead.
+ * - `next/image` optimization requires a running image-optimization
+ *   server, which export mode doesn't have either. Nothing in this
+ *   codebase uses `next/image` yet (no photography — see
+ *   docs/MEDIA_ATTRIBUTIONS.md), but `images.unoptimized` is set now so
+ *   adding an image later doesn't silently break the export build.
+ */
 const nextConfig: NextConfig = {
+  output: "export",
   reactCompiler: true,
-  async headers() {
-    return [
-      {
-        source: "/:path*",
-        headers: securityHeaders,
-      },
-    ];
+  images: {
+    unoptimized: true,
   },
 };
 

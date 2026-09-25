@@ -59,7 +59,7 @@ describe("ServicesPage (hub)", () => {
     render((await ServicesPage()) as ReactElement);
     expect(
       screen.getByText(
-        "Asteron provides general guidance and quotation assistance. Coverage, eligibility, exclusions and policy issuance are determined by the relevant insurance provider.",
+        "Janan provides general guidance and quotation assistance. Coverage, eligibility, exclusions and policy issuance are determined by the relevant insurance provider.",
       ),
     ).toBeInTheDocument();
   });

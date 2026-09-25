@@ -24,7 +24,7 @@ export function ComingSoon({ title }: ComingSoonProps) {
         <Breadcrumbs items={[{ label: title }]} className="mb-6" />
         <PageHeader
           heading={title}
-          description="This page is coming in a later phase of the Asteron Global Consultancy website. In the meantime, get in touch and we'll help directly."
+          description="This page is coming in a later phase of the Janan Consultancy website. In the meantime, get in touch and we'll help directly."
         />
         <Button asChild className="mt-8">
           <Link href="/book-consultation">Book a Free Consultation</Link>

@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { SkipLink } from "@/components/shared/SkipLink";
 import { getSiteContent } from "@/lib/content/site";
+import { getSocialLinks } from "@/lib/content/social-links";
 import { env } from "@/lib/env";
 import {
   buildOrganizationJsonLd,
@@ -37,7 +38,13 @@ export const viewport: Viewport = {
 };
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
-  const site = await getSiteContent();
+  const [site, socialLinks] = await Promise.all([
+    getSiteContent(),
+    getSocialLinks(),
+  ]);
+  const sameAs = socialLinks
+    .filter((social) => !social.disabled)
+    .map((social) => social.href);
 
   return (
     <html lang="en" className={inter.variable}>
@@ -47,6 +54,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
             name: site.name,
             description: site.description,
             contact: site.contact,
+            sameAs,
           })}
         />
         <JsonLd data={buildWebSiteJsonLd({ name: site.name })} />

@@ -9,7 +9,7 @@ describe("AboutPage", () => {
     render((await AboutPage()) as ReactElement);
     const h1s = screen.getAllByRole("heading", { level: 1 });
     expect(h1s).toHaveLength(1);
-    expect(h1s[0]).toHaveTextContent("About Asteron");
+    expect(h1s[0]).toHaveTextContent("About Janan");
   });
 
   it("shows the mission statement", async () => {

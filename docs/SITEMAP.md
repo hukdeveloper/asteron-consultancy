@@ -1,4 +1,4 @@
-# Sitemap — Asteron Global Consultancy
+# Sitemap — Janan Consultancy
 
 > **Scope correction (2026-09-12):** the initial release is a static website with no admin dashboard. This document now describes (1) the current/planned static-site routes, all statically generated from local content, and (2) how content is edited today vs. in the future Strapi phase. There is no `/admin` route in this codebase and none is planned — see [docs/DECISIONS.md](DECISIONS.md).
 
@@ -54,7 +54,7 @@
 | University         | `/universities/[slug]`                        | `/universities/university-of-manchester`               |
 | Service            | `/services/[slug]`                            | `/services/visa-guidance`                              |
 | Insurance type     | `/insurance/[slug]`                           | `/insurance/travel-insurance`                          |
-| Scholarship        | `/scholarships/[slug]`                        | `/scholarships/asteron-merit-award`                    |
+| Scholarship        | `/scholarships/[slug]`                        | `/scholarships/janan-merit-award`                      |
 | Article / resource | `/resources/[slug]`                           | `/resources/how-to-choose-the-right-study-destination` |
 | Event              | `/events/[slug]`                              | `/events/study-abroad-planning-session`                |
 

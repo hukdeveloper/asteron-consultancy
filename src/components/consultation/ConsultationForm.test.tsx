@@ -106,7 +106,7 @@ describe("ConsultationForm", () => {
 
     expect(
       await screen.findByText(
-        "Online submission is not connected yet. Your information has not been sent or stored. Please contact Asteron by phone, email or WhatsApp.",
+        "Online submission is not connected yet. Your information has not been sent or stored. Please contact Janan by phone, email or WhatsApp.",
       ),
     ).toBeInTheDocument();
     expect(screen.queryByText(/confirmed/i)).not.toBeInTheDocument();

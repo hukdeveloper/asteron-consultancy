@@ -27,7 +27,7 @@ export function HubVisaGuidanceSection({ intro }: HubVisaGuidanceSectionProps) {
             className="text-muted-foreground mt-0.5 size-5 shrink-0"
           />
           <p className="text-muted-foreground text-sm">
-            Asteron is not an immigration authority and does not decide visa
+            Janan is not an immigration authority and does not decide visa
             outcomes. Each destination page links to the relevant official
             government source for current, binding requirements.
           </p>

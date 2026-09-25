@@ -116,7 +116,7 @@ export const faqCategories: FaqCategoryGroup[] = [
         id: "faq-insurance-provider",
         question: "Who is actually responsible for my insurance coverage?",
         answer:
-          "The relevant insurance provider — not Asteron. We provide general information and quotation assistance; coverage, premiums, eligibility, exclusions, claims and policy issuance are determined by the provider. Always review their official policy wording before purchase.",
+          "The relevant insurance provider — not Janan. We provide general information and quotation assistance; coverage, premiums, eligibility, exclusions, claims and policy issuance are determined by the provider. Always review their official policy wording before purchase.",
       },
       {
         id: "faq-insurance-types",

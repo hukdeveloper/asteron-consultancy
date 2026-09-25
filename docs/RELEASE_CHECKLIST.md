@@ -1,4 +1,4 @@
-# Release Checklist — Asteron Global Consultancy
+# Release Checklist — Janan Consultancy
 
 For the lead architect / site owner to work through before approving a public launch. This document does not perform any of these actions itself — see [docs/PRODUCTION_CONTENT_CHECKLIST.md](PRODUCTION_CONTENT_CHECKLIST.md) for the classified list of what each content item needs, and [docs/DEPLOYMENT.md](DEPLOYMENT.md) for the technical deployment guide referenced throughout.
 
@@ -21,7 +21,7 @@ All of the above passed as of this Phase 9 review — see the final report for e
 - [ ] Real contact phone, WhatsApp number, email inbox, and address set in `src/content/site.ts`.
 - [ ] Legal pages reviewed by a qualified professional and `isDraft: true` removed once approved.
 - [ ] Decision made on team profiles, testimonials, scholarships, featured universities, social links, and the sample event — replace with real content or knowingly keep the placeholder/empty state.
-- [ ] Insurance provider disclosure confirmed (does Asteron issue its own quotes or broker third-party insurers?).
+- [ ] Insurance provider disclosure confirmed (does Janan issue its own quotes or broker third-party insurers?).
 - [ ] Destination content re-verified against current official government/institution sources.
 
 ## 3. Legal review

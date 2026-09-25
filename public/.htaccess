@@ -1,0 +1,69 @@
+# Apache config for the static export of this site (see next.config.ts
+# "output: export"). Three jobs: serve the same security headers the app
+# used to set itself via next.config.ts's `headers()` — unsupported once
+# there's no Node server — resolve extensionless URLs (e.g. `/about`) to
+# their generated `.html` file, and stop Apache's own automatic
+# trailing-slash redirect from breaking that resolution.
+# See docs/DEPLOYMENT.md "Security Headers" and "Static Hosting (Hostinger)".
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), browsing-topics=()"
+  # Browsers ignore this over plain HTTP, so it's safe to always send —
+  # it only takes effect once the site is served over HTTPS.
+  Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains"
+</IfModule>
+
+<IfModule mod_dir.c>
+  # Next's static export creates an internal per-route directory next to
+  # every page's `.html` file (e.g. `about/`, alongside `about.html`) that
+  # holds React Server Component prefetch payload — never meant to be
+  # browsed directly. Apache's default behaviour is to 301-redirect a
+  # request for `/about` to `/about/` purely because a same-named
+  # directory exists, which then 403s (nothing servable inside it) and
+  # never reaches the rewrite rule below. Turning this off lets that rule
+  # resolve `/about` to the real `about.html` instead.
+  DirectorySlash Off
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # A request that already has a trailing slash (`/about/`) -> strip it
+  # and hand off to the rule below, when the `.html` file exists — covers
+  # the rare case of an explicit trailing-slash request now that
+  # DirectorySlash won't add one automatically.
+  RewriteCond %{REQUEST_URI} ^(.+)/$
+  RewriteCond %{DOCUMENT_ROOT}%1.html -f
+  RewriteRule ^ %1.html [L]
+
+  # /some/path -> /some/path.html, when that file exists — deliberately
+  # does NOT exclude same-named directories (see the DirectorySlash note
+  # above): the internal per-route directory must never win over the real
+  # page. Real files (images, /sitemap.xml, /robots.txt, etc.) are still
+  # left untouched by the `!-f` check.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+</IfModule>
+
+# Next's static export already generates 404.html from the app's custom
+# not-found page — this just makes Apache serve it (with a real 404
+# status) for any unmatched path, instead of Apache's own default error page.
+ErrorDocument 404 /404.html
+
+# The favicon/OG image (src/app/icon.tsx, opengraph-image.tsx) are built as
+# extensionless files (`/icon`, `/opengraph-image`) — Next's own server sets
+# their Content-Type at request time, which a plain static host can't do.
+# Without this, Apache would serve them as application/octet-stream and
+# browsers would refuse to render the favicon.
+<IfModule mod_mime.c>
+  <Files "icon">
+    ForceType image/png
+  </Files>
+  <Files "opengraph-image">
+    ForceType image/png
+  </Files>
+</IfModule>

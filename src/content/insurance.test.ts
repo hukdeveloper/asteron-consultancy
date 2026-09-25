@@ -8,8 +8,8 @@ const PROHIBITED_PHRASES = [
   "we guarantee",
   "guaranteed claim",
   "guaranteed reimbursement",
-  "asteron is an insurer",
-  "asteron underwrites",
+  "janan is an insurer",
+  "janan underwrites",
 ];
 
 function collectStrings(value: unknown, out: string[] = []): string[] {
@@ -104,11 +104,11 @@ describe("insurance content", () => {
 
   it("includes the required global insurance disclosure verbatim", () => {
     expect(insuranceGlobalDisclosure).toBe(
-      "Asteron Global Consultancy provides general information and quotation assistance. Insurance coverage, premiums, eligibility, exclusions, claims and policy issuance are determined by the relevant insurance provider. Always review the provider's official policy wording before purchase.",
+      "Janan Consultancy provides general information and quotation assistance. Insurance coverage, premiums, eligibility, exclusions, claims and policy issuance are determined by the relevant insurance provider. Always review the provider's official policy wording before purchase.",
     );
   });
 
-  it("never implies Asteron is the insurer, sets premiums, or guarantees claims", () => {
+  it("never implies Janan is the insurer, sets premiums, or guarantees claims", () => {
     const allText = collectStrings([
       insuranceServices,
       insuranceGlobalDisclosure,

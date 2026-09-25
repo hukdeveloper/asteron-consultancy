@@ -93,7 +93,7 @@ describe("ServiceDetailPage", () => {
       render((await renderService("application-assistance")) as ReactElement);
       expect(
         screen.getByText(
-          "Asteron may guide applicants in presenting their own experience clearly, but applicants remain responsible for the truthfulness and originality of submitted material.",
+          "Janan may guide applicants in presenting their own experience clearly, but applicants remain responsible for the truthfulness and originality of submitted material.",
         ),
       ).toBeInTheDocument();
     });

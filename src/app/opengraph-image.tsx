@@ -5,10 +5,14 @@ import { siteContent } from "@/content/site";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const alt = `${siteContent.name} — ${siteContent.tagline}`;
+// Required for `output: "export"` (next.config.ts) — this image is fully
+// deterministic (no request-time data), so force-static just tells Next
+// to render it once at build time instead of expecting a server.
+export const dynamic = "force-static";
 
 /**
- * Code-generated default Open Graph image — brand colours (navy/teal/gold,
- * see docs/DESIGN_SYSTEM.md), the same compass-star/open-book mark as
+ * Code-generated default Open Graph image — brand colours (ink/blue/teal,
+ * see docs/DESIGN_SYSTEM.md), the same "J" + destination-dot mark as
  * `SiteLogo`, the real site name and tagline. No stock photography, no
  * fabricated statistics or claims, per docs/DECISIONS.md "Content
  * Accuracy". Page-specific `openGraph.title`/`description` already set
@@ -39,23 +43,13 @@ export default function OpengraphImage() {
           style={{ display: "flex" }}
         >
           <path
-            d="M12 1.5 13.4 8.6 20.5 10 13.4 11.4 12 18.5 10.6 11.4 3.5 10 10.6 8.6Z"
-            fill="#3157F6"
-          />
-          <path
-            d="M2.75 12.75c2.6-1 5.4-1 8.25 0v7.75c-2.85-1-5.65-1-8.25 0Z"
-            fill="#12A594"
-            fillOpacity={0.35}
+            d="M14.5 6v8.2a4.3 4.3 0 0 1-4.3 4.3c-1.6 0-2.9-.7-3.7-1.9"
             stroke="#F7F9FC"
-            strokeWidth={1.3}
+            strokeWidth={2.1}
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
-          <path
-            d="M21.25 12.75c-2.6-1-5.4-1-8.25 0v7.75c2.85-1 5.65-1 8.25 0Z"
-            fill="#12A594"
-            fillOpacity={0.35}
-            stroke="#F7F9FC"
-            strokeWidth={1.3}
-          />
+          <circle cx={14.5} cy={6} r={1.6} fill="#3157F6" />
         </svg>
         <span
           style={{

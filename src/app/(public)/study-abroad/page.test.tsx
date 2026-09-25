@@ -64,7 +64,7 @@ describe("StudyAbroadPage (hub)", () => {
     }
   });
 
-  it("never claims Asteron controls admission or visa outcomes", async () => {
+  it("never claims Janan controls admission or visa outcomes", async () => {
     const { container } = render((await StudyAbroadPage()) as ReactElement);
     const text = (container.textContent ?? "").toLowerCase();
 

@@ -18,13 +18,15 @@ export function serializeJsonLd(data: unknown): string {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
 
-/** Builds the site-wide schema.org Organization + WebSite JSON-LD, rendered once in the root layout. Only real, verifiable fields — no fabricated address, rating, founding date, or social profiles. */
+/** Builds the site-wide schema.org Organization + WebSite JSON-LD, rendered once in the root layout. Only real, verifiable fields — no fabricated address, rating, or founding date; `sameAs` includes only confirmed (non-placeholder) social profile URLs. */
 export function buildOrganizationJsonLd(options: {
   name: string;
   description: string;
   contact: ContactInfo;
+  /** Confirmed, real social profile URLs only — never a placeholder `#` link. */
+  sameAs?: string[];
 }) {
-  const { name, description, contact } = options;
+  const { name, description, contact, sameAs } = options;
 
   return {
     "@context": "https://schema.org",
@@ -34,6 +36,7 @@ export function buildOrganizationJsonLd(options: {
     url: env.siteUrl,
     email: contact.email,
     telephone: contact.phone,
+    ...(sameAs && sameAs.length > 0 ? { sameAs } : {}),
   };
 }
 

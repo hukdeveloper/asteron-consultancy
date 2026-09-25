@@ -1,4 +1,4 @@
-# Technical Architecture — Asteron Global Consultancy
+# Technical Architecture — Janan Consultancy
 
 > **Scope correction (2026-09-12):** the initial release is a **static website** — no database, no ORM, no authentication, no admin dashboard, no API server. This document was rewritten accordingly; the previous Prisma/PostgreSQL/Auth.js-based architecture is preserved conceptually in the "Future Tracks" sections as the target for later phases, not as current-track work. See [docs/DECISIONS.md](DECISIONS.md).
 
@@ -132,7 +132,7 @@ No `api/` directory and no `(admin)` group exist or are planned for this track �
 
 - Input validation on every form via Zod, client-side (no server boundary exists yet to also validate at).
 - Output encoding handled by React/Next defaults.
-- Standard security headers set in `next.config.ts`: `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`, `Strict-Transport-Security`.
+- Standard security headers (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`, `Strict-Transport-Security`) set in `public/.htaccess` (Apache-based static hosts only, e.g. Hostinger — see docs/DECISIONS.md C-069) since the switch to `output: "export"`; a non-Apache static host needs the same five headers configured at its own layer instead.
 - **Content-Security-Policy is intentionally deferred**, not implemented. A meaningful CSP needs per-request nonces (via a `proxy.ts`, Next 16's renamed middleware) and dynamic rendering on nonce-consuming pages — that architecture isn't needed yet for a static site and would add complexity without a corresponding attack surface to protect. Revisit once Track 2/3 introduce dynamic behavior worth protecting with a nonce-based CSP. Re-confirmed still the right call in the Phase 8 audit — see docs/DEPLOYMENT.md §6.
 - No secrets exist in the current track beyond `NEXT_PUBLIC_SITE_URL` (not sensitive); environment-variable validation (`src/lib/env.ts`, Zod-backed) still applies as a general discipline. Verified in Phase 8 that no other `process.env` access exists anywhere in `src/`.
 - No database, no admin, no server-side personal-data handling — the attack surface is deliberately minimal in this track.
@@ -177,7 +177,7 @@ No `api/` directory and no `(admin)` group exist or are planned for this track �
 
 ## 13. Deployment (current track)
 
-See [docs/DEPLOYMENT.md](DEPLOYMENT.md) (Phase 8) for the complete, platform-neutral deployment guide — build/start commands, environment variables, security headers, the CSP decision, forms-security prerequisites for Track 2, cookies/analytics status, and a post-deploy verification checklist. In summary: any platform with Next.js server support (not a plain static file host — `output: "export"` is not set) works; no database or persistent runtime is required; environment separation is about `NEXT_PUBLIC_SITE_URL` only; no migrations or backup strategy are needed until Track 3 introduces Strapi's own database.
+See [docs/DEPLOYMENT.md](DEPLOYMENT.md) (Phase 8, static export added Phase 10B "Phase C") for the complete, platform-neutral deployment guide — build/start commands, environment variables, security headers, the CSP decision, forms-security prerequisites for Track 2, cookies/analytics status, and a post-deploy verification checklist. In summary: this is a genuine static export (`output: "export"`, docs/DECISIONS.md C-069) deployable to any static file host, not just a platform with Next.js server support; no database or persistent runtime is required; environment separation is about `NEXT_PUBLIC_SITE_URL` only (baked in at build time); no migrations or backup strategy are needed until Track 3 introduces Strapi's own database.
 
 ## 14. Operational Considerations (current track)
 

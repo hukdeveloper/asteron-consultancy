@@ -1,6 +1,6 @@
 import {
+  exampleUniversities,
   faqItems,
-  featuredUniversityPlaceholders,
   finalCta,
   homeHero,
   insuranceDisclaimer,
@@ -14,8 +14,8 @@ import {
   whyChooseReasons,
 } from "@/content/home";
 import type {
+  ExampleUniversity,
   FaqItem,
-  FeaturedUniversityPlaceholder,
   FinalCtaContent,
   HomeEventSummary,
   HomeHeroContent,
@@ -50,10 +50,8 @@ export async function getWhyChooseReasons(): Promise<WhyChooseReason[]> {
   return whyChooseReasons;
 }
 
-export async function getFeaturedUniversityPlaceholders(): Promise<
-  FeaturedUniversityPlaceholder[]
-> {
-  return featuredUniversityPlaceholders;
+export async function getExampleUniversities(): Promise<ExampleUniversity[]> {
+  return exampleUniversities;
 }
 
 export async function getScholarshipHighlights(): Promise<

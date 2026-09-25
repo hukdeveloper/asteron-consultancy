@@ -1,4 +1,4 @@
-# Implementation Plan — Asteron Global Consultancy
+# Implementation Plan — Janan Consultancy
 
 > **Scope correction (2026-09-12):** the initial release is a static website. This plan is now organized into four tracks, per the lead architect's explicit direction. Work proceeds phase by phase within Track 1 first; Tracks 2–4 are future work, sketched here for continuity but not started. No phase should be started before the previous phase's exit criteria are met, and no phase should silently expand into the next or borrow from a later track.
 
@@ -66,7 +66,7 @@
 - **Objective:** Replace the `ComingSoon` stubs for `/study-abroad`, `/study-abroad/undergraduate`, `/study-abroad/postgraduate`, `/study-abroad/[destination]` (6 destinations), and `/check-eligibility` with real, statically-generated content built from typed local content — using one reusable template per repeated page shape, not per-destination/per-study-level duplication.
 - **Deliverables:**
   - ✅ `DestinationSummary` removed; unified into one full `Destination` type (26+ fields, see docs/CONTENT_MODEL.md §3) with 6 complete, policy-compliant records in `src/content/destinations.ts` (`src/lib/content/destinations.ts` updated to match). `KeyPoint`, `StudyAbroadProcessStep`, and `StudyLevelPageContent` types added.
-  - ✅ `src/content/study-abroad.ts` / `src/lib/content/study-abroad.ts`: the shared generic 10-step application process, hub-only content (hero, intro, "how Asteron supports", visa-guidance intro, parent reassurance, FAQ, final CTA, figure-free cost-planning categories), and `undergraduate`/`postgraduate` `StudyLevelPageContent` records.
+  - ✅ `src/content/study-abroad.ts` / `src/lib/content/study-abroad.ts`: the shared generic 10-step application process, hub-only content (hero, intro, "how Janan supports", visa-guidance intro, parent reassurance, FAQ, final CTA, figure-free cost-planning categories), and `undergraduate`/`postgraduate` `StudyLevelPageContent` records.
   - ✅ `src/content/eligibility.ts` / `src/lib/content/eligibility.ts`: informative-only `/check-eligibility` content (general eligibility factors + FAQ) — see "Check-Eligibility Form Deferred" in docs/DECISIONS.md for why there is no form.
   - ✅ ~15 components under `src/components/study-abroad/` (hero, overview, study options, application journey, planning/cost, scholarship/visa, lifestyle, related services, destination selector, qualitative-only comparison table, `StudyLevelTemplate`), all Server Components reading content via the access layer.
   - ✅ `/study-abroad` hub, one shared `/study-abroad/[destination]` template rendering all 6 destinations via `generateStaticParams`, one shared `StudyLevelTemplate` rendering both study-level pages, and the `/check-eligibility` page — each with unique `generateMetadata` (title/description/canonical/OG) and non-fictional `BreadcrumbList`/`FAQPage` JSON-LD matching visible content exactly.

@@ -63,9 +63,9 @@ export const destinations: Destination[] = [
     scholarshipGuidance:
       "Some UK universities and external organisations offer scholarships or fee reductions for international students. Availability, criteria and amounts vary by university, subject and intake, so check directly with your shortlisted institutions rather than assuming eligibility.",
     visaGuidance:
-      "Studying in the UK generally requires a student visa appropriate to your course and institution. Visa categories, documentary requirements, fees and processing times are set and updated by the UK government, not by Asteron, and can change. Always confirm current requirements on the official UK government immigration website before making plans.",
+      "Studying in the UK generally requires a student visa appropriate to your course and institution. Visa categories, documentary requirements, fees and processing times are set and updated by the UK government, not by Janan, and can change. Always confirm current requirements on the official UK government immigration website before making plans.",
     workAndLifestyleNote:
-      "Some student visa routes permit limited part-time work during study, subject to conditions set by the UK government that can change. Confirm current work conditions and any post-study options directly with official UK government sources — Asteron does not determine or guarantee work rights.",
+      "Some student visa routes permit limited part-time work during study, subject to conditions set by the UK government that can change. Confirm current work conditions and any post-study options directly with official UK government sources — Janan does not determine or guarantee work rights.",
     faqItems: [
       {
         id: "uk-faq-language",
@@ -247,7 +247,7 @@ export const destinations: Destination[] = [
     visaGuidance:
       "Studying in Canada generally requires a study permit. Requirements, supporting documents, fees and processing times are set by the Government of Canada and can change. Always confirm current requirements on the official Government of Canada immigration website (Immigration, Refugees and Citizenship Canada) before making plans.",
     workAndLifestyleNote:
-      "Some study permit holders are permitted limited work during study, subject to conditions set by the Government of Canada that can change. Confirm current work conditions and any post-graduation options directly with official Government of Canada sources — Asteron does not determine or guarantee work rights.",
+      "Some study permit holders are permitted limited work during study, subject to conditions set by the Government of Canada that can change. Confirm current work conditions and any post-graduation options directly with official Government of Canada sources — Janan does not determine or guarantee work rights.",
     faqItems: [
       {
         id: "ca-faq-province",
@@ -266,7 +266,7 @@ export const destinations: Destination[] = [
         id: "ca-faq-work-after",
         question: "Can I work in Canada after I graduate?",
         answer:
-          "Post-graduation work options exist but are determined and updated by the Government of Canada, not by Asteron, and depend on your specific circumstances. Confirm current rules on the official Government of Canada immigration website.",
+          "Post-graduation work options exist but are determined and updated by the Government of Canada, not by Janan, and depend on your specific circumstances. Confirm current rules on the official Government of Canada immigration website.",
       },
     ],
     relatedServices: [
@@ -339,7 +339,7 @@ export const destinations: Destination[] = [
     visaGuidance:
       "Studying in the US generally requires an appropriate student visa (commonly the F-1 category) sponsored by your enrolling institution. Visa requirements, documentary evidence, fees and processing times are set by the US Department of State and US Citizenship and Immigration Services, and can change. Always confirm current requirements on official US government immigration websites before making plans.",
     workAndLifestyleNote:
-      "US student visa rules generally restrict off-campus work with limited exceptions, set and updated by US government authorities. Confirm current work conditions and any post-study options (such as periods of optional practical training) directly with official US government sources — Asteron does not determine or guarantee work rights.",
+      "US student visa rules generally restrict off-campus work with limited exceptions, set and updated by US government authorities. Confirm current work conditions and any post-study options (such as periods of optional practical training) directly with official US government sources — Janan does not determine or guarantee work rights.",
     faqItems: [
       {
         id: "us-faq-tests",
@@ -357,7 +357,7 @@ export const destinations: Destination[] = [
         id: "us-faq-opt",
         question: "Can international students work in the US after graduating?",
         answer:
-          "Some post-study work options exist but are determined by US government authorities, not by Asteron, and depend on your specific visa category and circumstances. Confirm current rules on official US government immigration websites.",
+          "Some post-study work options exist but are determined by US government authorities, not by Janan, and depend on your specific visa category and circumstances. Confirm current rules on official US government immigration websites.",
       },
     ],
     relatedServices: [
@@ -433,7 +433,7 @@ export const destinations: Destination[] = [
     visaGuidance:
       "Non-EU/EEA students generally require a student visa or residence permit to study in Germany. Requirements, supporting documents (including proof of financial resources), fees and processing times are set by German federal and local authorities and can change. Always confirm current requirements on official German government and embassy/consulate websites before making plans.",
     workAndLifestyleNote:
-      "International students in Germany are generally permitted limited part-time work during study, subject to conditions set by German authorities that can change. Confirm current work conditions and any post-study options directly with official German government sources — Asteron does not determine or guarantee work rights.",
+      "International students in Germany are generally permitted limited part-time work during study, subject to conditions set by German authorities that can change. Confirm current work conditions and any post-study options directly with official German government sources — Janan does not determine or guarantee work rights.",
     faqItems: [
       {
         id: "de-faq-language",
@@ -525,7 +525,7 @@ export const destinations: Destination[] = [
     visaGuidance:
       "Non-EU/EEA students generally require an appropriate immigration permission to study in Ireland. Requirements, supporting documents, fees and processing times are set by Irish immigration authorities and can change. Always confirm current requirements on official Irish government immigration websites before making plans.",
     workAndLifestyleNote:
-      "International students in Ireland are generally permitted limited part-time work during study, subject to conditions set by Irish authorities that can change. Confirm current work conditions and any post-study options directly with official Irish government sources — Asteron does not determine or guarantee work rights.",
+      "International students in Ireland are generally permitted limited part-time work during study, subject to conditions set by Irish authorities that can change. Confirm current work conditions and any post-study options directly with official Irish government sources — Janan does not determine or guarantee work rights.",
     faqItems: [
       {
         id: "ie-faq-size",
@@ -545,7 +545,7 @@ export const destinations: Destination[] = [
         question:
           "Can international graduates stay in Ireland to work after their studies?",
         answer:
-          "Post-study options exist but are determined and updated by Irish immigration authorities, not by Asteron. Confirm current rules on official Irish government immigration websites.",
+          "Post-study options exist but are determined and updated by Irish immigration authorities, not by Janan. Confirm current rules on official Irish government immigration websites.",
       },
     ],
     relatedServices: [

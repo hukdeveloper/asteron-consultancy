@@ -120,7 +120,7 @@ export const legalPages: LegalPage[] = [
         id: "external-decisions",
         heading: "External institutions and authorities",
         paragraphs: [
-          "Universities, government immigration authorities, scholarship bodies and insurance providers make their own independent decisions. Asteron does not control or influence those decisions.",
+          "Universities, government immigration authorities, scholarship bodies and insurance providers make their own independent decisions. Janan does not control or influence those decisions.",
         ],
       },
       {
@@ -218,14 +218,14 @@ export const legalPages: LegalPage[] = [
         id: "immigration-visa",
         heading: "Immigration and visa information",
         paragraphs: [
-          "Visa and immigration information on this website is general and not legal advice. Asteron is not a registered immigration adviser and does not provide legal representation. Visa rules, documentation requirements, fees and processing times can change, and final decisions are made solely by the relevant government authority.",
+          "Visa and immigration information on this website is general and not legal advice. Janan is not a registered immigration adviser and does not provide legal representation. Visa rules, documentation requirements, fees and processing times can change, and final decisions are made solely by the relevant government authority.",
         ],
       },
       {
         id: "insurance-information",
         heading: "Insurance information",
         paragraphs: [
-          "Insurance information on this website is general information and quotation assistance only. Asteron does not underwrite insurance, set premiums, or approve claims — coverage, eligibility, exclusions and policy issuance are determined by the relevant insurance provider.",
+          "Insurance information on this website is general information and quotation assistance only. Janan does not underwrite insurance, set premiums, or approve claims — coverage, eligibility, exclusions and policy issuance are determined by the relevant insurance provider.",
         ],
       },
       {

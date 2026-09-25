@@ -15,6 +15,7 @@ import { SuccessStoriesSection } from "@/components/home/SuccessStoriesSection";
 import { TrustStrip } from "@/components/home/TrustStrip";
 import { getDestinations } from "@/lib/content/destinations";
 import {
+  getExampleUniversities,
   getFaqItems,
   getFinalCta,
   getHomeHero,
@@ -59,6 +60,7 @@ export default async function HomePage() {
   const [
     site,
     hero,
+    universities,
     trustPoints,
     services,
     destinations,
@@ -73,6 +75,7 @@ export default async function HomePage() {
   ] = await Promise.all([
     getSiteContent(),
     getHomeHero(),
+    getExampleUniversities(),
     getTrustPoints(),
     getFeaturedServices(),
     getDestinations(),
@@ -102,7 +105,7 @@ export default async function HomePage() {
           deliberately omitted (address/coordinates/ratings/hours) until verified. */}
       <JsonLd data={structuredData} />
 
-      <Hero hero={hero} />
+      <Hero hero={hero} universities={universities} />
       <TrustStrip points={trustPoints} />
       <StudyAbroadIntroSection />
       <DestinationsSection destinations={destinations} />

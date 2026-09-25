@@ -8,7 +8,7 @@ function isoDateDaysFromNow(daysFromNow: number): string {
 }
 
 const NOT_CONNECTED_MESSAGE =
-  "Online submission is not connected yet. Your information has not been sent or stored. Please contact Asteron by phone, email or WhatsApp.";
+  "Online submission is not connected yet. Your information has not been sent or stored. Please contact Janan by phone, email or WhatsApp.";
 
 test.describe("consultation form", () => {
   test("shows validation errors on empty submit", async ({ page }) => {

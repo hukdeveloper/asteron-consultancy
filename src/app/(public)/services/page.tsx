@@ -26,7 +26,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const site = await getSiteContent();
   const title = "Services";
   const description =
-    "From choosing a programme to preparing documents, understanding visa steps and arranging essential travel support, Asteron helps you move forward with a clearer plan.";
+    "From choosing a programme to preparing documents, understanding visa steps and arranging essential travel support, Janan helps you move forward with a clearer plan.";
 
   return {
     title,
@@ -68,7 +68,7 @@ export default async function ServicesPage() {
       <DetailHero
         breadcrumbItems={[{ label: "Services" }]}
         heading="Practical support for every stage of your international journey."
-        description="From choosing a programme to preparing documents, understanding visa steps and arranging essential travel support, Asteron helps you move forward with a clearer plan."
+        description="From choosing a programme to preparing documents, understanding visa steps and arranging essential travel support, Janan helps you move forward with a clearer plan."
         primaryCta={{
           label: "Book Free Consultation",
           href: "/book-consultation",

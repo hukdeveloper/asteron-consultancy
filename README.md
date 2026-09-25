@@ -1,4 +1,4 @@
-# Asteron Global Consultancy — Website
+# Janan Consultancy — Website
 
 **Tagline:** Guidance Beyond Borders
 
@@ -29,22 +29,23 @@ Custom `not-found` (404) and error boundaries are also in place.
 ### Homepage
 
 The homepage (`src/app/(public)/page.tsx`) is a full, conversion-focused
-page composed from 13 section components under `src/components/home/`, in
-this order: Hero, Trust strip, Main services, Popular destinations, How it
-works, Why choose Asteron, Featured universities (sample), Scholarship
-guidance, Success stories (demo), Insurance services, Upcoming event
-(sample), Resources, FAQ, Final CTA. Every section reads its content
-through `src/lib/content/home.ts` (backed by `src/content/home.ts`) — see
-"Content Architecture" below. No photographs are used (see
-[docs/MEDIA_ATTRIBUTIONS.md](docs/MEDIA_ATTRIBUTIONS.md) for why and what
-remains to be replaced); the hero and cards use original CSS/SVG
-compositions and Lucide icons instead.
+page composed from 12 section components under `src/components/home/`, in
+this order: Hero (with a `UniversitySlider` visual — real, well-known
+universities named as illustrative examples, not a partnership, see
+docs/DECISIONS.md C-073), Trust strip, Study Abroad intro, Popular
+destinations, How it works, Main services, Scholarship guidance, Insurance
+services, Success stories (demo), Resources, FAQ, Final CTA. Every section
+reads its content through `src/lib/content/home.ts` (backed by
+`src/content/home.ts`) — see "Content Architecture" below. No photographs
+are used (see [docs/MEDIA_ATTRIBUTIONS.md](docs/MEDIA_ATTRIBUTIONS.md) for
+why and what remains to be replaced); the hero and cards use original
+CSS/SVG compositions and Lucide icons instead.
 
 ### Study Abroad and Check Eligibility
 
 Built in Phase 4, all statically generated, all reading content exclusively through `src/lib/content/{destinations,study-abroad,eligibility,services}.ts`:
 
-- **`/study-abroad` (hub)** — hero, intro, a destination selector (plain server-rendered links — no client-side filtering, since six destinations doesn't need it), links to the two study-level pages, "how Asteron supports the journey", the shared generic application process, scholarship guidance, visa-document guidance, a qualitative-only destination comparison table (no rankings/scores), a parent/family reassurance section, FAQ, and a final CTA.
+- **`/study-abroad` (hub)** — hero, intro, a destination selector (plain server-rendered links — no client-side filtering, since six destinations doesn't need it), links to the two study-level pages, "how Janan supports the journey", the shared generic application process, scholarship guidance, visa-document guidance, a qualitative-only destination comparison table (no rankings/scores), a parent/family reassurance section, FAQ, and a final CTA.
 - **`/study-abroad/[destination]`** — **one shared template** (composed in `src/app/(public)/study-abroad/[destination]/page.tsx` from components under `src/components/study-abroad/`) rendering all 6 destinations (`united-kingdom`, `australia`, `canada`, `united-states`, `germany`, `ireland`) from typed content in `src/content/destinations.ts` — there is no per-destination page file. An invalid slug calls `notFound()` → the site's custom 404 page. See "How to add another destination" below.
 - **`/study-abroad/undergraduate`** and **`/study-abroad/postgraduate`** — **one shared component**, `StudyLevelTemplate`, rendering both from `StudyLevelPageContent` records in `src/content/study-abroad.ts` — there is no second, duplicated implementation for the other study level.
 - **`/check-eligibility`** — informative content (Phase 4) plus a real `EligibilityForm` (Phase 7) — see "Forms" below.
@@ -67,7 +68,7 @@ Built in Phase 5, all statically generated, all reading content exclusively thro
 - **`/insurance/[slug]`** — **one shared template** (`InsuranceTemplate`) rendering all 3 insurance types (`student-health-insurance`, `travel-insurance`, `visitor-insurance`) from `src/content/insurance.ts` — no per-type page file.
 - **`/insurance-quote`** — the **first real form** in this codebase (Phase 5), refactored onto the shared form architecture in Phase 7. React Hook Form + Zod (`src/lib/validation/insuranceQuote.ts`), client-side only, labelled as a development/demo form. On a valid submission it calls the shared `notConfiguredAdapter` and shows the required "not connected yet" message with real phone/email/WhatsApp links — it never simulates success, makes a network request, logs field values, or writes to storage. Does not collect passport numbers or medical history. See "Forms" below.
 
-**Content-accuracy policy** (enforced by `src/content/services.test.ts` and `src/content/insurance.test.ts`): no invented named scholarships, no university rankings, no guaranteed visa/admission/scholarship outcomes, no claim that Asteron is an insurer/underwriter, no fabricated providers. See "Content Accuracy" in [docs/DECISIONS.md](docs/DECISIONS.md).
+**Content-accuracy policy** (enforced by `src/content/services.test.ts` and `src/content/insurance.test.ts`): no invented named scholarships, no university rankings, no guaranteed visa/admission/scholarship outcomes, no claim that Janan is an insurer/underwriter, no fabricated providers. See "Content Accuracy" in [docs/DECISIONS.md](docs/DECISIONS.md).
 
 #### How to add another service
 
@@ -83,7 +84,7 @@ See "Forms" below for the full, Phase 7-consolidated architecture shared by all 
 
 Built in Phase 6, all statically generated, all reading content exclusively through `src/lib/content/{team,about,success-stories,resources,events,scholarships,faq,contact,legal}.ts`. Every page follows the site-wide Content Accuracy policy — no invented company history, staff, testimonials, events, or scholarships:
 
-- **`/about`** — mission, values, "how Asteron supports clients", the Study Abroad/Insurance service distinction, guidance principles, and a team preview linking to `/team`. Displays a clearly-labelled temporary-content note wherever company history will later go.
+- **`/about`** — mission, values, "how Janan supports clients", the Study Abroad/Insurance service distinction, guidance principles, and a team preview linking to `/team`. Displays a clearly-labelled temporary-content note wherever company history will later go.
 - **`/team`** — five role-based placeholder cards (Senior Education Counsellor, Admissions Adviser, Visa Documentation Adviser, Insurance Support Adviser, Student Support Coordinator), each labelled "Profile to be added." — no real or fictional name, photo, or credential exists anywhere in this codebase.
 - **`/success-stories`** — an empty-state explanation that verified stories require student permission, plus three "Demo content"-labelled example-journey cards. No offer letters, passport information, or private records; no `Review`/`AggregateRating` structured data.
 - **`/resources`** (hub) and **`/resources/[slug]`** — 6 genuinely useful articles across 5 categories, one shared `ResourceArticleTemplate` (breadcrumbs, reading time, table of contents, structured sections, related articles, general-information notice). No specific legal, immigration, medical or financial claims.
@@ -132,7 +133,7 @@ Every route under `(public)` is wrapped by one shared shell (`src/app/(public)/l
 
 ## Overview
 
-Asteron Global Consultancy is a study-abroad consultancy. This repository holds the source for its public marketing website (currently a static Next.js site; content management moves to Strapi in a later phase), covering:
+Janan Consultancy is a study-abroad consultancy. This repository holds the source for its public marketing website (currently a static Next.js site; content management moves to Strapi in a later phase), covering:
 
 - University and course selection guidance
 - Admission application assistance
@@ -205,7 +206,7 @@ The brand mark is one component, `src/components/shared/SiteLogo.tsx` — an ori
 
 ### Mobile quick-actions behavior
 
-`src/components/shared/MobileQuickActions.tsx` renders a fixed Call/WhatsApp/Book bar below the `md` breakpoint only, respecting the device safe-area inset. When enabled, `src/app/(public)/layout.tsx` adds matching bottom padding to `<main>` so it never covers page content. **To disable it**, set `mobileQuickActionsEnabled: false` in `src/config/site.ts` — both the bar and the compensating padding disappear together.
+`src/components/shared/MobileQuickActions.tsx` renders a fixed Call/WhatsApp/Book bar below the `md` breakpoint only, respecting the device safe-area inset. It sits below the footer on every page, so the compensating bottom padding lives on `SiteFooter.tsx`'s own closing legal row (not `<main>` — a footer-covering bug found via a real Hostinger test deploy, see docs/DECISIONS.md C-059) so the bar never covers page content. **To disable it**, set `mobileQuickActionsEnabled: false` in `src/config/site.ts` — both the bar and the compensating padding disappear together.
 
 ## Getting Started
 
@@ -261,7 +262,7 @@ The following are deliberately obvious placeholders, centralized so they're easy
 - **Success stories** (`src/content/home.ts`, `successStoryDemos`, and `src/content/success-stories.ts`): demonstration profiles/example journeys only (initials or alias, no real names/photos), each visibly labelled "Demo content" — no real, consented testimonial exists yet.
 - **Upcoming event** (`src/content/events.ts`): one sample entry with schedule "Schedule to be announced" — no invented date.
 - **Hero/section imagery**: original CSS/SVG compositions, not photographs — see [docs/MEDIA_ATTRIBUTIONS.md](docs/MEDIA_ATTRIBUTIONS.md).
-- **All four forms** (`/book-consultation`, `/check-eligibility`, `/insurance-quote`, `/contact`): real, validated, but not-yet-connected demo forms — labelled on every form, and on a valid submission all four show a message directing visitors to contact Asteron directly instead of a fake success state. See "Forms" above.
+- **All four forms** (`/book-consultation`, `/check-eligibility`, `/insurance-quote`, `/contact`): real, validated, but not-yet-connected demo forms — labelled on every form, and on a valid submission all four show a message directing visitors to contact Janan directly instead of a fake success state. See "Forms" above.
 - **`/team`** (`src/content/team.ts`): five role-based placeholder cards, each labelled "Profile to be added." — no real staff information exists yet.
 - **`/scholarships`** (`src/content/scholarships.ts`): two records explicitly named "Content Template — ..." — no active, verified scholarship exists yet.
 - **The four `/legal/*` pages** (`src/content/legal.ts`): temporary drafts, each displaying "Temporary draft—professional legal review required before production launch." — not reviewed by a qualified professional and not production-approved.
@@ -270,12 +271,15 @@ No fabricated statistics, testimonials, partnerships, or accreditations exist an
 
 ## Brand Reference (Temporary)
 
-| Token      | Value     |
-| ---------- | --------- |
-| Primary    | `#0B1F3A` |
-| Secondary  | `#0E9384` |
-| Accent     | `#E5A93D` |
-| Background | `#F7F9FC` |
-| Text       | `#182230` |
+| Token                           | Value                               |
+| ------------------------------- | ----------------------------------- |
+| Ink                             | `#14213D`                           |
+| Primary blue                    | `#3157F6`                           |
+| Deep blue                       | `#173B8F`                           |
+| Teal                            | `#12A594`                           |
+| Coral (accent, background only) | `#FF7A59`                           |
+| Pale surfaces                   | `#EEF4FF` / `#EAF9F5` / `#FFF7F1`   |
+| Background                      | `#FFFFFF` (page) / `#F7F9FC` (soft) |
+| Text                            | `#172033`                           |
 
 Full brand and design guidance: [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md).

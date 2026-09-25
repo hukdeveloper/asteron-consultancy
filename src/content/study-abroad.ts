@@ -27,7 +27,7 @@ export const studyAbroadHero: HomeHeroContent = {
 };
 
 export const studyAbroadIntro =
-  "Choosing where and what to study abroad involves comparing destinations, institutions and programmes against your own goals, budget and preferences. Asteron helps you work through that comparison and prepare a stronger application — the final decisions on admission and visas always rest with the relevant institutions and government authorities, not with Asteron.";
+  "Choosing where and what to study abroad involves comparing destinations, institutions and programmes against your own goals, budget and preferences. Janan helps you work through that comparison and prepare a stronger application — the final decisions on admission and visas always rest with the relevant institutions and government authorities, not with Janan.";
 
 /** Shared, general 10-step sequence — reused by the hub and both study-level pages so it's authored once. */
 export const genericApplicationProcess: StudyAbroadProcessStep[] = [
@@ -112,7 +112,7 @@ export const popularSubjectAreas: string[] = [
   "Arts and Design",
 ];
 
-export const howAsteronSupports: KeyPoint[] = [
+export const howJananSupports: KeyPoint[] = [
   {
     id: "compare",
     title: "Help comparing destinations and programmes",
@@ -178,14 +178,14 @@ export const costPlanningCategories: KeyPoint[] = [
 ];
 
 export const visaGuidanceIntro =
-  "Visa and immigration requirements are set and updated by government authorities, not by Asteron, and they can change without notice. We help you understand the general documentation your visa application is likely to need and keep you organised through the process — but the official, current requirements always come from the relevant government's own immigration website, and the final decision always rests with that authority.";
+  "Visa and immigration requirements are set and updated by government authorities, not by Janan, and they can change without notice. We help you understand the general documentation your visa application is likely to need and keep you organised through the process — but the official, current requirements always come from the relevant government's own immigration website, and the final decision always rests with that authority.";
 
 export const parentReassurance: KeyPoint[] = [
   {
     id: "no-guarantees",
     title: "We don't promise outcomes we can't control",
     description:
-      "Admission and visa decisions are made by institutions and government authorities, never by Asteron.",
+      "Admission and visa decisions are made by institutions and government authorities, never by Janan.",
   },
   {
     id: "general-guidance",

@@ -12,8 +12,8 @@ describe("SiteFooter", () => {
       screen.getByRole("link", { name: "+92 300 0000000" }),
     ).toHaveAttribute("href", "tel:+923000000000");
     expect(
-      screen.getByRole("link", { name: "hello@example.com" }),
-    ).toHaveAttribute("href", "mailto:hello@example.com");
+      screen.getByRole("link", { name: "info@jananconsultancy.com" }),
+    ).toHaveAttribute("href", "mailto:info@jananconsultancy.com");
     expect(screen.getByText("Islamabad, Pakistan")).toBeInTheDocument();
   });
 
@@ -50,13 +50,37 @@ describe("SiteFooter", () => {
     expect(within(servicesNav).getAllByRole("link")).toHaveLength(6);
   });
 
-  it("does not render placeholder social links", async () => {
+  it("renders the real, confirmed social links", async () => {
+    render((await SiteFooter()) as ReactElement);
+
+    expect(screen.getByRole("link", { name: "Facebook" })).toHaveAttribute(
+      "href",
+      "https://www.facebook.com/share/18Z3uypvtM/",
+    );
+    expect(screen.getByRole("link", { name: "LinkedIn" })).toHaveAttribute(
+      "href",
+      "https://www.linkedin.com/in/engr-janan-813241273",
+    );
+    expect(screen.getByRole("link", { name: "TikTok" })).toHaveAttribute(
+      "href",
+      "https://www.tiktok.com/@ur_jkx?_r=1&_t=ZS-99mtM0ksG2S",
+    );
+    expect(
+      screen.getByRole("link", { name: "WhatsApp Channel" }),
+    ).toHaveAttribute(
+      "href",
+      "https://whatsapp.com/channel/0029Vb7XHR3IHphDS7o4ns2R",
+    );
+  });
+
+  it("does not render social links with no confirmed profile yet", async () => {
     render((await SiteFooter()) as ReactElement);
 
     expect(
-      screen.queryByRole("link", {
-        name: /Facebook|Instagram|LinkedIn|YouTube/i,
-      }),
+      screen.queryByRole("link", { name: /^Instagram$/i }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", { name: /^YouTube$/i }),
     ).not.toBeInTheDocument();
   });
 });

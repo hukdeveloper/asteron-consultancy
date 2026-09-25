@@ -8,13 +8,13 @@ import type { CtaLink, KeyPoint } from "@/types/content";
  */
 
 export const aboutIntro =
-  "Asteron Global Consultancy helps students and families plan international education with clearer information and practical, step-by-step support.";
+  "Janan Consultancy helps students and families plan international education with clearer information and practical, step-by-step support.";
 
 export const aboutMission =
   "To make international education planning clearer by giving students and families practical guidance, transparent next steps and dependable support throughout their journey.";
 
 export const aboutHistoryNote =
-  "Asteron's company history and background will be added here once finalised. This section is a placeholder — no founding date, office locations, accreditations or awards are stated until they can be verified.";
+  "Janan's company history and background will be added here once finalised. This section is a placeholder — no founding date, office locations, accreditations or awards are stated until they can be verified.";
 
 export const aboutValues: KeyPoint[] = [
   {

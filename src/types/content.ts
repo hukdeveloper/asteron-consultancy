@@ -65,7 +65,13 @@ export interface FooterLinkGroup {
 }
 
 export type SocialPlatform =
-  "facebook" | "instagram" | "linkedin" | "youtube" | "twitter";
+  | "facebook"
+  | "instagram"
+  | "linkedin"
+  | "youtube"
+  | "twitter"
+  | "tiktok"
+  | "whatsapp";
 
 export interface SocialLink {
   id: string;
@@ -207,9 +213,23 @@ export interface WhyChooseReason {
   description: string;
 }
 
-export interface FeaturedUniversityPlaceholder {
+/**
+ * A real, well-known university named purely as an illustrative example of
+ * where students in one of our covered destinations might study — never
+ * framed as a partner, affiliate, or admissions guarantee. See the
+ * `exampleUniversities` doc comment in src/content/home.ts for the exact
+ * policy this content follows.
+ */
+export interface ExampleUniversity {
   id: string;
-  label: string;
+  name: string;
+  city: string;
+  country: string;
+  /** Links back to the matching /study-abroad/[destination] page. */
+  destinationSlug: string;
+  /** One factual, general sentence — no rankings, statistics, or claims Janan cannot verify. */
+  blurb: string;
+  icon: IconName;
 }
 
 export interface ScholarshipHighlight {
@@ -347,7 +367,7 @@ export interface InsuranceService {
   /** Plain strings — the information a visitor should have ready before requesting a quote. */
   informationNeededForQuote: string[];
   processSteps: ProcessStep[];
-  /** States the actual (or, while unresolved — see docs/DECISIONS.md U-002 — deliberately general) underwriting/provider relationship. Must never imply Asteron is the insurer. */
+  /** States the actual (or, while unresolved — see docs/DECISIONS.md U-002 — deliberately general) underwriting/provider relationship. Must never imply Janan is the insurer. */
   providerDisclosure: string;
   claimsSupportDescription: string;
   faqItems: FaqItem[];
@@ -469,7 +489,7 @@ export interface Event {
   format: EventFormat;
   /** Physical address (in-person/hybrid) or platform name (online) — never a fabricated address. */
   location?: string;
-  /** Role/title only (e.g. "Asteron education counsellor") — never a fabricated named speaker. */
+  /** Role/title only (e.g. "Janan education counsellor") — never a fabricated named speaker. */
   speaker?: string;
   capacity?: number;
   /** Omitted while there is no real registration flow — see docs/DECISIONS.md. */

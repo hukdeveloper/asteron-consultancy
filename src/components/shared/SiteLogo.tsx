@@ -10,14 +10,17 @@ interface SiteLogoProps {
 }
 
 /**
- * Temporary, code-based brand mark: an open book (education) topped by a
- * four-point compass star (guidance/direction). Deliberately simple
- * geometry — no downloaded asset — so it can be swapped for a
- * commissioned logo later by editing only this file. Works on light or
- * dark surfaces because the book strokes use currentColor; only the star
- * keeps the fixed brand-blue accent (checked against both navy and
- * soft-white backgrounds — see docs/DESIGN_SYSTEM.md §2 — and exempt from
- * text-contrast rules anyway since it's a decorative logo mark).
+ * Temporary, code-based brand mark for "Janan Consultancy": a bold "J"
+ * stroke ending in a filled destination dot — the same route/pin visual
+ * language used throughout the site (`UniversitySlider`, `DetailHero`'s
+ * icon badges) rather than a generic compass, so the logo reads as this
+ * site's own mark rather than a stock icon. Deliberately simple geometry — no
+ * downloaded asset — so it can be swapped for a commissioned logo later
+ * by editing only this file. The J stroke uses currentColor (works on
+ * light or dark surfaces); only the destination dot keeps the fixed
+ * brand-blue accent (checked against both white and ink backgrounds —
+ * see docs/DESIGN_SYSTEM.md §2 — and exempt from text-contrast rules
+ * anyway since it's a decorative logo mark).
  *
  * Presentational only — does not render its own <Link>. Wrap it in
  * `<Link href="/">` at the call site (SiteHeader, SiteFooter) so it can
@@ -34,28 +37,27 @@ export function SiteLogo({ className, variant = "compact" }: SiteLogoProps) {
         aria-hidden="true"
         className="shrink-0 text-current"
       >
-        {/* Compass star (guidance) */}
-        <path
-          d="M12 1.5 13.4 8.6 20.5 10 13.4 11.4 12 18.5 10.6 11.4 3.5 10 10.6 8.6Z"
-          className="fill-brand-blue"
-        />
-        {/* Open book (education) */}
-        <path
-          d="M2.75 12.75c2.6-1 5.4-1 8.25 0v7.75c-2.85-1-5.65-1-8.25 0Z"
+        {/* Rounded badge backdrop */}
+        <rect
+          x="1"
+          y="1"
+          width="22"
+          height="22"
+          rx="7"
           fill="currentColor"
-          fillOpacity="0.12"
+          fillOpacity="0.08"
+        />
+        {/* "J" stroke — the destination dot below is its own element so it
+            can carry the fixed brand-blue accent independently. */}
+        <path
+          d="M14.5 6v8.2a4.3 4.3 0 0 1-4.3 4.3c-1.6 0-2.9-.7-3.7-1.9"
           stroke="currentColor"
-          strokeWidth="1.3"
+          strokeWidth="2.1"
+          strokeLinecap="round"
           strokeLinejoin="round"
         />
-        <path
-          d="M21.25 12.75c-2.6-1-5.4-1-8.25 0v7.75c2.85-1 5.65-1 8.25 0Z"
-          fill="currentColor"
-          fillOpacity="0.12"
-          stroke="currentColor"
-          strokeWidth="1.3"
-          strokeLinejoin="round"
-        />
+        {/* Destination dot (journey/guidance motif, echoed in the hero visual) */}
+        <circle cx="14.5" cy="6" r="1.6" className="fill-brand-blue" />
       </svg>
       <span className="flex flex-col leading-tight">
         <span
@@ -64,8 +66,8 @@ export function SiteLogo({ className, variant = "compact" }: SiteLogoProps) {
             variant === "full" ? "text-xl" : "text-lg",
           )}
         >
-          Asteron
-          <span className="sr-only"> Global Consultancy</span>
+          Janan
+          <span className="sr-only"> Consultancy</span>
         </span>
         {variant === "full" ? (
           <span className="text-sm opacity-80">Guidance Beyond Borders</span>
