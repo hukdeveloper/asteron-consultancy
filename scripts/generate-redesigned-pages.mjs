@@ -24,7 +24,7 @@ function getHeader(activePage = '') {
   const isScholarships = activePage === 'scholarships';
   const isContact = activePage === 'contact';
 
-  return `<header class="sticky top-0 z-40 border-b border-[#123a70]/10 bg-white/95 backdrop-blur">
+  return `<header class="sticky top-0 z-50 border-b border-[#123a70]/10 bg-white/95 backdrop-blur" style="position:sticky;top:0;z-index:9999;">
   <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2.5">
     <a class="flex items-center gap-2.5 shrink-0 ${isHome ? 'active' : ''}" href="/" ${isHome ? 'data-status="active" aria-current="page"' : ''}>
       <img src="/img/janan-logo.jpg" alt="Janan Consultancy logo" width="38" height="38" class="rounded-lg object-cover shadow-xs" style="width:38px;height:38px"/>
@@ -57,9 +57,9 @@ function getHeader(activePage = '') {
     </button>
   </div>
 
-  <!-- Mobile Dropdown Menu Panel -->
-  <div id="janan-mobile-menu-dropdown" class="janan-mobile-dropdown border-t border-[#123a70]/10 bg-white/98 shadow-2xl backdrop-blur-md" style="position:relative;z-index:99999;width:100%;max-width:100vw;box-sizing:border-box;">
-    <div style="padding:14px 16px;display:flex;flex-direction:column;gap:6px;max-width:480px;margin:0 auto;">
+  <!-- Mobile Dropdown Menu Panel (Absolute Overlay - DOES NOT PUSH DOWN HERO) -->
+  <div id="janan-mobile-menu-dropdown" class="janan-mobile-dropdown border-t border-[#123a70]/10 shadow-2xl" style="background:#ffffff !important;position:absolute;top:100%;left:0;right:0;width:100%;z-index:99999;box-sizing:border-box;box-shadow:0 20px 35px rgba(0,0,0,0.22);border-bottom:2px solid rgba(18,58,112,0.1);">
+    <div style="padding:14px 16px;display:flex;flex-direction:column;gap:6px;max-width:480px;margin:0 auto;background:#ffffff;">
       <!-- Item 1: Home -->
       <a href="/" onclick="window.toggleJananMobileMenu()" class="janan-menu-link" style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;text-decoration:none;transition:all 0.2s;${isHome ? 'background:rgba(18,58,112,0.08);color:#123a70;font-weight:700;' : 'color:#334155;font-weight:600;'}">
         <div style="display:flex;align-items:center;gap:12px;">
@@ -145,6 +145,9 @@ function getHeader(activePage = '') {
       </div>
     </div>
   </div>
+
+  <!-- Mobile Backdrop Overlay to dim content underneath and allow tap-to-close -->
+  <div id="janan-mobile-backdrop" onclick="window.toggleJananMobileMenu()" style="display:none;position:fixed;top:58px;left:0;right:0;bottom:0;background:rgba(7,25,51,0.55);z-index:9998;backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);"></div>
 </header>
 ${MARQUEE_HTML}`;
 }
