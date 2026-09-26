@@ -405,9 +405,63 @@
     if (modal) modal.classList.remove("hidden");
   };
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initModals);
-  } else {
+  function initMobileMenu() {
+    const toggleBtn = document.getElementById("janan-mobile-menu-btn");
+    const dropdown = document.getElementById("janan-mobile-menu-dropdown");
+    const iconOpen = document.getElementById("hamburger-icon-open");
+    const iconClose = document.getElementById("hamburger-icon-close");
+
+    if (!toggleBtn || !dropdown) return;
+
+    function toggleMenu(forceClose) {
+      const isOpen = forceClose ? true : dropdown.classList.contains("is-open");
+      if (isOpen) {
+        dropdown.classList.remove("is-open");
+        toggleBtn.setAttribute("aria-expanded", "false");
+        if (iconOpen) iconOpen.style.display = "block";
+        if (iconClose) iconClose.style.display = "none";
+      } else {
+        dropdown.classList.add("is-open");
+        toggleBtn.setAttribute("aria-expanded", "true");
+        if (iconOpen) iconOpen.style.display = "none";
+        if (iconClose) iconClose.style.display = "block";
+      }
+    }
+
+    toggleBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    dropdown.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        toggleMenu(true);
+      });
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!dropdown.contains(e.target) && !toggleBtn.contains(e.target)) {
+        if (dropdown.classList.contains("is-open")) {
+          toggleMenu(true);
+        }
+      }
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && dropdown.classList.contains("is-open")) {
+        toggleMenu(true);
+      }
+    });
+  }
+
+  function initAll() {
     initModals();
+    initMobileMenu();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAll);
+  } else {
+    initAll();
   }
 })();

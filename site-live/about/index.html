@@ -107,9 +107,295 @@
     box-shadow: 0 6px 18px rgba(18, 58, 112, 0.10);
     transform: translateY(-2px);
   }
+  .janan-dark-hero {
+    padding: 56px 20px !important;
+  }
+
+  /* Responsive Header & Mobile Dropdown Navigation */
+  .janan-desktop-nav {
+    display: flex !important;
+  }
+  .janan-mobile-toggle {
+    display: none !important;
+  }
+  .janan-mobile-dropdown {
+    display: none;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease;
+  }
+  .janan-mobile-dropdown.is-open {
+    display: block !important;
+    max-height: 600px !important;
+    opacity: 1 !important;
+    animation: jananSlideDown 0.26s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .janan-menu-link:hover {
+    background: rgba(18, 58, 112, 0.05) !important;
+    transform: translateX(3px);
+  }
+
+  @keyframes jananSlideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Desktop 4-grid for Impact boxes */
+  .janan-about-impact-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  /* Shape other than rectangle, square, and circle: Organic Leaf / Faceted Shield Geometry */
+  .janan-impact-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f5fc 100%) !important;
+    border: 2px solid rgba(18, 58, 112, 0.18) !important;
+    box-shadow: 0 4px 14px rgba(18, 58, 112, 0.06) !important;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+  }
+  .janan-impact-card:hover {
+    transform: translateY(-3px);
+    border-color: #123a70;
+    box-shadow: 0 8px 20px rgba(18, 58, 112, 0.14);
+  }
+  .janan-shape-a {
+    border-radius: 36px 4px 36px 4px !important;
+  }
+  .janan-shape-b {
+    border-radius: 4px 36px 4px 36px !important;
+  }
+  .janan-impact-section {
+    padding: 48px 0 40px 0 !important;
+  }
+  #scholarships-grid {
+    padding-top: 52px !important;
+    padding-bottom: 60px !important;
+  }
+  .scholarships-heading-block {
+    margin-bottom: 40px !important;
+  }
+
+  /* Mobile Media Queries */
+  @media (max-width: 768px) {
+    .janan-impact-section {
+      padding: 34px 0 30px 0 !important;
+    }
+    #scholarships-grid {
+      padding-top: 36px !important;
+      padding-bottom: 44px !important;
+    }
+    .scholarships-heading-block {
+      margin-bottom: 30px !important;
+    }
+    .janan-desktop-nav {
+      display: none !important;
+    }
+    .janan-mobile-toggle {
+      display: flex !important;
+    }
+    .janan-dark-hero {
+      padding: 34px 16px !important;
+    }
+    .janan-dark-hero h1 {
+      font-size: 1.45rem !important;
+      line-height: 1.25 !important;
+      margin-top: 6px !important;
+    }
+    .janan-dark-hero nav[aria-label="Breadcrumb"] {
+      font-size: 10.5px !important;
+      padding: 3px 10px !important;
+      margin-bottom: 6px !important;
+    }
+    .janan-hero-btn-group {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 8px !important;
+      width: 100% !important;
+      max-width: 320px !important;
+      margin: 14px auto 0 auto !important;
+    }
+    .janan-hero-btn-group .desktop-text {
+      display: none !important;
+    }
+    .janan-hero-btn-group .mobile-text {
+      display: inline !important;
+    }
+    .janan-hero-btn-group .janan-btn-white,
+    .janan-hero-btn-group .janan-btn-trans {
+      padding: 9px 4px !important;
+      font-size: 11px !important;
+      font-weight: 700 !important;
+      width: 100% !important;
+      text-align: center !important;
+      justify-content: center !important;
+      box-sizing: border-box !important;
+    }
+
+    /* 4 boxes: Each row has two boxes (2x2 grid) with shape other than rectangle, square, and circle */
+    .janan-about-impact-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 12px !important;
+    }
+    .janan-impact-card {
+      padding: 16px 10px !important;
+      min-height: 94px !important;
+    }
+    .janan-impact-card .impact-num {
+      font-size: 1.35rem !important;
+      line-height: 1.15 !important;
+    }
+    .janan-impact-card .impact-label {
+      font-size: 10.5px !important;
+      line-height: 1.25 !important;
+      margin-top: 4px !important;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .janan-hero-btn-group .mobile-text {
+      display: none !important;
+    }
+    .janan-hero-btn-group .desktop-text {
+      display: inline !important;
+    }
+  }
 </style>
 </head><body>
-<header class="sticky top-0 z-40 border-b border-[#123a70]/10 bg-white/95 backdrop-blur"><div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2.5"><a class="flex items-center gap-2 shrink-0 " href="/" ><img src="/img/janan-logo.jpg" alt="Janan Consultancy logo" width="40" height="40" class="rounded-md object-cover" style="width:40px;height:40px"/><span class="hidden sm:inline font-bold text-[#123a70] leading-none">Janan<br/>Consultancy</span></a><nav class="flex items-center gap-4 text-sm font-semibold text-[#123a70]"><a class="hover:underline " href="/">Home</a><a class="hover:underline underline" href="/about" data-status="active" aria-current="page">About</a><a class="hover:underline " href="/universities" >Universities</a><a class="hover:underline " href="/contact" >Contact</a></nav></div></header>
+<header class="sticky top-0 z-40 border-b border-[#123a70]/10 bg-white/95 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2.5">
+    <a class="flex items-center gap-2.5 shrink-0 " href="/" >
+      <img src="/img/janan-logo.jpg" alt="Janan Consultancy logo" width="38" height="38" class="rounded-lg object-cover shadow-xs" style="width:38px;height:38px"/>
+      <span class="font-extrabold text-[#123a70] text-sm leading-tight tracking-tight">Janan<br/><span class="text-xs font-semibold text-slate-500">Consultancy</span></span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="janan-desktop-nav" style="display:flex;align-items:center;gap:20px;">
+      <a class="hover:text-[#fbb040] transition" style="text-decoration:none;color:#123a70;font-size:14px;font-weight:600;" href="/" >Home</a>
+      <a class="hover:text-[#fbb040] transition" style="text-decoration:none;color:#123a70;font-size:14px;font-weight:700;border-bottom:2px solid #123a70;padding-bottom:2px;" href="/about" data-status="active" aria-current="page">About</a>
+      <a class="hover:text-[#fbb040] transition" style="text-decoration:none;color:#123a70;font-size:14px;font-weight:600;" href="/universities" >Universities</a>
+      <a class="hover:text-[#fbb040] transition" style="text-decoration:none;color:#123a70;font-size:14px;font-weight:600;" href="/scholarships" >Scholarships</a>
+      <a class="hover:text-[#fbb040] transition" style="text-decoration:none;color:#123a70;font-size:14px;font-weight:600;" href="/contact" >Contact</a>
+      <a href="https://wa.me/923700171997?text=Hi%20Janan%20Consultancy%2C%20I%20have%20an%20inquiry." target="_blank" rel="noreferrer" style="display:inline-flex;align-items:center;gap:6px;border-radius:9999px;background:#123a70;padding:6px 16px;font-size:12px;font-weight:700;color:#ffffff;text-decoration:none;box-shadow:0 2px 6px rgba(18,58,112,0.25);transition:all 0.2s;">
+        <span>WhatsApp</span> ↗
+      </a>
+    </nav>
+
+    <!-- Mobile Hamburger Toggle Button -->
+    <button id="janan-mobile-menu-btn" type="button" aria-label="Toggle Navigation Menu" aria-expanded="false" class="janan-mobile-toggle items-center justify-center w-10 h-10 rounded-xl bg-slate-100/90 border border-slate-200 text-[#123a70] transition hover:bg-slate-200/90 focus:outline-none" style="cursor:pointer;">
+      <svg id="hamburger-icon-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" x2="21" y1="6" y2="6"></line>
+        <line x1="3" x2="21" y1="12" y2="12"></line>
+        <line x1="3" x2="21" y1="18" y2="18"></line>
+      </svg>
+      <svg id="hamburger-icon-close" style="display:none;" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" x2="6" y1="6" y2="18"></line>
+        <line x1="6" x2="18" y1="6" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Dropdown Menu Panel -->
+  <div id="janan-mobile-menu-dropdown" class="janan-mobile-dropdown border-t border-[#123a70]/10 bg-white/98 shadow-2xl backdrop-blur-md">
+    <div style="padding:14px 16px;display:flex;flex-direction:column;gap:6px;max-width:480px;margin:0 auto;">
+      <!-- Item 1: Home -->
+      <a href="/" class="janan-menu-link" style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;text-decoration:none;transition:all 0.2s;color:#334155;font-weight:600;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:rgba(18,58,112,0.08);color:#123a70;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          </span>
+          <div>
+            <div style="font-size:14px;line-height:1.2;">Home</div>
+            <div style="font-size:11px;color:#64748b;font-weight:400;margin-top:2px;">Scholarships &amp; Destinations</div>
+          </div>
+        </div>
+        <span style="font-size:14px;color:#94a3b8;">→</span>
+      </a>
+
+      <!-- Item 2: About Us -->
+      <a href="/about" class="janan-menu-link" style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;text-decoration:none;transition:all 0.2s;background:rgba(18,58,112,0.08);color:#123a70;font-weight:700;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:rgba(18,58,112,0.08);color:#123a70;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+          </span>
+          <div>
+            <div style="font-size:14px;line-height:1.2;">About Us</div>
+            <div style="font-size:11px;color:#64748b;font-weight:400;margin-top:2px;">Mission, Founder &amp; Services</div>
+          </div>
+        </div>
+        <span style="font-size:14px;color:#94a3b8;">→</span>
+      </a>
+
+      <!-- Item 3: Universities Directory -->
+      <a href="/universities" class="janan-menu-link" style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;text-decoration:none;transition:all 0.2s;color:#334155;font-weight:600;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:rgba(18,58,112,0.08);color:#123a70;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+          </span>
+          <div>
+            <div style="font-size:14px;line-height:1.2;display:flex;align-items:center;gap:6px;">
+              <span>Universities</span>
+              <span style="background:#fef3c7;color:#92400e;font-size:10px;font-weight:700;padding:1px 6px;border-radius:9999px;">Directory</span>
+            </div>
+            <div style="font-size:11px;color:#64748b;font-weight:400;margin-top:2px;">Italian Public Unis &amp; Fees</div>
+          </div>
+        </div>
+        <span style="font-size:14px;color:#94a3b8;">→</span>
+      </a>
+
+      <!-- Item 4: Scholarships -->
+      <a href="/scholarships" class="janan-menu-link" style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;text-decoration:none;transition:all 0.2s;color:#334155;font-weight:600;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:rgba(18,58,112,0.08);color:#123a70;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+          </span>
+          <div>
+            <div style="font-size:14px;line-height:1.2;display:flex;align-items:center;gap:6px;">
+              <span>Scholarships</span>
+              <span style="background:#dcfce7;color:#15803d;font-size:10px;font-weight:700;padding:1px 6px;border-radius:9999px;">100% Free</span>
+            </div>
+            <div style="font-size:11px;color:#64748b;font-weight:400;margin-top:2px;">DSU, ER.GO, LazioDisco &amp; Grants</div>
+          </div>
+        </div>
+        <span style="font-size:14px;color:#94a3b8;">→</span>
+      </a>
+
+      <!-- Item 5: Contact Us -->
+      <a href="/contact" class="janan-menu-link" style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;text-decoration:none;transition:all 0.2s;color:#334155;font-weight:600;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:rgba(18,58,112,0.08);color:#123a70;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          </span>
+          <div>
+            <div style="font-size:14px;line-height:1.2;">Contact Us</div>
+            <div style="font-size:11px;color:#64748b;font-weight:400;margin-top:2px;">Counseling, WhatsApp &amp; FAQs</div>
+          </div>
+        </div>
+        <span style="font-size:14px;color:#94a3b8;">→</span>
+      </a>
+
+      <!-- Quick Action: Chat on WhatsApp -->
+      <div style="margin-top:8px;padding-top:10px;border-top:1px solid #f1f5f9;">
+        <a href="https://wa.me/923700171997?text=Hi%20Janan%20Consultancy%2C%20I%20would%20like%20to%20consult%20regarding%20study%20abroad." target="_blank" rel="noreferrer" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:11px 16px;border-radius:12px;background:#25D366;color:#ffffff;font-size:13px;font-weight:700;text-decoration:none;box-shadow:0 2px 8px rgba(37,211,102,0.3);box-sizing:border-box;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.044c.101-.116.433-.506.549-.68.116-.174.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.392-12.416c-5.523 0-10 4.477-10 10 0 1.77.46 3.435 1.266 4.887l-1.344 4.912 5.034-1.321c1.406.764 3.013 1.201 4.723 1.202 5.522 0 10-4.477 10-10 0-5.523-4.478-10-9.679-9.679z"/></svg>
+          <span>Chat on WhatsApp (+92 370 017 1997)</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
 <!-- Continuous Moving Message (right to left) -->
 <div class="overflow-hidden border-b border-[#123a70]/20 bg-[#123a70] py-2.5 text-white shadow-xs whitespace-nowrap">
   <div style="display:flex;width:max-content;animation:jananMarquee 22s linear infinite;" class="font-semibold text-xs sm:text-sm tracking-wide whitespace-nowrap">
@@ -127,50 +413,54 @@
 </style>
 <main class="min-h-screen bg-[#f7f9fc]">
   <!-- Hero Section -->
-  <section class="border-b border-[#123a70]/10 bg-white py-16">
+  <section class="janan-dark-hero border-b border-[#123a70]/30 text-white shadow-inner" style="background:linear-gradient(135deg, #0a1f3d 0%, #123a70 50%, #1a498b 100%);padding:56px 20px;">
     <div class="mx-auto max-w-5xl px-4 text-center">
-      <span class="inline-block rounded-full bg-[#123a70]/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#123a70]">About Janan Consultancy</span>
-      <h1 class="mt-4 text-3xl font-extrabold tracking-tight text-[#123a70] sm:text-5xl">Guiding Your Global Education with Trust &amp; Integrity</h1>
-      <p class="mx-auto mt-5 max-w-3xl text-base sm:text-lg leading-relaxed text-slate-600">
-        Janan Consultancy is a premier education consultancy dedicated to empowering students to achieve their dreams of studying in Italy and across Europe. Founded on principles of honesty, complete transparency, and relentless student support, we demystify the study abroad process from university selection to arrival on campus.
-      </p>
-      <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
-        <a href="https://wa.me/923700171997?text=Hi%20Janan%20Consultancy%2C%20I%20would%20like%20to%20learn%20more%20about%20your%20services." target="_blank" rel="noreferrer" class="janan-btn-primary">
-          <span>Start 1-on-1 Consultation</span> ↗
+      <!-- Breadcrumb -->
+      <nav aria-label="Breadcrumb" class="mb-4 inline-flex items-center justify-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold text-white/90 backdrop-blur-xs border border-white/15">
+        <a href="/" class="hover:text-white transition">Home</a>
+        <span class="text-white/40">/</span>
+        <span class="text-[#fbb040] font-bold">About Us</span>
+      </nav>
+      <h1 class="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-5xl">About Janan Consultancy</h1>
+      <div class="janan-hero-btn-group mt-6 flex flex-wrap items-center justify-center gap-3">
+        <a href="https://wa.me/923700171997?text=Hi%20Janan%20Consultancy%2C%20I%20would%20like%20to%20learn%20more%20about%20your%20services." target="_blank" rel="noreferrer" class="janan-btn-white">
+          <span class="desktop-text">Start 1-on-1 Consultation ↗</span>
+          <span class="mobile-text">Consultation ↗</span>
         </a>
-        <a href="/universities" class="janan-btn-secondary">
-          <span>Explore Universities</span> →
+        <a href="/universities" class="janan-btn-trans">
+          <span class="desktop-text">Explore Universities →</span>
+          <span class="mobile-text">Universities →</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Impact Numbers -->
-  <section class="py-12">
+  <!-- Impact Numbers (4 Geometric Leaf/Faceted Shield Badges: Neither rectangle, nor square, nor circle) -->
+  <section class="janan-impact-section" style="padding: 48px 0 40px 0;">
     <div class="mx-auto max-w-5xl px-4">
-      <div class="janan-grid-4">
-        <div class="janan-card text-center">
-          <div class="text-3xl font-black text-[#123a70] sm:text-4xl">50,000+</div>
-          <div class="mt-2 text-xs sm:text-sm font-semibold text-slate-600">Community Members</div>
+      <div class="janan-about-impact-grid">
+        <div class="janan-impact-card janan-shape-a text-center">
+          <div class="impact-num text-2xl sm:text-4xl font-black text-[#123a70]">50,000+</div>
+          <div class="impact-label mt-1 text-xs sm:text-sm font-semibold text-slate-600">Community Members</div>
         </div>
-        <div class="janan-card text-center">
-          <div class="text-3xl font-black text-[#123a70] sm:text-4xl">70+</div>
-          <div class="mt-2 text-xs sm:text-sm font-semibold text-slate-600">Public Universities</div>
+        <div class="janan-impact-card janan-shape-b text-center">
+          <div class="impact-num text-2xl sm:text-4xl font-black text-[#123a70]">70+</div>
+          <div class="impact-label mt-1 text-xs sm:text-sm font-semibold text-slate-600">Public Universities</div>
         </div>
-        <div class="janan-card text-center">
-          <div class="text-3xl font-black text-[#123a70] sm:text-4xl">€8,500/yr</div>
-          <div class="mt-2 text-xs sm:text-sm font-semibold text-slate-600">Max Regional Scholarship</div>
+        <div class="janan-impact-card janan-shape-b text-center">
+          <div class="impact-num text-2xl sm:text-4xl font-black text-[#123a70]">€8,500/yr</div>
+          <div class="impact-label mt-1 text-xs sm:text-sm font-semibold text-slate-600">Max Regional Grant</div>
         </div>
-        <div class="janan-card text-center">
-          <div class="text-3xl font-black text-[#123a70] sm:text-4xl">100%</div>
-          <div class="mt-2 text-xs sm:text-sm font-semibold text-slate-600">Direct Official Portals</div>
+        <div class="janan-impact-card janan-shape-a text-center">
+          <div class="impact-num text-2xl sm:text-4xl font-black text-[#123a70]">100%</div>
+          <div class="impact-label mt-1 text-xs sm:text-sm font-semibold text-slate-600">Direct Official Portals</div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Founder & Mission Section -->
-  <section class="py-6">
+  <section style="padding: 24px 0 36px 0;">
     <div class="mx-auto max-w-5xl px-4">
       <div class="overflow-hidden rounded-2xl border-2 border-[#123a70]/15 bg-white shadow-sm" style="display:flex;flex-wrap:wrap;">
         <div style="flex:1 1 320px;background:#123a70;color:#fff;padding:36px;display:flex;flex-direction:column;justify-content:between;">
@@ -254,11 +544,11 @@
     </div>
   </section>
 
-  <!-- CTA Box -->
-  <section class="py-8">
-    <div class="mx-auto max-w-5xl px-4 text-center">
-      <div class="rounded-2xl bg-[#123a70] p-8 sm:p-12 text-white shadow-lg">
-        <h2 class="text-2xl sm:text-3xl font-bold">Ready to Start Your Journey?</h2>
+  <!-- CTA Box with generous bottom space before footer -->
+  <section class="py-12 mb-20 sm:mb-28">
+    <div class="mx-auto max-w-4xl px-4 text-center">
+      <div class="rounded-2xl bg-[#123a70] p-8 sm:p-12 text-white shadow-xl">
+        <h2 class="text-2xl sm:text-3xl font-extrabold">Ready to Begin Your European Academic Journey?</h2>
         <p class="mx-auto mt-3 max-w-xl text-white/80 text-sm sm:text-base">Connect directly with our counseling team on WhatsApp today for free initial guidance.</p>
         <div class="mt-6 flex flex-wrap items-center justify-center gap-4">
           <a href="https://wa.me/923700171997?text=Hi%20Janan%20Consultancy%2C%20I%20would%20like%20to%20consult%20regarding%20studying%20in%20Europe." target="_blank" rel="noreferrer" class="janan-btn-white">

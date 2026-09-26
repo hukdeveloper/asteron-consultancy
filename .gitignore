@@ -66,3 +66,4 @@ next-env.d.ts
 
 # manual visual-QA screenshot captures (not build output, not committed)
 /screenshots-*/
+/public-test-screenshots/
