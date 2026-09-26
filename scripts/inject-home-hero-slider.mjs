@@ -5,13 +5,13 @@ const SLIDER_HTML = `
 <!-- ========================================== -->
 <!-- HERO SECTION SCHOLARSHIP SLIDER (ONE SLIDE AT A TIME) -->
 <!-- ========================================== -->
-<section id="janan-hero-slider-section" class="text-white" style="position:relative;overflow:hidden;background:linear-gradient(135deg, #071933 0%, #123a70 55%, #184b8f 100%);border-bottom:1px solid rgba(255,255,255,0.15);">
+<section id="janan-hero-slider-section" class="text-white" style="position:relative;overflow:hidden;max-width:100vw;width:100%;box-sizing:border-box;background:linear-gradient(135deg, #071933 0%, #123a70 55%, #184b8f 100%);border-bottom:1px solid rgba(255,255,255,0.15);">
   <!-- Background Ambient Glow -->
   <div style="position:absolute;top:0;left:20%;width:500px;height:500px;background:radial-gradient(circle, rgba(251,176,64,0.12) 0%, rgba(18,58,112,0) 70%);pointer-events:none;"></div>
   <div style="position:absolute;bottom:0;right:10%;width:400px;height:400px;background:radial-gradient(circle, rgba(255,255,255,0.06) 0%, rgba(18,58,112,0) 70%);pointer-events:none;"></div>
 
   <!-- Slides Track Wrapper -->
-  <div id="hero-slider-viewport" style="position:relative;width:100%;overflow:hidden;">
+  <div id="hero-slider-viewport" style="position:relative;width:100%;max-width:100vw;overflow:hidden;box-sizing:border-box;">
     <div id="hero-slider-track" style="display:flex;width:100%;transition:transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);">
 
       <!-- SLIDE 1: DSU Toscana -->
@@ -599,7 +599,9 @@ function injectHeroSliderIntoHome() {
 
   content = content.replace(marqueeEndRegex, `$1\n${SLIDER_HTML}\n$2`);
   // Ensure the section following the slider has generous top padding explicitly via inline style
-  content = content.replace(/(<main[^>]*><div class="mx-auto max-w-5xl px-4)[^"]*"/i, '$1" style="padding-top:72px;padding-bottom:48px;"');
+  // First strip any existing repeated style attributes on that container
+  content = content.replace(/(<main[^>]*><div class="mx-auto max-w-5xl px-4)(?:\s*style="[^"]*")+/gi, '$1');
+  content = content.replace(/(<main[^>]*><div class="mx-auto max-w-5xl px-4)"/i, '$1" style="padding-top:72px;padding-bottom:48px;"');
   // Hide the destination description on mobile screens
   content = content.replace(
     /<p class="mx-auto mt-4 max-w-2xl text-slate-600">\s*Janan Consultancy walks you through admissions, regional scholarships, document translation and visa insurance\. Choose a destination to get started\.\s*<\/p>/i,

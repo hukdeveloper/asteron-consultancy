@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 const MARQUEE_HTML = `<!-- Continuous Moving Message (right to left) -->
-<div class="overflow-hidden border-b border-[#123a70]/20 bg-[#123a70] py-2.5 text-white shadow-xs whitespace-nowrap">
+<div style="overflow:hidden;max-width:100vw;width:100%;box-sizing:border-box;" class="border-b border-[#123a70]/20 bg-[#123a70] py-2.5 text-white shadow-xs whitespace-nowrap">
   <div style="display:flex;width:max-content;animation:jananMarquee 22s linear infinite;" class="font-semibold text-xs sm:text-sm tracking-wide whitespace-nowrap">
     <span style="padding:0 2.5rem;">&quot; Kindness is not an act, It&#x27;s a reflection of your soul. &quot;</span>
     <span style="padding:0 2.5rem;">&quot; Kindness is not an act, It&#x27;s a reflection of your soul. &quot;</span>
@@ -44,24 +44,24 @@ function getHeader(activePage = '') {
     </nav>
 
     <!-- Mobile Hamburger Toggle Button -->
-    <button id="janan-mobile-menu-btn" type="button" aria-label="Toggle Navigation Menu" aria-expanded="false" class="janan-mobile-toggle items-center justify-center w-10 h-10 rounded-xl bg-slate-100/90 border border-slate-200 text-[#123a70] transition hover:bg-slate-200/90 focus:outline-none" style="cursor:pointer;">
-      <svg id="hamburger-icon-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="3" x2="21" y1="6" y2="6"></line>
-        <line x1="3" x2="21" y1="12" y2="12"></line>
-        <line x1="3" x2="21" y1="18" y2="18"></line>
+    <button id="janan-mobile-menu-btn" type="button" aria-label="Toggle Navigation Menu" aria-expanded="false" onclick="window.toggleJananMobileMenu(event)" class="janan-mobile-toggle items-center justify-center w-10 h-10 rounded-xl bg-slate-100/90 border border-slate-200 text-[#123a70] transition hover:bg-slate-200/90 focus:outline-none" style="cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;">
+      <svg id="hamburger-icon-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="pointer-events:none;display:block;">
+        <line x1="3" x2="21" y1="6" y2="6" style="pointer-events:none;"></line>
+        <line x1="3" x2="21" y1="12" y2="12" style="pointer-events:none;"></line>
+        <line x1="3" x2="21" y1="18" y2="18" style="pointer-events:none;"></line>
       </svg>
-      <svg id="hamburger-icon-close" style="display:none;" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="18" x2="6" y1="6" y2="18"></line>
-        <line x1="6" x2="18" y1="6" y2="18"></line>
+      <svg id="hamburger-icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="pointer-events:none;display:none;">
+        <line x1="18" x2="6" y1="6" y2="18" style="pointer-events:none;"></line>
+        <line x1="6" x2="18" y1="6" y2="18" style="pointer-events:none;"></line>
       </svg>
     </button>
   </div>
 
   <!-- Mobile Dropdown Menu Panel -->
-  <div id="janan-mobile-menu-dropdown" class="janan-mobile-dropdown border-t border-[#123a70]/10 bg-white/98 shadow-2xl backdrop-blur-md">
+  <div id="janan-mobile-menu-dropdown" class="janan-mobile-dropdown border-t border-[#123a70]/10 bg-white/98 shadow-2xl backdrop-blur-md" style="position:relative;z-index:99999;width:100%;max-width:100vw;box-sizing:border-box;">
     <div style="padding:14px 16px;display:flex;flex-direction:column;gap:6px;max-width:480px;margin:0 auto;">
       <!-- Item 1: Home -->
-      <a href="/" class="janan-menu-link" style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;text-decoration:none;transition:all 0.2s;${isHome ? 'background:rgba(18,58,112,0.08);color:#123a70;font-weight:700;' : 'color:#334155;font-weight:600;'}">
+      <a href="/" onclick="window.toggleJananMobileMenu()" class="janan-menu-link" style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;text-decoration:none;transition:all 0.2s;${isHome ? 'background:rgba(18,58,112,0.08);color:#123a70;font-weight:700;' : 'color:#334155;font-weight:600;'}">
         <div style="display:flex;align-items:center;gap:12px;">
           <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:rgba(18,58,112,0.08);color:#123a70;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
@@ -75,7 +75,7 @@ function getHeader(activePage = '') {
       </a>
 
       <!-- Item 2: About Us -->
-      <a href="/about" class="janan-menu-link" style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;text-decoration:none;transition:all 0.2s;${isAbout ? 'background:rgba(18,58,112,0.08);color:#123a70;font-weight:700;' : 'color:#334155;font-weight:600;'}">
+      <a href="/about" onclick="window.toggleJananMobileMenu()" class="janan-menu-link" style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;text-decoration:none;transition:all 0.2s;${isAbout ? 'background:rgba(18,58,112,0.08);color:#123a70;font-weight:700;' : 'color:#334155;font-weight:600;'}">
         <div style="display:flex;align-items:center;gap:12px;">
           <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:rgba(18,58,112,0.08);color:#123a70;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
@@ -89,7 +89,7 @@ function getHeader(activePage = '') {
       </a>
 
       <!-- Item 3: Universities Directory -->
-      <a href="/universities" class="janan-menu-link" style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;text-decoration:none;transition:all 0.2s;${isUniversities ? 'background:rgba(18,58,112,0.08);color:#123a70;font-weight:700;' : 'color:#334155;font-weight:600;'}">
+      <a href="/universities" onclick="window.toggleJananMobileMenu()" class="janan-menu-link" style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;text-decoration:none;transition:all 0.2s;${isUniversities ? 'background:rgba(18,58,112,0.08);color:#123a70;font-weight:700;' : 'color:#334155;font-weight:600;'}">
         <div style="display:flex;align-items:center;gap:12px;">
           <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:rgba(18,58,112,0.08);color:#123a70;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
@@ -106,7 +106,7 @@ function getHeader(activePage = '') {
       </a>
 
       <!-- Item 4: Scholarships (NEW) -->
-      <a href="/scholarships" class="janan-menu-link" style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;text-decoration:none;transition:all 0.2s;${isScholarships ? 'background:rgba(18,58,112,0.08);color:#123a70;font-weight:700;' : 'color:#334155;font-weight:600;'}">
+      <a href="/scholarships" onclick="window.toggleJananMobileMenu()" class="janan-menu-link" style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;text-decoration:none;transition:all 0.2s;${isScholarships ? 'background:rgba(18,58,112,0.08);color:#123a70;font-weight:700;' : 'color:#334155;font-weight:600;'}">
         <div style="display:flex;align-items:center;gap:12px;">
           <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:rgba(18,58,112,0.08);color:#123a70;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path></svg>
@@ -123,7 +123,7 @@ function getHeader(activePage = '') {
       </a>
 
       <!-- Item 5: Contact Us -->
-      <a href="/contact" class="janan-menu-link" style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;text-decoration:none;transition:all 0.2s;${isContact ? 'background:rgba(18,58,112,0.08);color:#123a70;font-weight:700;' : 'color:#334155;font-weight:600;'}">
+      <a href="/contact" onclick="window.toggleJananMobileMenu()" class="janan-menu-link" style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;text-decoration:none;transition:all 0.2s;${isContact ? 'background:rgba(18,58,112,0.08);color:#123a70;font-weight:700;' : 'color:#334155;font-weight:600;'}">
         <div style="display:flex;align-items:center;gap:12px;">
           <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:rgba(18,58,112,0.08);color:#123a70;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
