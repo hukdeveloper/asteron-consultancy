@@ -11,9 +11,8 @@ function getHeaderHtml(activePage = '') {
 
   return `<header class="sticky top-0 z-50 border-b border-[#123a70]/10 bg-white/95 backdrop-blur" style="position:sticky;top:0;z-index:9999;">
   <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2.5">
-    <a class="flex items-center gap-2.5 shrink-0 ${isHome ? 'active' : ''}" href="/" ${isHome ? 'data-status="active" aria-current="page"' : ''}>
-      <img src="/img/janan-logo.jpg" alt="Janan Consultancy logo" width="38" height="38" class="rounded-lg object-cover shadow-xs" style="width:38px;height:38px"/>
-      <span class="font-extrabold text-[#123a70] text-sm leading-tight tracking-tight">Janan<br/><span class="text-xs font-semibold text-slate-500">Consultancy</span></span>
+    <a class="flex items-center shrink-0 ${isHome ? 'active' : ''}" href="/" ${isHome ? 'data-status="active" aria-current="page"' : ''} style="display:flex;align-items:center;text-decoration:none;background:transparent;">
+      <img src="/img/janan-logo.png" alt="Janan Consultancy" class="h-10 sm:h-12 w-auto object-contain" style="height:46px;max-height:48px;width:auto;display:block;background:transparent;border:none;box-shadow:none;"/>
     </a>
 
     <!-- Desktop Navigation -->
@@ -83,9 +82,9 @@ function getHeaderHtml(activePage = '') {
           <div>
             <div style="font-size:14px;line-height:1.2;display:flex;align-items:center;gap:6px;">
               <span>Universities</span>
-              <span style="background:#fef3c7;color:#92400e;font-size:10px;font-weight:700;padding:1px 6px;border-radius:9999px;">Directory</span>
+              <span style="background:#fef3c7;color:#92400e;font-size:10px;font-weight:700;padding:1px 6px;border-radius:9999px;">90 Listed</span>
             </div>
-            <div style="font-size:11px;color:#64748b;font-weight:400;margin-top:2px;">Italian Public Unis &amp; Fees</div>
+            <div style="font-size:11px;color:#64748b;font-weight:400;margin-top:2px;">61 Public, 22 Private &amp; Online</div>
           </div>
         </div>
         <span style="font-size:14px;color:#94a3b8;">→</span>

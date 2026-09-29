@@ -44,9 +44,8 @@ function getHeader(activePage = '') {
 
   return `<header class="sticky top-0 z-50 border-b border-[#123a70]/10 bg-white/95 backdrop-blur" style="position:sticky;top:0;z-index:9999;">
   <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2.5">
-    <a class="flex items-center gap-2.5 shrink-0 ${isHome ? 'active' : ''}" href="/" ${isHome ? 'data-status="active" aria-current="page"' : ''}>
-      <img src="/img/janan-logo.jpg" alt="Janan Consultancy logo" width="38" height="38" class="rounded-lg object-cover shadow-xs" style="width:38px;height:38px"/>
-      <span class="font-extrabold text-[#123a70] text-sm leading-tight tracking-tight">Janan<br/><span class="text-xs font-semibold text-slate-500">Consultancy</span></span>
+    <a class="flex items-center shrink-0 ${isHome ? 'active' : ''}" href="/" ${isHome ? 'data-status="active" aria-current="page"' : ''} style="display:flex;align-items:center;text-decoration:none;background:transparent;">
+      <img src="/img/janan-logo.png" alt="Janan Consultancy" class="h-10 sm:h-12 w-auto object-contain" style="height:46px;max-height:48px;width:auto;display:block;background:transparent;border:none;box-shadow:none;"/>
     </a>
 
     <!-- Desktop Navigation -->
@@ -1225,8 +1224,8 @@ function buildItalyGuideHtml() {
       <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <a href="/universities" class="flex flex-col items-center justify-center gap-1 text-center rounded-2xl border-2 border-[#123a70]/15 bg-white p-6 min-h-[120px] shadow-sm transition hover:-translate-y-0.5 hover:border-[#123a70] hover:shadow-md">
           <span class="text-3xl">🏛️</span>
-          <span class="text-base font-bold text-[#123a70]">61 Public Universities</span>
-          <span class="text-xs text-slate-500">Official verified directory</span>
+          <span class="text-base font-bold text-[#123a70]">Universities</span>
+          <span class="text-xs text-slate-500">Directory of 90 public &amp; private unis</span>
         </a>
         <a href="/scholarships" class="flex flex-col items-center justify-center gap-1 text-center rounded-2xl border-2 border-[#123a70]/15 bg-white p-6 min-h-[120px] shadow-sm transition hover:-translate-y-0.5 hover:border-[#123a70] hover:shadow-md">
           <span class="text-3xl">💶</span>
@@ -1254,9 +1253,9 @@ function buildItalyGuideHtml() {
 
         <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:16px;">
-            <div style="font-weight:700;color:#123a70;font-size:14px;">🎓 Public Universities (61 Institutions)</div>
+            <div style="font-weight:700;color:#123a70;font-size:14px;">🎓 Italian Universities (90 Institutions)</div>
             <p style="font-size:12px;color:#475569;margin-top:6px;line-height:1.5;">
-              From University of Bologna to University of Verona. Public universities in Italy offer subsidized tuition, English-taught degrees, and eligibility for 100% regional scholarships.
+              From University of Bologna to University of Verona. Directory includes 61 Public Universities, 22 Private Universities, and 7 Online Universities with English-taught degrees and DSU regional grant eligibility.
             </p>
             <a href="/universities" style="display:inline-block;margin-top:10px;font-size:12px;font-weight:700;color:#123a70;">View All Universities →</a>
           </div>
@@ -1336,8 +1335,8 @@ if (!fs.existsSync('site-live/study/italy')) {
 }
 const italyGuideContent = buildItalyGuideHtml();
 const italyGuideHtml = buildFullHtml(
-  "Study in Italy — Admissions, 61 Public Universities & 32 Regional Scholarships",
-  "Step-by-step guidance for admissions to 61 Italian public universities, 32 regional scholarships (DSU, ER.GO, Lazio Disco), certified legal translations and visa insurance.",
+  "Study in Italy — Admissions, Universities & 32 Regional Scholarships",
+  "Step-by-step guidance for admissions to 90 Italian universities (public, private, online), 32 regional scholarships (DSU, ER.GO, Lazio Disco), certified legal translations and visa insurance.",
   italyGuideContent,
   "italy"
 );
