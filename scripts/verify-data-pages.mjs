@@ -58,73 +58,106 @@ async function verify() {
   const deskCtx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
   const deskPage = await deskCtx.newPage();
 
-  console.log('\n--- 1. VERIFYING HOME PAGE FEATURED SECTIONS & HEADER LOGO ---');
+  console.log('\n--- 1. VERIFYING HOME PAGE SECTIONS, SPACING & "VIEW ALL" BUTTONS ---');
   await deskPage.goto(`http://127.0.0.1:${PORT}/`, { waitUntil: 'networkidle' });
 
-  // Header Logo Check
-  const headerLogoInfo = await deskPage.evaluate(() => {
-    const header = document.querySelector('header');
-    const logoLink = header ? header.querySelector('a[href="/"]') : null;
-    const logoImg = logoLink ? logoLink.querySelector('img') : null;
-    const logoText = logoLink ? logoLink.innerText.trim() : null;
+  // Check buttons text
+  const buttonInfo = await deskPage.evaluate(() => {
+    const btns = Array.from(document.querySelectorAll('.janan-sec-btn')).map(b => b.innerText.trim());
+    return btns;
+  });
+  console.log('Home Featured Section Buttons:', buttonInfo);
+
+  // Check Marquee text
+  const marqueeInfo = await deskPage.evaluate(() => {
+    const m = document.querySelector('.janan-marquee-bar, [style*="jananMarquee"]');
+    return m ? m.innerText.trim() : null;
+  });
+  console.log('Marquee announcement snippet:', marqueeInfo ? marqueeInfo.substring(0, 120) + '...' : 'None');
+
+  // Check spacing between Italy and Portugal sections
+  const spacingInfo = await deskPage.evaluate(() => {
+    const sections = Array.from(document.querySelectorAll('.janan-home-section'));
+    if (sections.length < 2) return null;
+    const r1 = sections[0].getBoundingClientRect();
+    const r2 = sections[1].getBoundingClientRect();
     return {
-      src: logoImg ? logoImg.getAttribute('src') : null,
-      alt: logoImg ? logoImg.getAttribute('alt') : null,
-      text: logoText,
-      hasText: !!logoText && logoText.length > 0
+      section1Bottom: r1.bottom,
+      section2Top: r2.top,
+      distanceBetween: r2.top - r1.bottom
     };
   });
-  console.log('Header Logo Info:', headerLogoInfo);
+  console.log('Spacing between Italy & Portugal sections:', spacingInfo);
 
-  // Home Featured Universities Sections Check
-  const homeSections = await deskPage.evaluate(() => {
-    const itSection = Array.from(document.querySelectorAll('section')).find(s => s.innerText.includes('Featured Universities in Italy'));
-    const ptSection = Array.from(document.querySelectorAll('section')).find(s => s.innerText.includes('Featured Public Universities in Portugal'));
-
-    const itCards = itSection ? Array.from(itSection.querySelectorAll('.grid > div')).map(d => d.querySelector('h3') ? d.querySelector('h3').innerText.trim() : '') : [];
-    const ptCards = ptSection ? Array.from(ptSection.querySelectorAll('.grid > div')).map(d => d.querySelector('h3') ? d.querySelector('h3').innerText.trim() : '') : [];
-
-    const itLink = itSection ? itSection.querySelector('a[href="/universities"]') ? itSection.querySelector('a[href="/universities"]').getAttribute('href') : null : null;
-    const ptLink = ptSection ? ptSection.querySelector('a[href="/study/portugal"]') ? ptSection.querySelector('a[href="/study/portugal"]').getAttribute('href') : null : null;
-
-    return {
-      itSectionFound: !!itSection,
-      itCards,
-      itLink,
-      ptSectionFound: !!ptSection,
-      ptCards,
-      ptLink
-    };
-  });
-  console.log('Home Page Sections Info:', homeSections);
-
-  // Scroll to featured sections and screenshot
+  // Scroll to sections and take screenshot
   await deskPage.evaluate(() => {
-    window.scrollTo(0, document.body.scrollHeight - 1600);
+    window.scrollTo(0, document.body.scrollHeight - 1800);
   });
   await deskPage.waitForTimeout(400);
-  await deskPage.screenshot({ path: path.join(ARTIFACTS_DIR, 'desk-home-featured-unis.png'), fullPage: false });
+  await deskPage.screenshot({ path: path.join(ARTIFACTS_DIR, 'desk-home-spaced-sections.png'), fullPage: false });
 
-  console.log('\n--- 2. VERIFYING STUDY IN ITALY HUB TEXT ---');
-  await deskPage.goto(`http://127.0.0.1:${PORT}/study/italy`, { waitUntil: 'networkidle' });
-  const italyHubText = await deskPage.evaluate(() => {
-    const uniLink = document.querySelector('a[href="/universities"]');
-    return {
-      linkText: uniLink ? uniLink.innerText.trim() : null
-    };
+  // Test 2: Instant Client-Side SPA Navigation (Next.js Link Behavior)
+  console.log('\n--- 2. VERIFYING INSTANT SPA CLIENT-SIDE NAVIGATION ---');
+  let fullReloadCount = 0;
+  deskPage.on('framenavigated', (frame) => {
+    if (frame === deskPage.mainFrame()) {
+      fullReloadCount++;
+    }
   });
-  console.log('Study in Italy Hub link text:', italyHubText);
-  await deskPage.screenshot({ path: path.join(ARTIFACTS_DIR, 'desk-italy-guide.png'), fullPage: false });
 
-  // Test 2: Mobile (390x844 iPhone 14)
-  console.log('\n--- 3. VERIFYING MOBILE VIEWPORT (390px) ---');
+  // Reset counter after initial load
+  fullReloadCount = 0;
+
+  // Click on "Universities" in desktop nav
+  console.log('Clicking Universities nav link...');
+  await deskPage.click('nav.janan-desktop-nav a[href="/universities"]');
+  await deskPage.waitForTimeout(300);
+
+  const afterNav1 = await deskPage.evaluate(() => ({
+    pathname: window.location.pathname,
+    title: document.title,
+    cardCount: document.querySelectorAll('[data-uni-card]').length,
+    hasSearch: !!document.getElementById('uni-search')
+  }));
+  console.log('After SPA Nav to /universities:', afterNav1, `(Full browser reloads: ${fullReloadCount})`);
+
+  // Test search filter on newly navigated page
+  await deskPage.fill('#uni-search', 'Bologna');
+  await deskPage.waitForTimeout(200);
+  const filteredCount = await deskPage.$$eval('[data-uni-card]:visible', cards => cards.length);
+  console.log(`Universities filter after SPA nav: ${filteredCount} visible for "Bologna"`);
+
+  // Click on "Portugal" in desktop nav
+  console.log('Clicking Portugal nav link...');
+  await deskPage.click('nav.janan-desktop-nav a[href="/study/portugal"]');
+  await deskPage.waitForTimeout(300);
+
+  const afterNav2 = await deskPage.evaluate(() => ({
+    pathname: window.location.pathname,
+    title: document.title,
+    ptCount: document.querySelectorAll('[data-pt-card]').length
+  }));
+  console.log('After SPA Nav to /study/portugal:', afterNav2, `(Full browser reloads: ${fullReloadCount})`);
+
+  // Click browser Back button
+  console.log('Testing browser Back button...');
+  await deskPage.goBack();
+  await deskPage.waitForTimeout(300);
+  const afterBack = await deskPage.evaluate(() => ({
+    pathname: window.location.pathname,
+    title: document.title,
+    cardCount: document.querySelectorAll('[data-uni-card]').length
+  }));
+  console.log('After Browser Back button:', afterBack, `(Full browser reloads: ${fullReloadCount})`);
+
+  // Test 3: Mobile (390x844 iPhone 14)
+  console.log('\n--- 3. VERIFYING MOBILE VIEWPORT & ZERO OVERFLOW ---');
   const mobCtx = await browser.newContext({
     viewport: { width: 390, height: 844 },
     userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15'
   });
   const mobPage = await mobCtx.newPage();
 
-  // Test home page overflow
   await mobPage.goto(`http://127.0.0.1:${PORT}/`, { waitUntil: 'networkidle' });
   const homeOv = await mobPage.evaluate(() => ({
     scrollW: document.documentElement.scrollWidth,
@@ -135,29 +168,10 @@ async function verify() {
 
   // Scroll to featured sections on mobile
   await mobPage.evaluate(() => {
-    window.scrollTo(0, document.body.scrollHeight - 2200);
+    window.scrollTo(0, document.body.scrollHeight - 2300);
   });
   await mobPage.waitForTimeout(400);
-  await mobPage.screenshot({ path: path.join(ARTIFACTS_DIR, 'mob-home-featured-unis.png'), fullPage: false });
-
-  // Test Mobile Navigation Dropdown
-  console.log('\n--- 4. VERIFYING MOBILE OVERLAY DROPDOWN ---');
-  await mobPage.evaluate(() => window.scrollTo(0, 0));
-  await mobPage.waitForTimeout(200);
-  const toggleBtn = mobPage.locator('#janan-mobile-menu-btn');
-  await toggleBtn.click();
-  await mobPage.waitForTimeout(300);
-
-  const dropdownStatus = await mobPage.evaluate(() => {
-    const dd = document.getElementById('janan-mobile-menu-dropdown');
-    return {
-      isOpen: dd ? dd.classList.contains('is-open') : false,
-      position: dd ? getComputedStyle(dd).position : null,
-      top: dd ? dd.getBoundingClientRect().top : null
-    };
-  });
-  console.log('Mobile dropdown state:', dropdownStatus);
-  await mobPage.screenshot({ path: path.join(ARTIFACTS_DIR, 'mob-dropdown-open-verified.png'), fullPage: false });
+  await mobPage.screenshot({ path: path.join(ARTIFACTS_DIR, 'mob-home-spaced-sections.png'), fullPage: false });
 
   await deskPage.close();
   await deskCtx.close();

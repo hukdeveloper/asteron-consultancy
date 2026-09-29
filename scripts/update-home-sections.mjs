@@ -12,7 +12,7 @@ const universitySectionsHtml = `
   .janan-unis-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
+    gap: 24px;
   }
   .janan-uni-card {
     background: #ffffff;
@@ -36,9 +36,9 @@ const universitySectionsHtml = `
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 12px 28px;
+    padding: 12px 32px;
     border-radius: 9999px;
-    font-size: 13.5px;
+    font-size: 14px;
     font-weight: 700;
     text-decoration: none;
     transition: all 0.2s ease;
@@ -49,7 +49,7 @@ const universitySectionsHtml = `
   }
   .janan-sec-btn:hover {
     background: #123a70;
-    color: #ffffff;
+    color: #ffffff !important;
     box-shadow: 0 4px 14px rgba(18, 58, 112, 0.2);
     transform: translateY(-2px);
   }
@@ -73,7 +73,7 @@ const universitySectionsHtml = `
   @media (max-width: 900px) {
     .janan-unis-grid {
       grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+      gap: 18px;
     }
   }
   @media (max-width: 640px) {
@@ -92,8 +92,11 @@ const universitySectionsHtml = `
   }
 </style>
 
+<!-- Elegant Divider before Italian Section -->
+<div style="height: 1px; width: 100%; background: linear-gradient(90deg, transparent, rgba(18,58,112,0.18), transparent); margin: 76px 0 68px 0;"></div>
+
 <!-- SECTION 1: FEATURED ITALIAN UNIVERSITIES -->
-<section class="janan-home-section" style="margin-top: 64px; box-sizing: border-box;">
+<section class="janan-home-section" style="margin-top: 0; margin-bottom: 0; box-sizing: border-box;">
   <div class="janan-sec-header" style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:28px;">
     <div>
       <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(18,58,112,0.06);border:1px solid rgba(18,58,112,0.14);border-radius:9999px;padding:5px 14px;color:#123a70;font-size:12px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:10px;">
@@ -107,7 +110,7 @@ const universitySectionsHtml = `
       </p>
     </div>
     <a href="/universities" style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;color:#123a70;text-decoration:none;white-space:nowrap;" onmouseover="this.style.color='#fbb040'" onmouseout="this.style.color='#123a70'">
-      <span>Explore All 90 Universities</span>
+      <span>View All</span>
       <span>→</span>
     </a>
   </div>
@@ -213,16 +216,19 @@ const universitySectionsHtml = `
     </div>
   </div>
 
-  <div style="margin-top:32px;text-align:center;">
+  <div style="margin-top:36px;text-align:center;">
     <a href="/universities" class="janan-sec-btn">
-      <span>View All 90 Italian Universities Directory</span>
+      <span>View All</span>
       <span>→</span>
     </a>
   </div>
 </section>
 
+<!-- Elegant Divider between Italy & Portugal Sections (Ample Space) -->
+<div style="height: 1px; width: 100%; background: linear-gradient(90deg, transparent, rgba(18,58,112,0.18), transparent); margin: 76px 0 68px 0;"></div>
+
 <!-- SECTION 2: FEATURED PORTUGAL PUBLIC UNIVERSITIES -->
-<section class="janan-home-section" style="margin-top: 64px; margin-bottom: 32px; box-sizing: border-box;">
+<section class="janan-home-section" style="margin-top: 0; margin-bottom: 48px; box-sizing: border-box;">
   <div class="janan-sec-header" style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:28px;">
     <div>
       <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:9999px;padding:5px 14px;color:#065f46;font-size:12px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:10px;">
@@ -236,7 +242,7 @@ const universitySectionsHtml = `
       </p>
     </div>
     <a href="/study/portugal" style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;color:#123a70;text-decoration:none;white-space:nowrap;" onmouseover="this.style.color='#fbb040'" onmouseout="this.style.color='#123a70'">
-      <span>Explore All 14 Universities</span>
+      <span>View All</span>
       <span>→</span>
     </a>
   </div>
@@ -342,24 +348,25 @@ const universitySectionsHtml = `
     </div>
   </div>
 
-  <div style="margin-top:32px;text-align:center;">
+  <div style="margin-top:36px;text-align:center;">
     <a href="/study/portugal" class="janan-sec-btn">
-      <span>View All 14 Portuguese Public Universities Guide</span>
+      <span>View All</span>
       <span>→</span>
     </a>
   </div>
 </section>
 `;
 
-// Clean previous injections if any
-html = html.replace(/<!-- ========================================== -->\s*<!-- SECTION[S]?: FEATURED[\s\S]*?<!-- SECTION 2: FEATURED PORTUGAL PUBLIC UNIVERSITIES -->[\s\S]*?<\/section>/g, '');
+// Clean previous injections
+html = html.replace(/<div style="height:\s*1px;[^>]*?"><\/div>\s*<!-- SECTION 1: FEATURED ITALIAN UNIVERSITIES -->[\s\S]*?<!-- SECTION 2: FEATURED PORTUGAL PUBLIC UNIVERSITIES -->[\s\S]*?<\/section>/g, '');
+html = html.replace(/<!-- ========================================== -->\s*<!-- SECTIONS: FEATURED ITALY & PORTUGAL[\s\S]*?<!-- SECTION 2: FEATURED PORTUGAL PUBLIC UNIVERSITIES -->[\s\S]*?<\/section>/g, '');
 html = html.replace(/<style id="janan-home-unis-style">[\s\S]*?<\/style>/g, '');
 
 const targetAnchor = '</div></main>';
 if (html.includes(targetAnchor)) {
   html = html.replace(targetAnchor, `${universitySectionsHtml}\n</div></main>`);
   fs.writeFileSync(indexPath, html, 'utf8');
-  console.log('Successfully updated site-live/index.html with responsive styled sections!');
+  console.log('Successfully updated site-live/index.html with spaced sections & "View All →" buttons!');
 } else {
   console.error('Target anchor </div></main> not found in site-live/index.html');
 }
