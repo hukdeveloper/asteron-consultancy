@@ -1,0 +1,978 @@
+[
+  {
+    "id": 1,
+    "name": "University of L’Aquila",
+    "url": "https://www.univaq.it",
+    "category": "public_university",
+    "city": "L'Aquila",
+    "region": "Abruzzo"
+  },
+  {
+    "id": 2,
+    "name": "University of Chieti-Pescara",
+    "url": "https://www.unich.it",
+    "category": "public_university",
+    "city": "Chieti-Pescara",
+    "region": "Abruzzo"
+  },
+  {
+    "id": 3,
+    "name": "University of Teramo",
+    "url": "https://www.unite.it",
+    "category": "public_university",
+    "city": "Teramo",
+    "region": "Abruzzo"
+  },
+  {
+    "id": 4,
+    "name": "University of Basilicata",
+    "url": "https://www.unibas.it",
+    "category": "public_university",
+    "city": "Potenza",
+    "region": "Basilicata"
+  },
+  {
+    "id": 5,
+    "name": "University of Catanzaro Magna Graecia",
+    "url": "https://www.unicz.it",
+    "category": "public_university",
+    "city": "Catanzaro",
+    "region": "Calabria"
+  },
+  {
+    "id": 6,
+    "name": "University of Calabria",
+    "url": "https://www.unical.it",
+    "category": "public_university",
+    "city": "Rende (Cosenza)",
+    "region": "Calabria"
+  },
+  {
+    "id": 7,
+    "name": "Mediterranean University of Reggio Calabria",
+    "url": "https://www.unirc.it",
+    "category": "public_university",
+    "city": "Reggio Calabria",
+    "region": "Calabria"
+  },
+  {
+    "id": 8,
+    "name": "University of Naples Federico II",
+    "url": "https://www.unina.it",
+    "category": "public_university",
+    "city": "Naples",
+    "region": "Campania"
+  },
+  {
+    "id": 9,
+    "name": "University of Naples L’Orientale",
+    "url": "https://www.unior.it",
+    "category": "public_university",
+    "city": "Naples",
+    "region": "Campania"
+  },
+  {
+    "id": 10,
+    "name": "University of Naples Parthenope",
+    "url": "https://www.uniparthenope.it",
+    "category": "public_university",
+    "city": "Naples",
+    "region": "Campania"
+  },
+  {
+    "id": 11,
+    "name": "University of Sannio",
+    "url": "https://www.unisannio.it",
+    "category": "public_university",
+    "city": "Benevento",
+    "region": "Campania"
+  },
+  {
+    "id": 12,
+    "name": "University of Campania Luigi Vanvitelli",
+    "url": "https://www.unicampania.it",
+    "category": "public_university",
+    "city": "Caserta",
+    "region": "Campania"
+  },
+  {
+    "id": 13,
+    "name": "University of Salerno",
+    "url": "https://www.unisa.it",
+    "category": "public_university",
+    "city": "Salerno",
+    "region": "Campania"
+  },
+  {
+    "id": 14,
+    "name": "University of Bologna",
+    "url": "https://www.unibo.it",
+    "category": "public_university",
+    "city": "Bologna",
+    "region": "Emilia-Romagna"
+  },
+  {
+    "id": 15,
+    "name": "University of Ferrara",
+    "url": "https://www.unife.it",
+    "category": "public_university",
+    "city": "Ferrara",
+    "region": "Emilia-Romagna"
+  },
+  {
+    "id": 16,
+    "name": "University of Modena and Reggio Emilia",
+    "url": "https://www.unimore.it",
+    "category": "public_university",
+    "city": "Modena and Reggio Emilia",
+    "region": "Emilia-Romagna"
+  },
+  {
+    "id": 17,
+    "name": "University of Parma",
+    "url": "https://www.unipr.it",
+    "category": "public_university",
+    "city": "Parma",
+    "region": "Emilia-Romagna"
+  },
+  {
+    "id": 18,
+    "name": "University of Trieste",
+    "url": "https://www.units.it",
+    "category": "public_university",
+    "city": "Trieste",
+    "region": "Friuli-Venezia Giulia"
+  },
+  {
+    "id": 19,
+    "name": "University of Udine",
+    "url": "https://www.uniud.it",
+    "category": "public_university",
+    "city": "Udine",
+    "region": "Friuli-Venezia Giulia"
+  },
+  {
+    "id": 20,
+    "name": "University of Rome La Sapienza",
+    "url": "https://www.uniroma1.it",
+    "category": "public_university",
+    "city": "Rome",
+    "region": "Lazio"
+  },
+  {
+    "id": 21,
+    "name": "University of Rome Tor Vergata",
+    "url": "https://www.uniroma2.it",
+    "category": "public_university",
+    "city": "Rome",
+    "region": "Lazio"
+  },
+  {
+    "id": 22,
+    "name": "Roma Tre University",
+    "url": "https://www.uniroma3.it",
+    "category": "public_university",
+    "city": "Rome",
+    "region": "Lazio"
+  },
+  {
+    "id": 23,
+    "name": "University of Rome Foro Italico",
+    "url": "https://www.uniroma4.it",
+    "category": "public_university",
+    "city": "Rome",
+    "region": "Lazio"
+  },
+  {
+    "id": 24,
+    "name": "University of Cassino and Southern Lazio",
+    "url": "https://www.unicas.it",
+    "category": "public_university",
+    "city": "Cassino",
+    "region": "Lazio"
+  },
+  {
+    "id": 25,
+    "name": "University of Tuscia",
+    "url": "https://www.unitus.it",
+    "category": "public_university",
+    "city": "Viterbo",
+    "region": "Lazio"
+  },
+  {
+    "id": 26,
+    "name": "University of Genoa",
+    "url": "https://www.unige.it",
+    "category": "public_university",
+    "city": "Genoa",
+    "region": "Liguria"
+  },
+  {
+    "id": 27,
+    "name": "University of Milan",
+    "url": "https://www.unimi.it",
+    "category": "public_university",
+    "city": "Milan",
+    "region": "Lombardy"
+  },
+  {
+    "id": 28,
+    "name": "University of Milan-Bicocca",
+    "url": "https://www.unimib.it",
+    "category": "public_university",
+    "city": "Milan",
+    "region": "Lombardy"
+  },
+  {
+    "id": 29,
+    "name": "Polytechnic University of Milan",
+    "url": "https://www.polimi.it",
+    "category": "public_university",
+    "city": "Milan",
+    "region": "Lombardy"
+  },
+  {
+    "id": 30,
+    "name": "University of Bergamo",
+    "url": "https://www.unibg.it",
+    "category": "public_university",
+    "city": "Bergamo",
+    "region": "Lombardy"
+  },
+  {
+    "id": 31,
+    "name": "University of Brescia",
+    "url": "https://www.unibs.it",
+    "category": "public_university",
+    "city": "Brescia",
+    "region": "Lombardy"
+  },
+  {
+    "id": 32,
+    "name": "University of Pavia",
+    "url": "https://www.unipv.it",
+    "category": "public_university",
+    "city": "Pavia",
+    "region": "Lombardy"
+  },
+  {
+    "id": 33,
+    "name": "University of Insubria",
+    "url": "https://www.uninsubria.it",
+    "category": "public_university",
+    "city": "Varese and Como",
+    "region": "Lombardy"
+  },
+  {
+    "id": 34,
+    "name": "Polytechnic University of Marche",
+    "url": "https://www.univpm.it",
+    "category": "public_university",
+    "city": "Ancona",
+    "region": "Marche"
+  },
+  {
+    "id": 35,
+    "name": "University of Camerino",
+    "url": "https://www.unicam.it",
+    "category": "public_university",
+    "city": "Camerino",
+    "region": "Marche"
+  },
+  {
+    "id": 36,
+    "name": "University of Macerata",
+    "url": "https://www.unimc.it",
+    "category": "public_university",
+    "city": "Macerata",
+    "region": "Marche"
+  },
+  {
+    "id": 37,
+    "name": "University of Urbino Carlo Bo",
+    "url": "https://www.uniurb.it",
+    "category": "public_university",
+    "city": "Urbino",
+    "region": "Marche"
+  },
+  {
+    "id": 38,
+    "name": "University of Molise",
+    "url": "https://www.unimol.it",
+    "category": "public_university",
+    "city": "Campobasso",
+    "region": "Molise"
+  },
+  {
+    "id": 39,
+    "name": "University of Turin",
+    "url": "https://www.unito.it",
+    "category": "public_university",
+    "city": "Turin",
+    "region": "Piedmont"
+  },
+  {
+    "id": 40,
+    "name": "Polytechnic University of Turin",
+    "url": "https://www.polito.it",
+    "category": "public_university",
+    "city": "Turin",
+    "region": "Piedmont"
+  },
+  {
+    "id": 41,
+    "name": "University of Eastern Piedmont",
+    "url": "https://www.uniupo.it",
+    "category": "public_university",
+    "city": "Vercelli and Novara",
+    "region": "Piedmont"
+  },
+  {
+    "id": 42,
+    "name": "University of Bari Aldo Moro",
+    "url": "https://www.uniba.it",
+    "category": "public_university",
+    "city": "Bari",
+    "region": "Apulia"
+  },
+  {
+    "id": 43,
+    "name": "Polytechnic University of Bari",
+    "url": "https://www.poliba.it",
+    "category": "public_university",
+    "city": "Bari",
+    "region": "Apulia"
+  },
+  {
+    "id": 44,
+    "name": "University of Foggia",
+    "url": "https://www.unifg.it",
+    "category": "public_university",
+    "city": "Foggia",
+    "region": "Apulia"
+  },
+  {
+    "id": 45,
+    "name": "University of Salento",
+    "url": "https://www.unisalento.it",
+    "category": "public_university",
+    "city": "Lecce",
+    "region": "Apulia"
+  },
+  {
+    "id": 46,
+    "name": "University of Cagliari",
+    "url": "https://www.unica.it",
+    "category": "public_university",
+    "city": "Cagliari",
+    "region": "Sardinia"
+  },
+  {
+    "id": 47,
+    "name": "University of Sassari",
+    "url": "https://www.uniss.it",
+    "category": "public_university",
+    "city": "Sassari",
+    "region": "Sardinia"
+  },
+  {
+    "id": 48,
+    "name": "University of Palermo",
+    "url": "https://www.unipa.it",
+    "category": "public_university",
+    "city": "Palermo",
+    "region": "Sicily"
+  },
+  {
+    "id": 49,
+    "name": "University of Catania",
+    "url": "https://www.unict.it",
+    "category": "public_university",
+    "city": "Catania",
+    "region": "Sicily"
+  },
+  {
+    "id": 50,
+    "name": "University of Messina",
+    "url": "https://www.unime.it",
+    "category": "public_university",
+    "city": "Messina",
+    "region": "Sicily"
+  },
+  {
+    "id": 51,
+    "name": "University of Florence",
+    "url": "https://www.unifi.it",
+    "category": "public_university",
+    "city": "Florence",
+    "region": "Tuscany"
+  },
+  {
+    "id": 52,
+    "name": "University of Pisa",
+    "url": "https://www.unipi.it",
+    "category": "public_university",
+    "city": "Pisa",
+    "region": "Tuscany"
+  },
+  {
+    "id": 53,
+    "name": "University of Siena",
+    "url": "https://www.unisi.it",
+    "category": "public_university",
+    "city": "Siena",
+    "region": "Tuscany"
+  },
+  {
+    "id": 54,
+    "name": "University for Foreigners of Siena",
+    "url": "https://www.unistrasi.it",
+    "category": "public_university",
+    "city": "Siena",
+    "region": "Tuscany"
+  },
+  {
+    "id": 55,
+    "name": "University of Trento",
+    "url": "https://www.unitn.it",
+    "category": "public_university",
+    "city": "Trento",
+    "region": "Trentino"
+  },
+  {
+    "id": 56,
+    "name": "University of Perugia",
+    "url": "https://www.unipg.it",
+    "category": "public_university",
+    "city": "Perugia",
+    "region": "Umbria"
+  },
+  {
+    "id": 57,
+    "name": "University for Foreigners of Perugia",
+    "url": "https://www.unistrapg.it",
+    "category": "public_university",
+    "city": "Perugia",
+    "region": "Umbria"
+  },
+  {
+    "id": 58,
+    "name": "Ca’ Foscari University of Venice",
+    "url": "https://www.unive.it",
+    "category": "public_university",
+    "city": "Venice",
+    "region": "Veneto"
+  },
+  {
+    "id": 59,
+    "name": "IUAV University of Venice",
+    "url": "https://www.iuav.it",
+    "category": "public_university",
+    "city": "Venice",
+    "region": "Veneto"
+  },
+  {
+    "id": 60,
+    "name": "University of Padua",
+    "url": "https://www.unipd.it",
+    "category": "public_university",
+    "city": "Padua",
+    "region": "Veneto"
+  },
+  {
+    "id": 61,
+    "name": "University of Verona",
+    "url": "https://www.univr.it",
+    "category": "public_university",
+    "city": "Verona",
+    "region": "Veneto"
+  },
+  {
+    "id": 62,
+    "name": "Bocconi University",
+    "url": "https://www.unibocconi.it",
+    "category": "private_university",
+    "city": "Milan",
+    "region": "Lombardy"
+  },
+  {
+    "id": 63,
+    "name": "LUISS Guido Carli",
+    "url": "https://www.luiss.it",
+    "category": "private_university",
+    "city": "Rome",
+    "region": "Lazio"
+  },
+  {
+    "id": 64,
+    "name": "Università Cattolica del Sacro Cuore",
+    "url": "https://www.unicatt.it",
+    "category": "private_university",
+    "city": "Milan and Rome",
+    "region": "Lombardy"
+  },
+  {
+    "id": 65,
+    "name": "IULM University",
+    "url": "https://www.iulm.it",
+    "category": "private_university",
+    "city": "Milan",
+    "region": "Lombardy"
+  },
+  {
+    "id": 66,
+    "name": "Vita-Salute San Raffaele University",
+    "url": "https://www.unisr.it",
+    "category": "private_university",
+    "city": "Milan",
+    "region": "Lombardy"
+  },
+  {
+    "id": 67,
+    "name": "Humanitas University",
+    "url": "https://www.hunimed.eu",
+    "category": "private_university",
+    "city": "Milan",
+    "region": "Lombardy"
+  },
+  {
+    "id": 68,
+    "name": "LIUC University",
+    "url": "https://www.liuc.it",
+    "category": "private_university",
+    "city": "Castellanza",
+    "region": "Lombardy"
+  },
+  {
+    "id": 69,
+    "name": "University of Gastronomic Sciences",
+    "url": "https://www.unisg.it",
+    "category": "private_university",
+    "city": "Pollenzo",
+    "region": "Piedmont"
+  },
+  {
+    "id": 70,
+    "name": "Free University of Bozen-Bolzano",
+    "url": "https://www.unibz.it",
+    "category": "private_university",
+    "city": "Bolzano",
+    "region": "South Tyrol"
+  },
+  {
+    "id": 71,
+    "name": "LUMSA University",
+    "url": "https://www.lumsa.it",
+    "category": "private_university",
+    "city": "Rome",
+    "region": "Lazio"
+  },
+  {
+    "id": 72,
+    "name": "University of Campus Bio-Medico of Rome",
+    "url": "https://www.unicampus.it",
+    "category": "private_university",
+    "city": "Rome",
+    "region": "Lazio"
+  },
+  {
+    "id": 73,
+    "name": "University of Rome International Studies — UNINT",
+    "url": "https://www.unint.eu",
+    "category": "private_university",
+    "city": "Rome",
+    "region": "Lazio"
+  },
+  {
+    "id": 74,
+    "name": "European University of Rome",
+    "url": "https://www.universitaeuropeadiroma.it",
+    "category": "private_university",
+    "city": "Rome",
+    "region": "Lazio"
+  },
+  {
+    "id": 75,
+    "name": "Saint Camillus International University of Health and Medical Sciences",
+    "url": "https://www.unicamillus.org",
+    "category": "private_university",
+    "city": "Rome",
+    "region": "Lazio"
+  },
+  {
+    "id": 76,
+    "name": "Link Campus University",
+    "url": "https://www.unilink.it",
+    "category": "private_university",
+    "city": "Rome",
+    "region": "Lazio"
+  },
+  {
+    "id": 77,
+    "name": "Suor Orsola Benincasa University",
+    "url": "https://www.unisob.na.it",
+    "category": "private_university",
+    "city": "Naples",
+    "region": "Campania"
+  },
+  {
+    "id": 78,
+    "name": "Giustino Fortunato University",
+    "url": "https://www.unifortunato.eu",
+    "category": "private_university",
+    "city": "Benevento",
+    "region": "Campania"
+  },
+  {
+    "id": 79,
+    "name": "Pegaso University",
+    "url": "https://www.unipegaso.it",
+    "category": "private_university",
+    "city": "Naples",
+    "region": "Campania"
+  },
+  {
+    "id": 80,
+    "name": "Leonardo da Vinci University",
+    "url": "https://www.unidav.it",
+    "category": "private_university",
+    "city": "Chieti",
+    "region": "Abruzzo"
+  },
+  {
+    "id": 81,
+    "name": "LUM University",
+    "url": "https://www.lum.it",
+    "category": "private_university",
+    "city": "Casamassima",
+    "region": "Apulia"
+  },
+  {
+    "id": 82,
+    "name": "University for Foreigners Dante Alighieri of Reggio Calabria",
+    "url": "https://www.unidarc.it",
+    "category": "private_university",
+    "city": "Reggio Calabria",
+    "region": "Calabria"
+  },
+  {
+    "id": 83,
+    "name": "Kore University of Enna",
+    "url": "https://www.unikore.it",
+    "category": "private_university",
+    "city": "Enna",
+    "region": "Sicily"
+  },
+  {
+    "id": 84,
+    "name": "eCampus University",
+    "url": "https://www.uniecampus.it",
+    "category": "online_university",
+    "city": "Distance Learning",
+    "region": "Italy-wide / Remote"
+  },
+  {
+    "id": 85,
+    "name": "Guglielmo Marconi University",
+    "url": "https://www.unimarconi.it",
+    "category": "online_university",
+    "city": "Distance Learning",
+    "region": "Italy-wide / Remote"
+  },
+  {
+    "id": 86,
+    "name": "UnitelmaSapienza University",
+    "url": "https://www.unitelmasapienza.it",
+    "category": "online_university",
+    "city": "Distance Learning",
+    "region": "Italy-wide / Remote"
+  },
+  {
+    "id": 87,
+    "name": "International Telematic University UNINETTUNO",
+    "url": "https://www.uninettunouniversity.net",
+    "category": "online_university",
+    "city": "Distance Learning",
+    "region": "Italy-wide / Remote"
+  },
+  {
+    "id": 88,
+    "name": "Universitas Mercatorum",
+    "url": "https://www.unimercatorum.it",
+    "category": "online_university",
+    "city": "Distance Learning",
+    "region": "Italy-wide / Remote"
+  },
+  {
+    "id": 89,
+    "name": "Niccolò Cusano University",
+    "url": "https://www.unicusano.it",
+    "category": "online_university",
+    "city": "Distance Learning",
+    "region": "Italy-wide / Remote"
+  },
+  {
+    "id": 90,
+    "name": "San Raffaele Roma University",
+    "url": "https://www.uniroma5.it",
+    "category": "online_university",
+    "city": "Distance Learning",
+    "region": "Italy-wide / Remote"
+  },
+  {
+    "id": 91,
+    "name": "Universitaly Regional Scholarship Portal",
+    "url": "https://www.universitaly.it/it/borse-studio/enti-diritto-studio",
+    "category": "regional_scholarship",
+    "city": "All Italy Portals",
+    "region": "National"
+  },
+  {
+    "id": 92,
+    "name": "EDISU Piemonte",
+    "url": "https://www.edisu.piemonte.it",
+    "category": "regional_scholarship",
+    "city": "Turin & Piedmont",
+    "region": "Piedmont"
+  },
+  {
+    "id": 93,
+    "name": "Regione Valle d’Aosta University Scholarships",
+    "url": "https://www.regione.vda.it",
+    "category": "regional_scholarship",
+    "city": "Aosta Valley",
+    "region": "Valle d’Aosta"
+  },
+  {
+    "id": 94,
+    "name": "ALiSEO Liguria",
+    "url": "https://www.aliseo.liguria.it",
+    "category": "regional_scholarship",
+    "city": "Genoa & Liguria",
+    "region": "Liguria"
+  },
+  {
+    "id": 95,
+    "name": "Lombardia Regional Scholarship / DSU",
+    "url": "https://www.universitaly.it",
+    "category": "regional_scholarship",
+    "city": "Milan, Pavia & Lombardy",
+    "region": "Lombardy"
+  },
+  {
+    "id": 96,
+    "name": "Provincia Autonoma di Bolzano University Scholarships",
+    "url": "https://www.provincia.bz.it",
+    "category": "regional_scholarship",
+    "city": "Bolzano / Bozen",
+    "region": "South Tyrol"
+  },
+  {
+    "id": 97,
+    "name": "Opera Universitaria di Trento",
+    "url": "https://www.operauni.tn.it",
+    "category": "regional_scholarship",
+    "city": "Trento & Region",
+    "region": "Trentino"
+  },
+  {
+    "id": 98,
+    "name": "ARDIS Friuli Venezia Giulia",
+    "url": "https://www.ardis.fvg.it",
+    "category": "regional_scholarship",
+    "city": "Trieste & Udine",
+    "region": "Friuli Venezia Giulia"
+  },
+  {
+    "id": 99,
+    "name": "ESU Padova",
+    "url": "https://www.esu.pd.it",
+    "category": "regional_scholarship",
+    "city": "Padua",
+    "region": "Veneto"
+  },
+  {
+    "id": 100,
+    "name": "ESU Venezia",
+    "url": "https://www.esuvenezia.it",
+    "category": "regional_scholarship",
+    "city": "Venice (Ca' Foscari / IUAV)",
+    "region": "Veneto"
+  },
+  {
+    "id": 101,
+    "name": "ESU Verona",
+    "url": "https://www.esu.vr.it",
+    "category": "regional_scholarship",
+    "city": "Verona",
+    "region": "Veneto"
+  },
+  {
+    "id": 102,
+    "name": "ER.GO Emilia-Romagna",
+    "url": "https://www.er-go.it",
+    "category": "regional_scholarship",
+    "city": "Bologna, Parma, Modena",
+    "region": "Emilia-Romagna"
+  },
+  {
+    "id": 103,
+    "name": "DSU Toscana",
+    "url": "https://www.dsu.toscana.it",
+    "category": "regional_scholarship",
+    "city": "Pisa, Florence, Siena",
+    "region": "Tuscany"
+  },
+  {
+    "id": 104,
+    "name": "ERDIS Marche",
+    "url": "https://www.erdis.it",
+    "category": "regional_scholarship",
+    "city": "Ancona, Urbino, Macerata",
+    "region": "Marche"
+  },
+  {
+    "id": 105,
+    "name": "ADISU Umbria",
+    "url": "https://www.adisu.umbria.it",
+    "category": "regional_scholarship",
+    "city": "Perugia & Umbria",
+    "region": "Umbria"
+  },
+  {
+    "id": 106,
+    "name": "Lazio DiSCo",
+    "url": "https://www.laziodisco.it",
+    "category": "regional_scholarship",
+    "city": "Rome (Sapienza, Tor Vergata)",
+    "region": "Lazio"
+  },
+  {
+    "id": 107,
+    "name": "ADSU L’Aquila",
+    "url": "https://www.adsuaq.org",
+    "category": "regional_scholarship",
+    "city": "L’Aquila",
+    "region": "Abruzzo"
+  },
+  {
+    "id": 108,
+    "name": "ADSU Chieti-Pescara",
+    "url": "https://www.adsuchietipescara.it",
+    "category": "regional_scholarship",
+    "city": "Chieti-Pescara",
+    "region": "Abruzzo"
+  },
+  {
+    "id": 109,
+    "name": "ADSU Teramo",
+    "url": "https://www.adsuteramo.it",
+    "category": "regional_scholarship",
+    "city": "Teramo",
+    "region": "Abruzzo"
+  },
+  {
+    "id": 110,
+    "name": "ADISURC Campania",
+    "url": "https://www.adisurcampania.it",
+    "category": "regional_scholarship",
+    "city": "Naples, Salerno, Vanvitelli",
+    "region": "Campania"
+  },
+  {
+    "id": 111,
+    "name": "ESU Molise",
+    "url": "https://www.esu.molise.it",
+    "category": "regional_scholarship",
+    "city": "Campobasso & Molise",
+    "region": "Molise"
+  },
+  {
+    "id": 112,
+    "name": "ADISU Puglia",
+    "url": "https://www.adisuapulia.it",
+    "category": "regional_scholarship",
+    "city": "Bari, Foggia, Salento",
+    "region": "Apulia"
+  },
+  {
+    "id": 113,
+    "name": "ARDSU Basilicata",
+    "url": "https://www.ardsubasilicata.it",
+    "category": "regional_scholarship",
+    "city": "Potenza & Matera",
+    "region": "Basilicata"
+  },
+  {
+    "id": 114,
+    "name": "ERSU Cagliari",
+    "url": "https://www.ersucagliari.it",
+    "category": "regional_scholarship",
+    "city": "Cagliari",
+    "region": "Sardinia"
+  },
+  {
+    "id": 115,
+    "name": "ERSU Sassari",
+    "url": "https://www.ersusassari.it",
+    "category": "regional_scholarship",
+    "city": "Sassari",
+    "region": "Sardinia"
+  },
+  {
+    "id": 116,
+    "name": "ERSU Catania",
+    "url": "https://www.ersucatania.it",
+    "category": "regional_scholarship",
+    "city": "Catania",
+    "region": "Sicily"
+  },
+  {
+    "id": 117,
+    "name": "ERSU Palermo",
+    "url": "https://www.ersupalermo.it",
+    "category": "regional_scholarship",
+    "city": "Palermo",
+    "region": "Sicily"
+  },
+  {
+    "id": 118,
+    "name": "ERSU Enna",
+    "url": "https://www.ersuenna.it",
+    "category": "regional_scholarship",
+    "city": "Enna",
+    "region": "Sicily"
+  },
+  {
+    "id": 119,
+    "name": "ERSU Messina",
+    "url": "https://www.ersumessina.it",
+    "category": "regional_scholarship",
+    "city": "Messina",
+    "region": "Sicily"
+  },
+  {
+    "id": 120,
+    "name": "ARDIS / Regional Right to Study Portal",
+    "url": "https://www.universitaly.it/it/borse-studio/enti-diritto-studio",
+    "category": "regional_scholarship",
+    "city": "Regional Right to Study",
+    "region": "National"
+  },
+  {
+    "id": 121,
+    "name": "University Scholarships and Institutional Benefits Portal",
+    "url": "https://www.universitaly.it/it/borse-studio/atenei",
+    "category": "regional_scholarship",
+    "city": "University Institutional Benefits",
+    "region": "National"
+  },
+  {
+    "id": 122,
+    "name": "Italian Ministry of University and Research — Right to Study",
+    "url": "https://www.mur.gov.it",
+    "category": "regional_scholarship",
+    "city": "Italian Ministry of University & Research",
+    "region": "National / MUR"
+  }
+]

@@ -1,0 +1,274 @@
+[
+  {
+    "id": 1,
+    "name": "University of Aveiro",
+    "ptName": "Universidade de Aveiro",
+    "website": "https://www.ua.pt/en/",
+    "applyUrl": "https://paco.ua.pt/candidaturas",
+    "moiIelts": "Programme-specific. IELTS/TOEFL or another accepted proof may be required for English-taught programmes. MOI is not a universal university-wide substitute; confirm with the exact programme.",
+    "deadline": "2027/28: Not yet published. Check the annual international-student call and programme page.",
+    "documents": [
+      "Passport",
+      "degree/certificate",
+      "complete transcript",
+      "proof of access/eligibility",
+      "language proof where required",
+      "CV",
+      "motivation letter where required",
+      "legalisation/Apostille and certified translation where applicable",
+      "programme-specific documents"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "University of Porto",
+    "ptName": "Universidade do Porto",
+    "website": "https://www.up.pt/portal/en/",
+    "applyUrl": "https://www.up.pt/portal/en/study/international-students/study-cycle-applications/",
+    "moiIelts": "Programme/faculty-specific. Language requirements depend on the study cycle and teaching language. MOI is not automatically accepted for every programme.",
+    "deadline": "2027/28: Not yet published. 2026/27 international Bachelor applications included 2 Jan–6 Feb, 9 Feb–2 Apr and later faculty-specific phases. Master’s deadlines are faculty-specific.",
+    "documents": [
+      "Passport",
+      "academic degree",
+      "transcript",
+      "proof of access/eligibility",
+      "language evidence/assessment where required",
+      "CV and motivation letter where required",
+      "legalised/Apostilled documents and translations where applicable",
+      "course-specific documents"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "University of Coimbra",
+    "ptName": "Universidade de Coimbra",
+    "website": "https://www.uc.pt/en/",
+    "applyUrl": "https://www.uc.pt/en/applications/",
+    "moiIelts": "Programme-specific. English-taught Master’s programmes have their own language requirements. MOI acceptance must be confirmed for the exact programme.",
+    "deadline": "2027/28: Not yet published. Master’s and international-student calls are published by the relevant programme/faculty.",
+    "documents": [
+      "Passport",
+      "Bachelor’s degree/equivalent",
+      "transcript",
+      "CV",
+      "motivation letter",
+      "language proof where required",
+      "proof of eligibility",
+      "legalisation/Apostille and translation where required",
+      "programme-specific documents"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "University of Minho",
+    "ptName": "Universidade do Minho",
+    "website": "https://www.uminho.pt/EN",
+    "applyUrl": "https://alunos.uminho.pt/EN/candidates/internationaltudents/Pages/ConcursoEspecialEI.aspx",
+    "moiIelts": "Programme-specific. IELTS is not a universal requirement for all programmes. MOI can only be relied on if accepted by the specific course.",
+    "deadline": "2027/28: Not yet published. International and Master’s calls can have different dates.",
+    "documents": [
+      "Passport",
+      "Bachelor’s degree/certificate",
+      "transcript",
+      "CV",
+      "motivation letter",
+      "language proof where required",
+      "academic/professional evidence where requested",
+      "legalisation/Apostille and translation where applicable",
+      "programme-specific documents"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "University of Algarve",
+    "ptName": "Universidade do Algarve",
+    "website": "https://www.ualg.pt/en/",
+    "applyUrl": "https://www.ualg.pt/en/applications-special-admission-contest-international-students",
+    "moiIelts": "Programme-specific. English-taught courses may require English proof; Portuguese-taught courses may require Portuguese. MOI is not universally accepted.",
+    "deadline": "2027/28: Not yet published. International Bachelor’s and postgraduate deadlines may differ.",
+    "documents": [
+      "Passport",
+      "degree/certificate",
+      "transcript",
+      "proof of access qualification",
+      "language proof where required",
+      "CV/motivation letter where requested",
+      "legalisation/Apostille and translations where required",
+      "programme-specific documents"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "University of Beira Interior",
+    "ptName": "Universidade da Beira Interior",
+    "website": "https://www.ubi.pt/en/",
+    "applyUrl": "https://www.ubi.pt/en/candidaturas",
+    "moiIelts": "Programme-specific. Some courses are Portuguese-taught and others use English. Check the exact course for accepted English evidence and whether MOI is accepted.",
+    "deadline": "2027/28: Not yet published. Check the annual international-student call.",
+    "documents": [
+      "Passport",
+      "degree",
+      "transcript",
+      "proof of access qualification",
+      "language proof where required",
+      "CV",
+      "motivation letter where required",
+      "legalisation/Apostille and translation where applicable",
+      "programme-specific documents"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "University of Évora",
+    "ptName": "Universidade de Évora",
+    "website": "https://www.uevora.pt/en/",
+    "applyUrl": "https://www.uevora.pt/en/study/applying-to-UE/application-deadlines",
+    "moiIelts": "Programme-specific. Confirm teaching language and accepted English proof on the course page. MOI is not a universal substitute.",
+    "deadline": "2027/28: Not yet published. The university publishes deadlines by study cycle/programme.",
+    "documents": [
+      "Passport",
+      "degree certificate",
+      "transcript",
+      "CV",
+      "motivation letter/study plan where required",
+      "language evidence",
+      "legalised/Apostilled documents and translations where required",
+      "programme-specific documents"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "University of Lisbon",
+    "ptName": "Universidade de Lisboa",
+    "website": "https://www.ulisboa.pt/en/",
+    "applyUrl": "https://www.ulisboa.pt/en/info/access-and-admission-ulisboa-2nd-cycle",
+    "moiIelts": "Faculty/programme-specific. ULisboa has many schools with different rules. For English-taught programmes, verify accepted certificates or alternative evidence. MOI must be confirmed by the specific school.",
+    "deadline": "2027/28: Not yet published. 2026/27 examples: Bachelor international applications 2 Jan–6 Feb and 6 Apr–22 May; Master’s dates varied by faculty.",
+    "documents": [
+      "Passport",
+      "Bachelor’s degree/equivalent",
+      "transcript",
+      "CV",
+      "motivation letter",
+      "language proof where required",
+      "programme prerequisites",
+      "legalised/Apostilled documents and translations where applicable",
+      "faculty-specific documents"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "NOVA University Lisbon",
+    "ptName": "Universidade NOVA de Lisboa",
+    "website": "https://www.unl.pt/en/",
+    "applyUrl": "https://www.unl.pt/en/education/applications",
+    "moiIelts": "School/programme-specific. NOVA schools set their own admission and language rules. MOI is not automatically accepted across all programmes.",
+    "deadline": "2027/28: Not yet published. Check the relevant NOVA school for the new call.",
+    "documents": [
+      "Passport",
+      "degree and transcript",
+      "proof of eligibility",
+      "CV",
+      "motivation letter where required",
+      "language certificate/proof or school assessment where applicable",
+      "legalisation/Apostille and translation where required",
+      "programme-specific documents"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "ISCTE",
+    "ptName": "Instituto Universitário de Lisboa",
+    "website": "https://www.iscte-iul.pt/",
+    "applyUrl": "https://www.iscte-iul.pt/programmes/applications-courses",
+    "moiIelts": "Programme-specific. Each Master’s programme states its own admission/language requirements. IELTS is not a blanket requirement; MOI acceptance varies by programme.",
+    "deadline": "2027/28: Not yet published. ISCTE normally publishes separate phases by programme.",
+    "documents": [
+      "Passport",
+      "Bachelor’s degree/equivalent",
+      "transcript",
+      "CV",
+      "motivation statement/letter",
+      "language proof where required",
+      "programme-specific documents",
+      "application-fee proof where applicable"
+    ]
+  },
+  {
+    "id": 11,
+    "name": "University of Trás-os-Montes and Alto Douro",
+    "ptName": "UTAD",
+    "website": "https://www.utad.pt/en/",
+    "applyUrl": "https://www.utad.pt/utad/en/students/international-students/",
+    "moiIelts": "Programme-specific. Check the exact Master’s/Doctoral programme for teaching language and accepted proof. MOI is not automatically accepted university-wide.",
+    "deadline": "2027/28: Not yet published. Check the international-student call and programme calendar.",
+    "documents": [
+      "Passport",
+      "degree certificate",
+      "transcript",
+      "CV",
+      "motivation letter/research proposal where required",
+      "language proof where required",
+      "legalisation/Apostille and translation where applicable",
+      "programme-specific documents"
+    ]
+  },
+  {
+    "id": 12,
+    "name": "University of the Azores",
+    "ptName": "Universidade dos Açores",
+    "website": "https://uac.pt/en/",
+    "applyUrl": "https://international.uac.pt/",
+    "moiIelts": "Programme-specific. English-taught programmes require the evidence specified in the individual call. MOI is not a universal IELTS substitute.",
+    "deadline": "2027/28: Not yet published. Bachelor’s, Master’s and PhD calls can have separate dates.",
+    "documents": [
+      "Passport",
+      "academic qualification",
+      "transcript",
+      "proof of access qualification",
+      "language proof where required",
+      "CV/motivation/research documents where required",
+      "legalisation/Apostille and translation where applicable",
+      "programme-specific documents"
+    ]
+  },
+  {
+    "id": 13,
+    "name": "University of Madeira",
+    "ptName": "Universidade da Madeira",
+    "website": "https://www.uma.pt/en/",
+    "applyUrl": "https://candidaturas.uma.pt/",
+    "moiIelts": "Programme-specific. Check the exact call for teaching language and accepted English evidence. MOI is not universally accepted.",
+    "deadline": "2027/28: Not yet published. 2026/27 international calls used separate phases for different study cycles.",
+    "documents": [
+      "Passport",
+      "degree/certificate",
+      "transcript",
+      "proof of access qualification",
+      "CV",
+      "motivation letter where required",
+      "language proof where required",
+      "legalisation/Apostille and translation where applicable",
+      "programme-specific documents"
+    ]
+  },
+  {
+    "id": 14,
+    "name": "Universidade Aberta",
+    "ptName": "Open University",
+    "website": "https://portal.uab.pt/",
+    "applyUrl": "https://portal.uab.pt/candidaturas/",
+    "moiIelts": "Primarily distance/open education. Language and eligibility requirements depend on the specific programme. For English-taught programmes, check the individual call. MOI/IELTS is programme-specific rather than a universal rule.",
+    "deadline": "2027/28: Not yet published. Latest 2026/27 undergraduate applications included 10 Mar–28 Apr for routes with entrance tests and 12 May–16 Jun for direct/re-entry routes; Master’s/PhD applications were 12 May–16 Jun.",
+    "documents": [
+      "Passport/ID",
+      "academic qualification",
+      "transcript",
+      "proof of eligibility",
+      "language evidence where required",
+      "CV/motivation documents where required",
+      "legalisation/Apostille and translation where applicable",
+      "programme-specific documents"
+    ]
+  }
+]

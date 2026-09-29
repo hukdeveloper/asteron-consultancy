@@ -6,6 +6,7 @@ function getHeaderHtml(activePage = '') {
   const isAbout = activePage === 'about';
   const isUniversities = activePage === 'universities';
   const isScholarships = activePage === 'scholarships';
+  const isPortugal = activePage === 'portugal';
   const isContact = activePage === 'contact';
 
   return `<header class="sticky top-0 z-50 border-b border-[#123a70]/10 bg-white/95 backdrop-blur" style="position:sticky;top:0;z-index:9999;">
@@ -21,6 +22,7 @@ function getHeaderHtml(activePage = '') {
       <a class="hover:text-[#fbb040] transition" style="text-decoration:none;color:#123a70;font-size:14px;${isAbout ? 'font-weight:700;border-bottom:2px solid #123a70;padding-bottom:2px;' : 'font-weight:600;'}" href="/about" ${isAbout ? 'data-status="active" aria-current="page"' : ''}>About</a>
       <a class="hover:text-[#fbb040] transition" style="text-decoration:none;color:#123a70;font-size:14px;${isUniversities ? 'font-weight:700;border-bottom:2px solid #123a70;padding-bottom:2px;' : 'font-weight:600;'}" href="/universities" ${isUniversities ? 'data-status="active" aria-current="page"' : ''}>Universities</a>
       <a class="hover:text-[#fbb040] transition" style="text-decoration:none;color:#123a70;font-size:14px;${isScholarships ? 'font-weight:700;border-bottom:2px solid #123a70;padding-bottom:2px;' : 'font-weight:600;'}" href="/scholarships" ${isScholarships ? 'data-status="active" aria-current="page"' : ''}>Scholarships</a>
+      <a class="hover:text-[#fbb040] transition" style="text-decoration:none;color:#123a70;font-size:14px;${isPortugal ? 'font-weight:700;border-bottom:2px solid #123a70;padding-bottom:2px;' : 'font-weight:600;'}" href="/study/portugal" ${isPortugal ? 'data-status="active" aria-current="page"' : ''}>Portugal</a>
       <a class="hover:text-[#fbb040] transition" style="text-decoration:none;color:#123a70;font-size:14px;${isContact ? 'font-weight:700;border-bottom:2px solid #123a70;padding-bottom:2px;' : 'font-weight:600;'}" href="/contact" ${isContact ? 'data-status="active" aria-current="page"' : ''}>Contact</a>
       <a href="https://wa.me/923700171997?text=Hi%20Janan%20Consultancy%2C%20I%20have%20an%20inquiry." target="_blank" rel="noreferrer" style="display:inline-flex;align-items:center;gap:6px;border-radius:9999px;background:#123a70;padding:6px 16px;font-size:12px;font-weight:700;color:#ffffff;text-decoration:none;box-shadow:0 2px 6px rgba(18,58,112,0.25);transition:all 0.2s;">
         <span>WhatsApp</span> ↗
@@ -106,7 +108,24 @@ function getHeaderHtml(activePage = '') {
         <span style="font-size:14px;color:#94a3b8;">→</span>
       </a>
 
-      <!-- Item 5: Contact Us -->
+      <!-- Item 5: Portugal Guide -->
+      <a href="/study/portugal" onclick="window.toggleJananMobileMenu()" class="janan-menu-link" style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;text-decoration:none;transition:all 0.2s;${isPortugal ? 'background:rgba(18,58,112,0.08);color:#123a70;font-weight:700;' : 'color:#334155;font-weight:600;'}">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:rgba(18,58,112,0.08);color:#123a70;">
+            <span style="font-size:16px;">🇵🇹</span>
+          </span>
+          <div>
+            <div style="font-size:14px;line-height:1.2;display:flex;align-items:center;gap:6px;">
+              <span>Study in Portugal</span>
+              <span style="background:#ecfdf5;color:#047857;font-size:10px;font-weight:700;padding:1px 6px;border-radius:9999px;">14 Unis</span>
+            </div>
+            <div style="font-size:11px;color:#64748b;font-weight:400;margin-top:2px;">2027/28 Public Universities Guide</div>
+          </div>
+        </div>
+        <span style="font-size:14px;color:#94a3b8;">→</span>
+      </a>
+
+      <!-- Item 6: Contact Us -->
       <a href="/contact" onclick="window.toggleJananMobileMenu()" class="janan-menu-link" style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;text-decoration:none;transition:all 0.2s;${isContact ? 'background:rgba(18,58,112,0.08);color:#123a70;font-weight:700;' : 'color:#334155;font-weight:600;'}">
         <div style="display:flex;align-items:center;gap:12px;">
           <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:rgba(18,58,112,0.08);color:#123a70;">
@@ -255,6 +274,8 @@ function processFile(filePath) {
     activePage = 'universities';
   } else if (norm.includes('scholarships')) {
     activePage = 'scholarships';
+  } else if (norm.includes('portugal')) {
+    activePage = 'portugal';
   } else if (norm.includes('contact')) {
     activePage = 'contact';
   }
