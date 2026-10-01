@@ -1,0 +1,174 @@
+/* Janan Consultancy - Global Custom & Grid Stylesheet */
+
+.janan-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #123a70;
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(18, 58, 112, 0.18);
+  transition: all 0.2s ease;
+  border: none;
+}
+.janan-btn-primary:hover {
+  background-color: #0e2c56;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(18, 58, 112, 0.28);
+}
+.janan-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #ffffff;
+  color: #123a70 !important;
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 11px 22px;
+  border-radius: 9999px;
+  border: 2px solid #123a70;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.janan-btn-secondary:hover {
+  background-color: rgba(18, 58, 112, 0.05);
+  transform: translateY(-2px);
+}
+.janan-btn-white {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #ffffff;
+  color: #123a70 !important;
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 12px 26px;
+  border-radius: 9999px;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  transition: all 0.2s ease;
+}
+.janan-btn-white:hover {
+  background-color: #f8fafc;
+  transform: translateY(-2px);
+}
+.janan-btn-trans {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 11px 24px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.janan-btn-trans:hover {
+  background-color: rgba(255, 255, 255, 0.22);
+  transform: translateY(-2px);
+}
+
+/* Grids */
+.janan-grid-2,
+#pt-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+  gap: 24px !important;
+}
+
+.janan-grid-3,
+#uni-grid,
+#scholarship-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)) !important;
+  gap: 20px !important;
+}
+
+.janan-grid-4 {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+  gap: 16px !important;
+}
+
+.janan-card {
+  background-color: #ffffff;
+  border: 2px solid rgba(18, 58, 112, 0.14);
+  border-radius: 1.25rem;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+}
+.janan-card:hover {
+  border-color: #123a70;
+  box-shadow: 0 6px 18px rgba(18, 58, 112, 0.10);
+  transform: translateY(-2px);
+}
+
+.janan-dark-hero {
+  padding: 56px 20px !important;
+}
+
+/* Responsive Header & Mobile Dropdown Navigation */
+.janan-desktop-nav {
+  display: flex !important;
+}
+.janan-mobile-toggle {
+  display: none !important;
+}
+.janan-mobile-dropdown {
+  display: none;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease;
+}
+.janan-mobile-dropdown.is-open {
+  display: block !important;
+  max-height: 600px !important;
+  opacity: 1 !important;
+  animation: jananSlideDown 0.26s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.janan-menu-link:hover {
+  background: rgba(18, 58, 112, 0.05) !important;
+  transform: translateX(3px);
+}
+
+@keyframes jananSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile Media Queries */
+@media (max-width: 768px) {
+  .janan-desktop-nav {
+    display: none !important;
+  }
+  .janan-mobile-toggle {
+    display: flex !important;
+  }
+  .janan-grid-2,
+  .janan-grid-3,
+  #uni-grid,
+  #scholarship-grid,
+  #pt-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}

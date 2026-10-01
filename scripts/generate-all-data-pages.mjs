@@ -4,16 +4,17 @@ import path from 'path';
 // 1. Load Data
 const italyItems = JSON.parse(fs.readFileSync('data/italy-directory.json', 'utf8'));
 const portugalUnis = JSON.parse(fs.readFileSync('data/portugal-directory.json', 'utf8'));
+const unifiedUnis = JSON.parse(fs.readFileSync('data/unified-universities.json', 'utf8'));
 
-// Filter Italian institutions
-const italianUnis = italyItems.filter(i => ['public_university', 'private_university', 'online_university'].includes(i.category));
+// Filter Italian institutions using unified data (Netlify structure)
+const italianUnis = unifiedUnis;
 const italianScholarships = italyItems.filter(i => i.category === 'regional_scholarship');
 
 const publicUnis = italianUnis.filter(i => i.category === 'public_university');
 const privateUnis = italianUnis.filter(i => i.category === 'private_university');
 const onlineUnis = italianUnis.filter(i => i.category === 'online_university');
 
-console.log(`Loaded ${italianUnis.length} Italian Unis (Public: ${publicUnis.length}, Private: ${privateUnis.length}, Online: ${onlineUnis.length})`);
+console.log(`Loaded ${italianUnis.length} Italian Unis with Netlify admission structure (Public: ${publicUnis.length}, Private: ${privateUnis.length}, Online: ${onlineUnis.length})`);
 console.log(`Loaded ${italianScholarships.length} Italian Regional Scholarships`);
 console.log(`Loaded ${portugalUnis.length} Portuguese Public Universities`);
 
@@ -520,7 +521,9 @@ const PERFECT_FOOTER_HTML = `<footer class="mt-20 border-t border-[#123a70]/10 b
 
 function buildFullHtml(title, description, contentHtml, activeNav) {
   return `<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="image" href="/img/janan-logo.jpg"/><link rel="stylesheet" href="/assets/index-Cmku6p7J.css" type="text/css" data-precedence="default"/><title>${title}</title><meta name="description" content="${description}"/><meta property="og:title" content="${title}"/><meta property="og:description" content="${description}"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/>${GLOBAL_ENHANCEMENT_STYLES}</head><body>
+<meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="image" href="/img/janan-logo.jpg"/><link rel="stylesheet" href="/assets/index-Cmku6p7J.css" type="text/css" data-precedence="default"/><title>${title}</title><meta name="description" content="${description}"/><meta property="og:title" content="${title}"/><meta property="og:description" content="${description}"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/>${GLOBAL_ENHANCEMENT_STYLES}
+<script src="/assets/janan-router.js"></script>
+</head><body>
 ${getHeader(activeNav)}
 ${contentHtml}
 ${PERFECT_FOOTER_HTML}
@@ -529,68 +532,74 @@ ${PERFECT_FOOTER_HTML}
 }
 
 // ==========================================
-// 1. BUILD UNIVERSITIES PAGE (All 90 Italian Unis)
+// 1. BUILD UNIVERSITIES PAGE (All 90 Italian Unis with Netlify Card Design)
 // ==========================================
 function buildUniversitiesHtml() {
   const cardsHtml = italianUnis.map(u => {
     let catBadge = '';
-    let typeName = '';
     let feeBadgeStyle = '';
 
     if (u.category === 'public_university') {
       catBadge = '🏛️ Public University';
-      typeName = 'State / Public Institution';
       feeBadgeStyle = 'background:#ecfdf5;color:#047857;border:1px solid #a7f3d0;';
     } else if (u.category === 'private_university') {
       catBadge = '⭐ Private University';
-      typeName = 'Accredited Private Institution';
       feeBadgeStyle = 'background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;';
     } else {
       catBadge = '🌐 Online Telematic';
-      typeName = 'Telematic Distance Learning';
       feeBadgeStyle = 'background:#faf5ff;color:#7e22ce;border:1px solid #e9d5ff;';
     }
 
     const searchTokens = `${u.name.toLowerCase()} ${u.city ? u.city.toLowerCase() : ''} ${u.region ? u.region.toLowerCase() : ''} ${u.category} ${u.id}`;
-    const cleanDomain = u.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
 
     return `
-      <div data-uni-card data-category="${u.category}" data-search="${searchTokens}" class="janan-card flex flex-col justify-between" style="display:flex;flex-direction:column;justify-content:space-between;">
+      <div data-uni-card data-category="${u.category}" data-search="${searchTokens}" class="rounded-2xl border border-[#123a70]/10 bg-white p-5 shadow-sm transition hover:border-[#123a70] hover:shadow-md flex flex-col justify-between" style="display:flex;flex-direction:column;justify-content:space-between;border-radius:1rem;border:1px solid rgba(18,58,112,0.12);background:#fff;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,0.05);">
         <div>
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;">
-            <span style="display:inline-flex;align-items:center;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:700;${feeBadgeStyle}">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;flex-wrap:wrap;">
+            <span style="display:inline-flex;align-items:center;border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;${feeBadgeStyle}">
               ${catBadge}
             </span>
-            <span style="display:inline-flex;align-items:center;border-radius:8px;background:#f1f5f9;padding:4px 10px;font-size:11px;font-weight:600;color:#475569;">
+            <span style="font-size:11px;color:#64748b;font-weight:500;">
               📍 ${u.city || u.region}
             </span>
           </div>
 
-          <div style="margin-top:12px;font-size:11px;font-weight:800;color:#fbb040;letter-spacing:0.04em;">#${u.id} OFFICIAL LIST</div>
-          <h3 class="mt-1 text-lg font-bold text-[#123a70]" style="line-height:1.35;min-height:48px;">${u.name}</h3>
-          
-          <div style="margin-top:14px;border-top:1px solid #f1f5f9;padding-top:12px;font-size:12px;color:#475569;display:flex;flex-direction:column;gap:6px;">
-            <div style="display:flex;align-items:center;justify-content:space-between;">
-              <span style="color:#94a3b8;">Type:</span>
-              <span style="font-weight:600;color:#334155;">${typeName}</span>
+          <div class="font-bold text-[#123a70]" style="font-size:16px;line-height:1.35;min-height:44px;color:#123a70;font-weight:700;">${u.name}</div>
+
+          <div class="mt-3 space-y-1 text-sm" style="margin-top:12px;font-size:13px;display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;justify-content:space-between;gap:8px;">
+              <span class="text-slate-400" style="color:#94a3b8;">Admission opens</span>
+              <span class="font-medium text-[#123a70]" style="font-weight:600;color:#123a70;text-align:right;">${u.admissionOpens || 'Nov 2026 – Feb 2027'}</span>
             </div>
-            <div style="display:flex;align-items:center;justify-content:space-between;">
-              <span style="color:#94a3b8;">Scholarship:</span>
-              <span style="font-weight:600;color:#047857;">${u.category === 'public_university' ? 'DSU / Regional Eligible' : 'Institutional Grants'}</span>
+            <div style="display:flex;justify-content:space-between;gap:8px;">
+              <span class="text-slate-400" style="color:#94a3b8;">Deadline</span>
+              <span class="font-medium text-[#123a70]" style="font-weight:600;color:#123a70;text-align:right;">${u.deadline || 'May 2027'}</span>
             </div>
-            <div style="display:flex;align-items:center;justify-content:space-between;">
-              <span style="color:#94a3b8;">Official Domain:</span>
-              <span style="font-weight:600;color:#123a70;font-family:monospace;font-size:11px;">${cleanDomain}</span>
+            <div style="display:flex;justify-content:space-between;gap:8px;">
+              <span class="text-slate-400" style="color:#94a3b8;">Admission fee</span>
+              <span class="font-medium text-[#123a70]" style="font-weight:600;color:#123a70;text-align:right;">${u.admissionFee || '€30 – €50'}</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;gap:8px;">
+              <span class="text-slate-400" style="color:#94a3b8;">CGPA</span>
+              <span class="font-medium text-[#123a70]" style="font-weight:600;color:#123a70;text-align:right;font-size:11.5px;">${u.cgpa || 'NO CGPA REQUIREMENT'}</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;gap:8px;">
+              <span class="text-slate-400" style="color:#94a3b8;">English</span>
+              <span class="font-medium text-[#123a70]" style="font-weight:600;color:#123a70;text-align:right;font-size:11.5px;">${u.english || 'English Proficiency'}</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;gap:8px;">
+              <span class="text-slate-400" style="color:#94a3b8;">Degrees</span>
+              <span class="font-medium text-[#123a70]" style="font-weight:600;color:#123a70;text-align:right;font-size:11.5px;">${u.degrees || "Bachelor's, Master's, PhD"}</span>
             </div>
           </div>
         </div>
 
-        <div style="margin-top:18px;display:flex;flex-direction:column;gap:8px;padding-top:8px;">
-          <a href="${u.url}" target="_blank" rel="noreferrer" class="janan-btn-primary" style="padding:9px 14px;font-size:12px;border-radius:10px;width:100%;">
-            Official Website Portal ↗
+        <div style="margin-top:16px;padding-top:12px;border-top:1px solid #f1f5f9;display:flex;flex-direction:column;gap:8px;">
+          <a href="${u.applyUrl}" target="_blank" rel="noreferrer" class="inline-block rounded-full bg-[#123a70] px-4 py-2 text-sm font-semibold text-white hover:bg-[#0e2c56]" style="text-align:center;text-decoration:none;border-radius:9999px;background:#123a70;color:#fff;padding:8px 16px;font-size:13px;font-weight:700;transition:all 0.2s;">
+            ${u.applyText || 'Apply / Watch Tutorial →'}
           </a>
-          <a href="https://wa.me/923700171997?text=Hi%20Janan%20Consultancy%2C%20I%20need%20admission%20guidance%20for%20${encodeURIComponent(u.name)}." target="_blank" rel="noreferrer" class="janan-btn-secondary" style="padding:8px 14px;font-size:12px;border-radius:10px;width:100%;border-width:1px;">
-            Ask Counselor on WhatsApp
+          <a href="https://wa.me/923700171997?text=Hi%20Janan%20Consultancy%2C%20I%20would%20like%20guidance%20for%20admission%20at%20${encodeURIComponent(u.name)}." target="_blank" rel="noreferrer" style="text-align:center;text-decoration:none;border-radius:9999px;background:rgba(18,58,112,0.06);color:#123a70;border:1px solid rgba(18,58,112,0.15);padding:6px 14px;font-size:11.5px;font-weight:600;transition:all 0.2s;">
+            Ask Counselor on WhatsApp ↗
           </a>
         </div>
       </div>
@@ -641,7 +650,7 @@ function buildUniversitiesHtml() {
     <!-- Cards Grid -->
     <section class="py-12 mb-20 sm:mb-28">
       <div class="mx-auto max-w-6xl px-4">
-        <div id="uni-grid" class="janan-grid-3">
+        <div id="uni-grid" class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 janan-grid-3" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(290px, 1fr));gap:20px;">
           ${cardsHtml}
         </div>
         <div id="no-results" class="hidden rounded-2xl border-2 border-dashed border-[#123a70]/20 bg-white p-12 text-center" style="margin-top:24px;">
@@ -826,7 +835,7 @@ function buildScholarshipsHtml() {
           </p>
         </div>
 
-        <div id="scholarship-grid" class="janan-grid-3">
+        <div id="scholarship-grid" class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 janan-grid-3" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(290px, 1fr));gap:20px;">
           ${scholarshipCardsHtml}
         </div>
 
@@ -1106,7 +1115,7 @@ function buildPortugalHtml() {
           </p>
         </div>
 
-        <div id="pt-grid" class="janan-grid-2">
+        <div id="pt-grid" class="grid grid-cols-1 gap-6 sm:grid-cols-2 janan-grid-2" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));gap:24px;">
           ${cardsHtml}
         </div>
 
@@ -1216,62 +1225,112 @@ function buildItalyGuideHtml() {
       <div class="mb-8">
         <h1 class="text-3xl sm:text-4xl font-black text-[#123a70]">Study in Italy</h1>
         <p class="mt-2 max-w-2xl text-slate-600">
-          Complete roadmap to public university admissions, 100% regional scholarships (DSU, ER.GO, Lazio DiSCo), legal translations, and student visa insurance.
+          Complete roadmap to Italian university admissions by degree level, 100% regional scholarships (DSU, ER.GO, Lazio DiSCo), certified legal translations, and student visa insurance.
         </p>
       </div>
 
-      <!-- Quick Category Grid -->
-      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <a href="/universities" class="flex flex-col items-center justify-center gap-1 text-center rounded-2xl border-2 border-[#123a70]/15 bg-white p-6 min-h-[120px] shadow-sm transition hover:-translate-y-0.5 hover:border-[#123a70] hover:shadow-md">
-          <span class="text-3xl">🏛️</span>
-          <span class="text-base font-bold text-[#123a70]">Universities</span>
-          <span class="text-xs text-slate-500">Directory of 90 public &amp; private unis</span>
-        </a>
-        <a href="/scholarships" class="flex flex-col items-center justify-center gap-1 text-center rounded-2xl border-2 border-[#123a70]/15 bg-white p-6 min-h-[120px] shadow-sm transition hover:-translate-y-0.5 hover:border-[#123a70] hover:shadow-md">
-          <span class="text-3xl">💶</span>
-          <span class="text-base font-bold text-[#123a70]">32 Regional Scholarships</span>
-          <span class="text-xs text-slate-500">DSU, ER.GO, Lazio Disco</span>
-        </a>
-        <a href="/study/italy/translation" class="flex flex-col items-center justify-center gap-1 text-center rounded-2xl border-2 border-[#123a70]/15 bg-white p-6 min-h-[120px] shadow-sm transition hover:-translate-y-0.5 hover:border-[#123a70] hover:shadow-md">
-          <span class="text-3xl">📄</span>
-          <span class="text-base font-bold text-[#123a70]">Italian Translation</span>
-          <span class="text-xs text-slate-500">Embassy &amp; Consulate verified</span>
-        </a>
-        <a href="/study/italy/insurance" class="flex flex-col items-center justify-center gap-1 text-center rounded-2xl border-2 border-[#123a70]/15 bg-white p-6 min-h-[120px] shadow-sm transition hover:-translate-y-0.5 hover:border-[#123a70] hover:shadow-md">
-          <span class="text-3xl">🛡️</span>
-          <span class="text-base font-bold text-[#123a70]">Visa Health Insurance</span>
-          <span class="text-xs text-slate-500">Schengen compliant</span>
-        </a>
+      <!-- Section 1: Choose Your Degree Level (Admissions Hub) -->
+      <div class="mb-10">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-bold text-[#123a70] flex items-center gap-2">
+            <span>🎓</span> Degree Level Admissions
+          </h2>
+          <a href="/study/italy/admissions" class="text-xs font-bold text-[#123a70] hover:underline">View Admissions Hub →</a>
+        </div>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <a href="/study/italy/admissions/bachelors-programs" class="flex flex-col items-center justify-center gap-1.5 text-center rounded-2xl border-2 border-[#123a70]/15 bg-white p-6 min-h-[120px] shadow-sm transition hover:-translate-y-0.5 hover:border-[#123a70] hover:shadow-md">
+            <span class="text-3xl">📚</span>
+            <span class="text-base font-bold text-[#123a70]">Bachelor's Program</span>
+            <span class="text-xs text-slate-500">Undergraduate 3-year degrees</span>
+          </a>
+          <a href="/study/italy/admissions/masters-programs" class="flex flex-col items-center justify-center gap-1.5 text-center rounded-2xl border-2 border-[#123a70]/15 bg-white p-6 min-h-[120px] shadow-sm transition hover:-translate-y-0.5 hover:border-[#123a70] hover:shadow-md">
+            <span class="text-3xl">🎓</span>
+            <span class="text-base font-bold text-[#123a70]">Master's Programs</span>
+            <span class="text-xs text-slate-500">Postgraduate 2-year degrees</span>
+          </a>
+          <a href="/study/italy/admissions/phd-programs" class="flex flex-col items-center justify-center gap-1.5 text-center rounded-2xl border-2 border-[#123a70]/15 bg-white p-6 min-h-[120px] shadow-sm transition hover:-translate-y-0.5 hover:border-[#123a70] hover:shadow-md">
+            <span class="text-3xl">🔬</span>
+            <span class="text-base font-bold text-[#123a70]">PhD Programs</span>
+            <span class="text-xs text-slate-500">Doctoral research &amp; grants</span>
+          </a>
+          <a href="/study/italy/admissions/single-degree" class="flex flex-col items-center justify-center gap-1.5 text-center rounded-2xl border-2 border-[#123a70]/15 bg-white p-6 min-h-[120px] shadow-sm transition hover:-translate-y-0.5 hover:border-[#123a70] hover:shadow-md">
+            <span class="text-3xl">⚖️</span>
+            <span class="text-base font-bold text-[#123a70]">Single Degree</span>
+            <span class="text-xs text-slate-500">Medicine, Law &amp; Architecture</span>
+          </a>
+        </div>
       </div>
 
-      <!-- Overview Cards -->
-      <div class="mt-12 rounded-2xl border-2 border-[#123a70]/15 bg-white p-6 sm:p-8">
-        <h2 class="text-xl font-bold text-[#123a70]">🇮🇹 Complete Italy 2027–28 Admissions &amp; Scholarships</h2>
-        <p class="mt-2 text-slate-600">
-          Our Italy services offer end-to-end guidance from preliminary evaluation to arrival in Italy:
+      <!-- Section 2: Core Italy Services & Directories -->
+      <div style="margin-top: 52px; margin-bottom: 52px;">
+        <h2 class="text-xl font-bold text-[#123a70] mb-4 flex items-center gap-2">
+          <span>🏛️</span> Key Destinations &amp; Services
+        </h2>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <a href="/universities" class="flex flex-col items-center justify-center gap-1 text-center rounded-2xl border-2 border-[#123a70]/15 bg-white p-6 min-h-[120px] shadow-sm transition hover:-translate-y-0.5 hover:border-[#123a70] hover:shadow-md">
+            <span class="text-3xl">🏛️</span>
+            <span class="text-base font-bold text-[#123a70]">Universities</span>
+            <span class="text-xs text-slate-500">Directory of 90 public &amp; private unis</span>
+          </a>
+          <a href="/scholarships" class="flex flex-col items-center justify-center gap-1 text-center rounded-2xl border-2 border-[#123a70]/15 bg-white p-6 min-h-[120px] shadow-sm transition hover:-translate-y-0.5 hover:border-[#123a70] hover:shadow-md">
+            <span class="text-3xl">💶</span>
+            <span class="text-base font-bold text-[#123a70]">32 Regional Scholarships</span>
+            <span class="text-xs text-slate-500">DSU, ER.GO, Lazio Disco</span>
+          </a>
+          <a href="/study/italy/translation" class="flex flex-col items-center justify-center gap-1 text-center rounded-2xl border-2 border-[#123a70]/15 bg-white p-6 min-h-[120px] shadow-sm transition hover:-translate-y-0.5 hover:border-[#123a70] hover:shadow-md">
+            <span class="text-3xl">📄</span>
+            <span class="text-base font-bold text-[#123a70]">Italian Translation</span>
+            <span class="text-xs text-slate-500">Embassy &amp; Consulate verified</span>
+          </a>
+          <a href="/study/italy/insurance" class="flex flex-col items-center justify-center gap-1 text-center rounded-2xl border-2 border-[#123a70]/15 bg-white p-6 min-h-[120px] shadow-sm transition hover:-translate-y-0.5 hover:border-[#123a70] hover:shadow-md">
+            <span class="text-3xl">🛡️</span>
+            <span class="text-base font-bold text-[#123a70]">Visa Health Insurance</span>
+            <span class="text-xs text-slate-500">Schengen compliant</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Section 3: Free Study in Italy 2027–28 Guides -->
+      <div class="rounded-2xl border-2 border-[#123a70]/15 bg-white p-6 sm:p-8" style="margin-top: 52px;">
+        <h2 class="text-xl font-bold text-[#123a70]">🇮🇹 Free Study in Italy 2027–28 Guides by Janan Consultancy</h2>
+        <p class="mt-2 text-slate-600 text-sm">
+          Free, detailed guides covering the full application process, English-taught course directories, and public university admissions.
         </p>
 
-        <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:16px;">
-            <div style="font-weight:700;color:#123a70;font-size:14px;">🎓 Italian Universities (90 Institutions)</div>
-            <p style="font-size:12px;color:#475569;margin-top:6px;line-height:1.5;">
-              From University of Bologna to University of Verona. Directory includes 61 Public Universities, 22 Private Universities, and 7 Online Universities with English-taught degrees and DSU regional grant eligibility.
-            </p>
-            <a href="/universities" style="display:inline-block;margin-top:10px;font-size:12px;font-weight:700;color:#123a70;">View All Universities →</a>
-          </div>
-
-          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:16px;">
-            <div style="font-weight:700;color:#123a70;font-size:14px;">💶 32 Regional Right to Study Agencies</div>
-            <p style="font-size:12px;color:#475569;margin-top:6px;line-height:1.5;">
-              Regional agencies provide free meals, free dormitories, and annual cash stipends (€7,500 – €8,500) based on family income evaluation (ISEE Parificato).
-            </p>
-            <a href="/scholarships" style="display:inline-block;margin-top:10px;font-size:12px;font-weight:700;color:#123a70;">View All Regional Portals →</a>
-          </div>
+        <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <a href="/study/italy/guide/process/" class="flex items-center gap-3 rounded-xl border-2 border-[#123a70]/15 bg-[#f7f9fc] p-4 font-semibold text-[#123a70] transition hover:-translate-y-0.5 hover:border-[#123a70] hover:shadow-md">
+            <span class="text-2xl">🇮🇹</span>
+            <div>
+              <div class="text-sm font-bold text-[#123a70]">Study in Italy — Step-by-Step Process</div>
+              <div class="text-xs text-slate-500 font-normal">From pre-enrollment to visa stamping</div>
+            </div>
+          </a>
+          <a href="/study/italy/guide/bachelors/" class="flex items-center gap-3 rounded-xl border-2 border-[#123a70]/15 bg-[#f7f9fc] p-4 font-semibold text-[#123a70] transition hover:-translate-y-0.5 hover:border-[#123a70] hover:shadow-md">
+            <span class="text-2xl">📚</span>
+            <div>
+              <div class="text-sm font-bold text-[#123a70]">Bachelor's Courses in Italian Universities</div>
+              <div class="text-xs text-slate-500 font-normal">English-taught undergraduate degrees</div>
+            </div>
+          </a>
+          <a href="/study/italy/guide/masters/" class="flex items-center gap-3 rounded-xl border-2 border-[#123a70]/15 bg-[#f7f9fc] p-4 font-semibold text-[#123a70] transition hover:-translate-y-0.5 hover:border-[#123a70] hover:shadow-md">
+            <span class="text-2xl">🎓</span>
+            <div>
+              <div class="text-sm font-bold text-[#123a70]">Master's Courses in Italian Universities</div>
+              <div class="text-xs text-slate-500 font-normal">English-taught 2-year postgraduate degrees</div>
+            </div>
+          </a>
+          <a href="/universities" class="flex items-center gap-3 rounded-xl border-2 border-[#123a70]/15 bg-[#f7f9fc] p-4 font-semibold text-[#123a70] transition hover:-translate-y-0.5 hover:border-[#123a70] hover:shadow-md">
+            <span class="text-2xl">🏛️</span>
+            <div>
+              <div class="text-sm font-bold text-[#123a70]">Universities Directory (90 Listed)</div>
+              <div class="text-xs text-slate-500 font-normal">Admissions, deadlines, fees &amp; portals</div>
+            </div>
+          </a>
         </div>
 
         <div class="mt-8 text-center">
           <a href="https://wa.me/923700171997?text=Hi%20Janan%20Consultancy%2C%20I%20would%20like%20guidance%20for%20studying%20in%20Italy." target="_blank" rel="noreferrer" class="janan-btn-primary">
-            <span>Speak with an Italy Counselor on WhatsApp</span> ↗
+            <span>Speak with an Italy Counselor on WhatsApp (+92 370 017 1997)</span> ↗
           </a>
         </div>
       </div>
